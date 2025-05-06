@@ -57,7 +57,7 @@ Grow your money through investments! Choose between Low (3%), Medium (8%), or Hi
       };
 
       // Bank data file path
-      const bankDataPath = path.join(__dirname, 'bank.json');
+      const bankDataPath = path.join(__dirname ,'data' ,'bank.json');
 
       // Initialize bank data if file doesn't exist
       if (!fs.existsSync(bankDataPath)) {
