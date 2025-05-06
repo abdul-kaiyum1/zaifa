@@ -1,0 +1,330 @@
+[
+  {
+    "name": "aiko",
+    "usage": 35
+  },
+  {
+    "name": "ping",
+    "usage": 2
+  },
+  {
+    "name": "uptime",
+    "usage": 1
+  },
+  {
+    "name": "help",
+    "usage": 27
+  },
+  {
+    "name": "mi",
+    "usage": 1
+  },
+  {
+    "name": "upt",
+    "usage": 11
+  },
+  {
+    "name": "stats",
+    "usage": 6
+  },
+  {
+    "name": "dcmd",
+    "usage": 5
+  },
+  {
+    "name": "upt2",
+    "usage": 2
+  },
+  {
+    "name": "gh",
+    "usage": 12
+  },
+  {
+    "name": "sing",
+    "usage": 34
+  },
+  {
+    "name": "",
+    "usage": 32
+  },
+  {
+    "name": "uid",
+    "usage": 2
+  },
+  {
+    "name": "bd",
+    "usage": 1
+  },
+  {
+    "name": "ms",
+    "usage": 3
+  },
+  {
+    "name": "bal",
+    "usage": 6
+  },
+  {
+    "name": "roulette",
+    "usage": 9
+  },
+  {
+    "name": "slot",
+    "usage": 2
+  },
+  {
+    "name": "daily",
+    "usage": 2
+  },
+  {
+    "name": "aikoooo",
+    "usage": 1
+  },
+  {
+    "name": "pinterest",
+    "usage": 1
+  },
+  {
+    "name": "pair",
+    "usage": 68
+  },
+  {
+    "name": "onlyadminbox",
+    "usage": 3
+  },
+  {
+    "name": "unsend",
+    "usage": 37
+  },
+  {
+    "name": "pair2",
+    "usage": 2
+  },
+  {
+    "name": "ytb",
+    "usage": 6
+  },
+  {
+    "name": "prefix",
+    "usage": 6
+  },
+  {
+    "name": "setcd",
+    "usage": 1
+  },
+  {
+    "name": "hack",
+    "usage": 14
+  },
+  {
+    "name": "l",
+    "usage": 1
+  },
+  {
+    "name": "thread",
+    "usage": 7
+  },
+  {
+    "name": "approve",
+    "usage": 10
+  },
+  {
+    "name": "bank",
+    "usage": 4
+  },
+  {
+    "name": "count",
+    "usage": 5
+  },
+  {
+    "name": "**i",
+    "usage": 1
+  },
+  {
+    "name": "pet",
+    "usage": 4
+  },
+  {
+    "name": "bot",
+    "usage": 2
+  },
+  {
+    "name": "acp",
+    "usage": 2
+  },
+  {
+    "name": "admins",
+    "usage": 1
+  },
+  {
+    "name": "yta",
+    "usage": 1
+  },
+  {
+    "name": "lyrics",
+    "usage": 4
+  },
+  {
+    "name": "pending",
+    "usage": 2
+  },
+  {
+    "name": "tid",
+    "usage": 2
+  },
+  {
+    "name": "wanted",
+    "usage": 1
+  },
+  {
+    "name": "getlink",
+    "usage": 2
+  },
+  {
+    "name": "update",
+    "usage": 3
+  },
+  {
+    "name": "chat",
+    "usage": 1
+  },
+  {
+    "name": "miko",
+    "usage": 2
+  },
+  {
+    "name": "say",
+    "usage": 11
+  },
+  {
+    "name": "spy",
+    "usage": 1
+  },
+  {
+    "name": "silent",
+    "usage": 9
+  },
+  {
+    "name": "leaveall",
+    "usage": 1
+  },
+  {
+    "name": "file",
+    "usage": 4
+  },
+  {
+    "name": "umsend",
+    "usage": 1
+  },
+  {
+    "name": "info",
+    "usage": 1
+  },
+  {
+    "name": "fun",
+    "usage": 1
+  },
+  {
+    "name": "helpmedia",
+    "usage": 1
+  },
+  {
+    "name": "gemini",
+    "usage": 1
+  },
+  {
+    "name": "unsent",
+    "usage": 1
+  },
+  {
+    "name": "media",
+    "usage": 1
+  },
+  {
+    "name": "creator",
+    "usage": 1
+  },
+  {
+    "name": "nonod",
+    "usage": 1
+  },
+  {
+    "name": "prayer",
+    "usage": 2
+  },
+  {
+    "name": "shell",
+    "usage": 2
+  },
+  {
+    "name": "kick",
+    "usage": 1
+  },
+  {
+    "name": "kiss",
+    "usage": 1
+  },
+  {
+    "name": "propose",
+    "usage": 2
+  },
+  {
+    "name": "uns",
+    "usage": 2
+  },
+  {
+    "name": "up",
+    "usage": 4
+  },
+  {
+    "name": "pm",
+    "usage": 3
+  },
+  {
+    "name": "🔪",
+    "usage": 1
+  },
+  {
+    "name": "save",
+    "usage": 4
+  },
+  {
+    "name": "anigen",
+    "usage": 1
+  },
+  {
+    "name": "refresh",
+    "usage": 1
+  },
+  {
+    "name": "video",
+    "usage": 1
+  },
+  {
+    "name": "view",
+    "usage": 1
+  },
+  {
+    "name": "alldl",
+    "usage": 9
+  },
+  {
+    "name": "flag",
+    "usage": 1
+  },
+  {
+    "name": "gpt",
+    "usage": 3
+  },
+  {
+    "name": "animedl",
+    "usage": 1
+  },
+  {
+    "name": "got",
+    "usage": 1
+  },
+  {
+    "name": "prompt",
+    "usage": 1
+  }
+]

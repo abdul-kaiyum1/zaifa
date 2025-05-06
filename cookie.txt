@@ -1,0 +1,65 @@
+[
+  {
+    "name": "__Secure-3PAPISID",
+    "value": "NUYNvQ2kEwr3o2fV/ACRax215j8bNqlUR1",
+    "domain": ".youtube.com",
+    "path": "/",
+    "expires": 1773835589.705747,
+    "httpOnly": false,
+    "secure": true
+  },
+  {
+    "name": "__Secure-3PSID",
+    "value": "g.a000swh1Dd4qvNDPWDySbwqEfcFJqfghKAxcsMmiAroI9yrCw_P3sQn64P8i9_6HoT15Q4H3tAACgYKAXwSARESFQHGX2MiM4xxkhX76fUpzVNS9BxEFxoVAUF8yKpuHDQY_AaoOvR4xdkF6mfm0076",
+    "domain": ".youtube.com",
+    "path": "/",
+    "expires": 1773835589.705772,
+    "httpOnly": true,
+    "secure": true
+  },
+  {
+    "name": "LOGIN_INFO",
+    "value": "AFmmF2swRQIhAO26JpD8vwz9BN-EmUD3dtYcghzHoP97KRJgoxHpUOJIAiBMmm--UkXnsf3EGIbivMulX0KMIWurve5BadngPLh8Nw:QUQ3MjNmeFVoeWVYTkRVLTBVWmEyVkhqZlJBQ3Z2MmcxaE5lV0t5V2FUUjVNUlU2eEp0OElpaFVXNE9IM25VejVuNUowNUNNc2FCZ0ozNC04UFZhQnFYVHozRE9aVFl5YjhkSEI4UnF6ZmdBSlJqYUpYUmZWMzd1Yk1aMWFTQmdjNjl6bjBOeG4yMHUzQ0V5WFlmWGQ2djN0bUFvd3FWWGln",
+    "domain": ".youtube.com",
+    "path": "/",
+    "expires": 1773835593.342022,
+    "httpOnly": true,
+    "secure": true
+  },
+  {
+    "name": "PREF",
+    "value": "f6=40000000&tz=Asia.Dhaka&f7=100",
+    "domain": ".youtube.com",
+    "path": "/",
+    "expires": 1777390480.752612,
+    "httpOnly": false,
+    "secure": true
+  },
+  {
+    "name": "__Secure-1PSIDTS",
+    "value": "sidts-CjEB7pHptTyIYCRdRUqM7R_Q6dqpSF_XyKc5u4dTmM0x8jrfAuaTcUJVYll6cxdn2pE3EAA",
+    "domain": ".youtube.com",
+    "path": "/",
+    "expires": 1774366483.233797,
+    "httpOnly": true,
+    "secure": true
+  },
+  {
+    "name": "__Secure-3PSIDTS",
+    "value": "sidts-CjEB7pHptTyIYCRdRUqM7R_Q6dqpSF_XyKc5u4dTmM0x8jrfAuaTcUJVYll6cxdn2pE3EAA",
+    "domain": ".youtube.com",
+    "path": "/",
+    "expires": 1774366483.23392,
+    "httpOnly": true,
+    "secure": true
+  },
+  {
+    "name": "__Secure-3PSIDCC",
+    "value": "AKEyXzX05WVppAr4upK-bSbNg6uebas0jJv7D_IeVM1mGp-gKWE-HPrGXEpy8dq1s4pklFHk",
+    "domain": ".youtube.com",
+    "path": "/",
+    "expires": 1774366485.657699,
+    "httpOnly": true,
+    "secure": true
+  }
+]

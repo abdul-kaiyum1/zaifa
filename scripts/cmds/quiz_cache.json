@@ -1,0 +1,7654 @@
+[   
+     {
+    "category": "celebrities",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "Which actor played the role of Tony Stark in the Marvel Cinematic Universe?",
+    "options": [
+      "Robert Downey Jr.",
+      "Chris Evans",
+      "Mark Ruffalo",
+      "Chris Hemsworth"
+    ],
+    "answer": "Robert Downey Jr."
+  },
+  {
+    "category": "general_knowledge",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "What is the chemical symbol for gold?",
+    "options": [
+      "Au",
+      "Ag",
+      "Cu",
+      "Fe"
+    ],
+    "answer": "Au"
+  },
+  {
+    "category": "geography",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "What is the capital of Australia?",
+    "options": [
+      "Canberra",
+      "Sydney",
+      "Melbourne",
+      "Brisbane"
+    ],
+    "answer": "Canberra"
+  },
+  {
+    "category": "mythology",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "Who is the Norse god of mischief?",
+    "options": [
+      "Loki",
+      "Thor",
+      "Odin",
+      "Frigg"
+    ],
+    "answer": "Loki"
+  },
+  {
+    "category": "art",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "Which painting by Leonardo da Vinci is known for its mysterious smile?",
+    "options": [
+      "Mona Lisa",
+      "The Last Supper",
+      "The Vitruvian Man",
+      "Lady with an Ermine"
+    ],
+    "answer": "Mona Lisa"
+  },
+  {
+    "category": "literature",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "Who wrote the play 'Hamlet'?",
+    "options": [
+      "William Shakespeare",
+      "Charles Dickens",
+      "Mark Twain",
+      "Jane Austen"
+    ],
+    "answer": "William Shakespeare"
+  },
+  {
+    "category": "music",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "Which composer wrote 'The Four Seasons'?",
+    "options": [
+      "Antonio Vivaldi",
+      "Johann Sebastian Bach",
+      "Wolfgang Amadeus Mozart",
+      "Ludwig van Beethoven"
+    ],
+    "answer": "Antonio Vivaldi"
+  },
+  {
+    "category": "television",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "Who created the TV series 'Breaking Bad'?",
+    "options": [
+      "Vince Gilligan",
+      "David Chase",
+      "Matthew Weiner",
+      "David Simon"
+    ],
+    "answer": "Vince Gilligan"
+  },
+  {
+    "category": "film",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "Who directed the movie 'Inception'?",
+    "options": [
+      "Christopher Nolan",
+      "Steven Spielberg",
+      "Quentin Tarantino",
+      "Martin Scorsese"
+    ],
+    "answer": "Christopher Nolan"
+  },
+  {
+    "category": "video_games",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "In the 'Legend of Zelda' series, what is the name of the protagonist?",
+    "options": [
+      "Link",
+      "Zelda",
+      "Ganondorf",
+      "Sheik"
+    ],
+    "answer": "Link"
+  },
+  {
+    "category": "board_games",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "Which board game is known as 'The Game of Kings'?",
+    "options": [
+      "Chess",
+      "Checkers",
+      "Backgammon",
+      "Go"
+    ],
+    "answer": "Chess"
+  },
+  {
+    "category": "computers",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "Who is the co-founder of Apple Inc.?",
+    "options": [
+      "Steve Jobs",
+      "Bill Gates",
+      "Tim Cook",
+      "Steve Wozniak"
+    ],
+    "answer": "Steve Wozniak"
+  },
+  {
+    "category": "mathematics",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "What is the approximate value of pi (π)?",
+    "options": [
+      "3.14",
+      "3.141",
+      "3.1416",
+      "3.14159"
+    ],
+    "answer": "3.14159"
+  },
+  {
+    "category": "comic_books",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "Who is the alter ego of Batman?",
+    "options": [
+      "Bruce Wayne",
+      "Clark Kent",
+      "Peter Parker",
+      "Tony Stark"
+    ],
+    "answer": "Bruce Wayne"
+  },
+  {
+    "category": "gadgets",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "What year was the first iPhone released?",
+    "options": [
+      "2007",
+      "2008",
+      "2006",
+      "2009"
+    ],
+    "answer": "2007"
+  },
+  {
+    "category": "cartoon_animations",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "Who created the animated TV series 'Avatar: The Last Airbender'?",
+    "options": [
+      "Michael Dante DiMartino and Bryan Konietzko",
+      "Matt Groening",
+      "Seth MacFarlane",
+      "Mike Judge"
+    ],
+    "answer": "Michael Dante DiMartino and Bryan Konietzko"
+  },
+  {
+    "category": "anime_manga",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "In 'Naruto', what is the name of the village hidden in the leaves?",
+    "options": [
+      "Konohagakure",
+      "Sunagakure",
+      "Kirigakure",
+      "Iwagakure"
+    ],
+    "answer": "Konohagakure"
+  },
+  {
+    "category": "celebrities",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "Which actress won an Academy Award for her role in the movie 'La La Land'?",
+    "options": [
+      "Emma Stone",
+      "Jennifer Lawrence",
+      "Natalie Portman",
+      "Cate Blanchett"
+    ],
+    "answer": "Emma Stone"
+  },
+  {
+    "category": "general_knowledge",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "What is the capital of Canada?",
+    "options": [
+      "Ottawa",
+      "Toronto",
+      "Montreal",
+      "Vancouver"
+    ],
+    "answer": "Ottawa"
+  },
+  {
+    "category": "geography",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "What is the largest country by land area?",
+    "options": [
+      "Russia",
+      "Canada",
+      "China",
+      "United States"
+    ],
+    "answer": "Russia"
+  },
+  {
+    "category": "mythology",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "Who is the Greek god of the sea?",
+    "options": [
+      "Poseidon",
+      "Zeus",
+      "Hades",
+      "Apollo"
+    ],
+    "answer": "Poseidon"
+  },
+  {
+    "category": "art",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "Which artist painted 'The Starry Night'?",
+    "options": [
+      "Vincent van Gogh",
+      "Pablo Picasso",
+      "Leonardo da Vinci",
+      "Claude Monet"
+    ],
+    "answer": "Vincent van Gogh"
+  },
+  {
+    "category": "literature",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "Who wrote 'The Catcher in the Rye'?",
+    "options": [
+      "J.D. Salinger",
+      "F. Scott Fitzgerald",
+      "Ernest Hemingway",
+      "Harper Lee"
+    ],
+    "answer": "J.D. Salinger"
+  },
+  {
+    "category": "music",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "Who composed the 'Moonlight Sonata'?",
+    "options": [
+      "Ludwig van Beethoven",
+      "Wolfgang Amadeus Mozart",
+      "Johann Sebastian Bach",
+      "Frederic Chopin"
+    ],
+    "answer": "Ludwig van Beethoven"
+  },
+  {
+    "category": "television",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "Which TV series features the character Walter White?",
+    "options": [
+      "Breaking Bad",
+      "The Wire",
+      "The Sopranos",
+      "Lost"
+    ],
+    "answer": "Breaking Bad"
+  },
+  {
+    "category": "film",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "Who directed the movie 'The Shawshank Redemption'?",
+    "options": [
+      "Frank Darabont",
+      "Quentin Tarantino",
+      "Steven Spielberg",
+      "Martin Scorsese"
+    ],
+    "answer": "Frank Darabont"
+  },
+  {
+    "category": "video_games",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "In the 'Super Mario' series of video games, what is the name of Mario's brother?",
+    "options": [
+      "Luigi",
+      "Yoshi",
+      "Wario",
+      "Bowser"
+    ],
+    "answer": "Luigi"
+  },
+  {
+    "category": "board_games",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "Which board game is known as 'The Game of Global Domination'?",
+    "options": [
+      "Risk",
+      "Monopoly",
+      "Scrabble",
+      "Clue"
+    ],
+    "answer": "Risk"
+  },
+  {
+    "category": "computers",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "What was the first programming language created in the 1950s?",
+    "options": [
+      "Fortran",
+      "COBOL",
+      "LISP",
+      "Assembly"
+    ],
+    "answer": "Fortran"
+  },
+  {
+    "category": "mathematics",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "What is the Pythagorean theorem used for?",
+    "options": [
+      "Calculating the length of the sides of a right triangle",
+      "Calculating the circumference of a circle",
+      "Solving quadratic equations",
+      "Finding the area of a triangle"
+    ],
+    "answer": "Calculating the length of the sides of a right triangle"
+  },
+  {
+    "category": "comic_books",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "Which superhero is known as the 'Man of Steel'?",
+    "options": [
+      "Superman",
+      "Batman",
+      "Spider-Man",
+      "Iron Man"
+    ],
+    "answer": "Superman"
+  },
+  {
+    "category": "gadgets",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "What year was the first commercially available smartphone released?",
+    "options": [
+      "1992",
+      "1996",
+      "2000",
+      "2002"
+    ],
+    "answer": "1992"
+  },
+  {
+    "category": "cartoon_animations",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "Who created the animated TV series 'The Simpsons'?",
+    "options": [
+      "Matt Groening",
+      "Seth MacFarlane",
+      "Mike Judge",
+      "Justin Roiland and Dan Harmon"
+    ],
+    "answer": "Matt Groening"
+  },
+  {
+    "category": "anime_manga",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "What is the name of the main character in the manga 'Death Note'?",
+    "options": [
+      "Light Yagami",
+      "L Lawliet",
+      "Misa Amane",
+      "Ryuk"
+    ],
+    "answer": "Light Yagami"
+  },
+  {
+    "category": "celebrities",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "Who won the Academy Award for Best Actor in 2018 for his role in the movie 'Darkest Hour'?",
+    "options": [
+      "Gary Oldman",
+      "Daniel Day-Lewis",
+      "Tom Hanks",
+      "Leonardo DiCaprio"
+    ],
+    "answer": "Gary Oldman"
+  },
+  {
+    "category": "general_knowledge",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "What is the SI unit of luminous intensity?",
+    "options": [
+      "Candela",
+      "Lumen",
+      "Lux",
+      "Watt"
+    ],
+    "answer": "Candela"
+  },
+  {
+    "category": "geography",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "Which river is the longest in the world?",
+    "options": [
+      "Nile",
+      "Amazon",
+      "Mississippi",
+      "Yangtze"
+    ],
+    "answer": "Nile"
+  },
+  {
+    "category": "mythology",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "Who is the Egyptian god of the afterlife?",
+    "options": [
+      "Anubis",
+      "Ra",
+      "Osiris",
+      "Horus"
+    ],
+    "answer": "Anubis"
+  },
+  {
+    "category": "art",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "Which artist painted 'Guernica'?",
+    "options": [
+      "Pablo Picasso",
+      "Vincent van Gogh",
+      "Leonardo da Vinci",
+      "Michelangelo"
+    ],
+    "answer": "Pablo Picasso"
+  },
+  {
+    "category": "literature",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "Who wrote '1984'?",
+    "options": [
+      "George Orwell",
+      "Aldous Huxley",
+      "Ray Bradbury",
+      "Kurt Vonnegut"
+    ],
+    "answer": "George Orwell"
+  },
+  {
+    "category": "music",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "Who composed 'The Rite of Spring'?",
+    "options": [
+      "Igor Stravinsky",
+      "Ludwig van Beethoven",
+      "Wolfgang Amadeus Mozart",
+      "Johann Sebastian Bach"
+    ],
+    "answer": "Igor Stravinsky"
+  },
+  {
+    "category": "television",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "Which TV series features the character Don Draper?",
+    "options": [
+      "Mad Men",
+      "The Sopranos",
+      "Breaking Bad",
+      "The Wire"
+    ],
+    "answer": "Mad Men"
+  },
+  {
+    "category": "film",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "Who directed the movie 'Pulp Fiction'?",
+    "options": [
+      "Quentin Tarantino",
+      "Martin Scorsese",
+      "Steven Spielberg",
+      "Christopher Nolan"
+    ],
+    "answer": "Quentin Tarantino"
+  },
+  {
+    "category": "video_games",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "Which video game series features characters such as Mario, Luigi, and Princess Peach?",
+    "options": [
+      "Super Mario",
+      "The Legend of Zelda",
+      "Final Fantasy",
+      "Minecraft"
+    ],
+    "answer": "Super Mario"
+  },
+  {
+    "category": "board_games",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "What is the maximum number of players allowed in a game of 'Catan'?",
+    "options": [
+      "4",
+      "5",
+      "6",
+      "7"
+    ],
+    "answer": "4"
+  },
+  {
+    "category": "computers",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "What was the first computer virus released in 1982?",
+    "options": [
+      "Elk Cloner",
+      "ILOVEYOU",
+      "Stuxnet",
+      "Brain"
+    ],
+    "answer": "Elk Cloner"
+  },
+  {
+    "category": "mathematics",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "What is the square root of 144?",
+    "options": [
+      "12",
+      "10",
+      "14",
+      "16"
+    ],
+    "answer": "12"
+  },
+  {
+    "category": "comic_books",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "What is the name of the fictional metal found in the Marvel Universe that is used to make Captain America's shield?",
+    "options": [
+      "Vibranium",
+      "Adamantium",
+      "Kryptonite",
+      "Mithril"
+    ],
+    "answer": "Vibranium"
+  },
+  {
+    "category": "gadgets",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "What does CPU stand for?",
+    "options": [
+      "Central Processing Unit",
+      "Computer Processor Unit",
+      "Core Processing Unit",
+      "Control Processing Unit"
+    ],
+    "answer": "Central Processing Unit"
+  },
+  {
+    "category": "cartoon_animations",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "Who created the animated TV series 'Family Guy'?",
+    "options": [
+      "Seth MacFarlane",
+      "Matt Groening",
+      "Mike Judge",
+      "Trey Parker and Matt Stone"
+    ],
+    "answer": "Seth MacFarlane"
+  },
+  {
+    "category": "anime_manga",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "What is the name of the main character in the anime 'Naruto'?",
+    "options": [
+      "Naruto Uzumaki",
+      "Sasuke Uchiha",
+      "Sakura Haruno",
+      "Kakashi Hatake"
+    ],
+    "answer": "Naruto Uzumaki"
+  },
+     {
+    "category": "celebrities",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "Which actor played the role of Tony Stark in the Marvel Cinematic Universe?",
+    "options": [
+      "Robert Downey Jr.",
+      "Chris Evans",
+      "Mark Ruffalo",
+      "Chris Hemsworth"
+    ],
+    "answer": "Robert Downey Jr."
+  },
+  {
+    "category": "geography",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "What is the capital of Australia?",
+    "options": [
+      "Canberra",
+      "Sydney",
+      "Melbourne",
+      "Brisbane"
+    ],
+    "answer": "Canberra"
+  },
+  {
+    "category": "mythology",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "Who is the Norse god of mischief?",
+    "options": [
+      "Loki",
+      "Thor",
+      "Odin",
+      "Frigg"
+    ],
+    "answer": "Loki"
+  },
+  {
+    "category": "art",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "Which painting by Leonardo da Vinci is known for its mysterious smile?",
+    "options": [
+      "Mona Lisa",
+      "The Last Supper",
+      "The Vitruvian Man",
+      "Lady with an Ermine"
+    ],
+    "answer": "Mona Lisa"
+  },
+  {
+    "category": "literature",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "Who wrote the play 'Hamlet'?",
+    "options": [
+      "William Shakespeare",
+      "Charles Dickens",
+      "Mark Twain",
+      "Jane Austen"
+    ],
+    "answer": "William Shakespeare"
+  },
+  {
+    "category": "music",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "Which composer wrote 'The Four Seasons'?",
+    "options": [
+      "Antonio Vivaldi",
+      "Johann Sebastian Bach",
+      "Wolfgang Amadeus Mozart",
+      "Ludwig van Beethoven"
+    ],
+    "answer": "Antonio Vivaldi"
+  },
+  {
+    "category": "television",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "Who created the TV series 'Breaking Bad'?",
+    "options": [
+      "Vince Gilligan",
+      "David Chase",
+      "Matthew Weiner",
+      "David Simon"
+    ],
+    "answer": "Vince Gilligan"
+  },
+  {
+    "category": "film",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "Who directed the movie 'Inception'?",
+    "options": [
+      "Christopher Nolan",
+      "Steven Spielberg",
+      "Quentin Tarantino",
+      "Martin Scorsese"
+    ],
+    "answer": "Christopher Nolan"
+  },
+  {
+    "category": "video_games",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "In the 'Legend of Zelda' series, what is the name of the protagonist?",
+    "options": [
+      "Link",
+      "Zelda",
+      "Ganondorf",
+      "Sheik"
+    ],
+    "answer": "Link"
+  },
+  {
+    "category": "board_games",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "Which board game is known as 'The Game of Kings'?",
+    "options": [
+      "Chess",
+      "Checkers",
+      "Backgammon",
+      "Go"
+    ],
+    "answer": "Chess"
+  },
+  {
+    "category": "computers",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "Who is the co-founder of Apple Inc.?",
+    "options": [
+      "Steve Jobs",
+      "Bill Gates",
+      "Tim Cook",
+      "Steve Wozniak"
+    ],
+    "answer": "Steve Wozniak"
+  },
+  {
+    "category": "mathematics",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "What is the approximate value of pi (π)?",
+    "options": [
+      "3.14",
+      "3.141",
+      "3.1416",
+      "3.14159"
+    ],
+    "answer": "3.14159"
+  },
+  {
+    "category": "comic_books",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "Who is the alter ego of Batman?",
+    "options": [
+      "Bruce Wayne",
+      "Clark Kent",
+      "Peter Parker",
+      "Tony Stark"
+    ],
+    "answer": "Bruce Wayne"
+  },
+  {
+    "category": "gadgets",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "What year was the first iPhone released?",
+    "options": [
+      "2007",
+      "2008",
+      "2006",
+      "2009"
+    ],
+    "answer": "2007"
+  },
+  {
+    "category": "cartoon_animations",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "Who created the animated TV series 'Avatar: The Last Airbender'?",
+    "options": [
+      "Michael Dante DiMartino and Bryan Konietzko",
+      "Matt Groening",
+      "Seth MacFarlane",
+      "Mike Judge"
+    ],
+    "answer": "Michael Dante DiMartino and Bryan Konietzko"
+  },
+  {
+    "category": "anime_manga",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "In 'Naruto', what is the name of the village hidden in the leaves?",
+    "options": [
+      "Konohagakure",
+      "Sunagakure",
+      "Kirigakure",
+      "Iwagakure"
+    ],
+    "answer": "Konohagakure"
+  },
+  {
+    "category": "celebrities",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "Which actress won an Academy Award for her role in the movie 'La La Land'?",
+    "options": [
+      "Emma Stone",
+      "Jennifer Lawrence",
+      "Natalie Portman",
+      "Cate Blanchett"
+    ],
+    "answer": "Emma Stone"
+  },
+  {
+    "category": "geography",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "What is the largest country by land area?",
+    "options": [
+      "Russia",
+      "Canada",
+      "China",
+      "United States"
+    ],
+    "answer": "Russia"
+  },
+  {
+    "category": "mythology",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "Who is the Greek god of the sea?",
+    "options": [
+      "Poseidon",
+      "Zeus",
+      "Hades",
+      "Apollo"
+    ],
+    "answer": "Poseidon"
+  },
+  {
+    "category": "art",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "Which artist painted 'The Starry Night'?",
+    "options": [
+      "Vincent van Gogh",
+      "Pablo Picasso",
+      "Leonardo da Vinci",
+      "Claude Monet"
+    ],
+    "answer": "Vincent van Gogh"
+  },
+  {
+    "category": "literature",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "Who wrote 'The Catcher in the Rye'?",
+    "options": [
+      "J.D. Salinger",
+      "F. Scott Fitzgerald",
+      "Ernest Hemingway",
+      "Harper Lee"
+    ],
+    "answer": "J.D. Salinger"
+  },
+  {
+    "category": "music",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "Who composed the 'Moonlight Sonata'?",
+    "options": [
+      "Ludwig van Beethoven",
+      "Wolfgang Amadeus Mozart",
+      "Johann Sebastian Bach",
+      "Frederic Chopin"
+    ],
+    "answer": "Ludwig van Beethoven"
+  },
+  {
+    "category": "television",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "Which TV series features the character Walter White?",
+    "options": [
+      "Breaking Bad",
+      "The Wire",
+      "The Sopranos",
+      "Lost"
+    ],
+    "answer": "Breaking Bad"
+  },
+  {
+    "category": "film",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "Who directed the movie 'The Shawshank Redemption'?",
+    "options": [
+      "Frank Darabont",
+      "Quentin Tarantino",
+      "Steven Spielberg",
+      "Martin Scorsese"
+    ],
+    "answer": "Frank Darabont"
+  },
+  {
+    "category": "video_games",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "In the 'Super Mario' series of video games, what is the name of Mario's brother?",
+    "options": [
+      "Luigi",
+      "Yoshi",
+      "Wario",
+      "Bowser"
+    ],
+    "answer": "Luigi"
+  },
+  {
+    "category": "board_games",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "Which board game is known as 'The Game of Global Domination'?",
+    "options": [
+      "Risk",
+      "Monopoly",
+      "Scrabble",
+      "Clue"
+    ],
+    "answer": "Risk"
+  },
+  {
+    "category": "computers",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "What was the first programming language created in the 1950s?",
+    "options": [
+      "Fortran",
+      "COBOL",
+      "LISP",
+      "Assembly"
+    ],
+    "answer": "Fortran"
+  },
+  {
+    "category": "mathematics",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "What is the Pythagorean theorem used for?",
+    "options": [
+      "Calculating the length of the sides of a right triangle",
+      "Calculating the circumference of a circle",
+      "Solving quadratic equations",
+      "Finding the area of a triangle"
+    ],
+    "answer": "Calculating the length of the sides of a right triangle"
+  },
+  {
+    "category": "comic_books",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "Who is the alter ego of Batman?",
+    "options": [
+      "Bruce Wayne",
+      "Clark Kent",
+      "Peter Parker",
+      "Tony Stark"
+    ],
+    "answer": "Bruce Wayne"
+  },
+  {
+    "category": "gadgets",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "What year was the first commercially available smartphone released?",
+    "options": [
+      "1992",
+      "1996",
+      "2000",
+      "2002"
+    ],
+    "answer": "1992"
+  },
+  {
+    "category": "cartoon_animations",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "Who created the animated TV series 'Avatar: The Last Airbender'?",
+    "options": [
+      "Michael Dante DiMartino and Bryan Konietzko",
+      "Matt Groening",
+      "Seth MacFarlane",
+      "Mike Judge"
+    ],
+    "answer": "Michael Dante DiMartino and Bryan Konietzko"
+  },
+  {
+    "category": "anime_manga",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "In 'Naruto', what is the name of the village hidden in the leaves?",
+    "options": [
+      "Konohagakure",
+      "Sunagakure",
+      "Kirigakure",
+      "Iwagakure"
+    ],
+    "answer": "Konohagakure"
+  },
+  {
+    "category": "celebrities",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "Which actress won an Academy Award for her role in the movie 'La La Land'?",
+    "options": [
+      "Emma Stone",
+      "Jennifer Lawrence",
+      "Natalie Portman",
+      "Cate Blanchett"
+    ],
+    "answer": "Emma Stone"
+  },
+  {
+    "category": "geography",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "What is the largest country by land area?",
+    "options": [
+      "Russia",
+      "Canada",
+      "China",
+      "United States"
+    ],
+    "answer": "Russia"
+  },
+  {
+    "category": "mythology",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "Who is the Greek god of the sea?",
+    "options": [
+      "Poseidon",
+      "Zeus",
+      "Hades",
+      "Apollo"
+    ],
+    "answer": "Poseidon"
+  },
+  {
+    "category": "art",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "Which artist painted 'The Starry Night'?",
+    "options": [
+      "Vincent van Gogh",
+      "Pablo Picasso",
+      "Leonardo da Vinci",
+      "Claude Monet"
+    ],
+    "answer": "Vincent van Gogh"
+  },
+     {
+    "category": "Animals",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "What is the scientific name for the Bengal Tiger?",
+    "options": [
+      "Panthera tigris tigris",
+      "Panthera tigris altaica",
+      "Panthera onca",
+      "Panthera leo"
+    ],
+    "answer": "Panthera tigris tigris"
+  },
+  {
+    "category": "Animals",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "What is the maximum recorded length of a reticulated python?",
+    "options": [
+      "Over 9 meters (30 feet)",
+      "Over 7 meters (23 feet)",
+      "Over 6 meters (20 feet)",
+      "Over 8 meters (26 feet)"
+    ],
+    "answer": "Over 9 meters (30 feet)"
+  },
+  {
+    "category": "Animals",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "What is the primary diet of the Narwhal?",
+    "options": [
+      "Fish",
+      "Squid",
+      "Seals",
+      "Kelp"
+    ],
+    "answer": "Fish"
+  },
+  {
+    "category": "Animals",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "Which of these is the largest species of kangaroo?",
+    "options": [
+      "Red Kangaroo",
+      "Eastern Grey Kangaroo",
+      "Western Grey Kangaroo",
+      "Antilopine Kangaroo"
+    ],
+    "answer": "Red Kangaroo"
+  },
+  {
+    "category": "Animals",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "What is the scientific name for the African Elephant?",
+    "options": [
+      "Loxodonta africana",
+      "Elephas maximus",
+      "Elephas africanus",
+      "Loxodonta cyclotis"
+    ],
+    "answer": "Loxodonta africana"
+  },
+  {
+    "category": "Animals",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "Which of these is the largest species of turtle?",
+    "options": [
+      "Leatherback Sea Turtle",
+      "Green Sea Turtle",
+      "Loggerhead Sea Turtle",
+      "Hawksbill Sea Turtle"
+    ],
+    "answer": "Leatherback Sea Turtle"
+  },
+  {
+    "category": "Animals",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "What is the scientific name for the Great White Shark?",
+    "options": [
+      "Carcharodon carcharias",
+      "Galeocerdo cuvier",
+      "Lamna nasus",
+      "Sphyrna mokarran"
+    ],
+    "answer": "Carcharodon carcharias"
+  },
+  {
+    "category": "Animals",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "What is the maximum recorded length of a Blue Whale?",
+    "options": [
+      "Over 30 meters (98 feet)",
+      "Over 25 meters (82 feet)",
+      "Over 35 meters (115 feet)",
+      "Over 40 meters (131 feet)"
+    ],
+    "answer": "Over 30 meters (98 feet)"
+  },
+  {
+    "category": "Animals",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "What is the collective term for a group of rhinoceroses?",
+    "options": [
+      "Crash",
+      "Herd",
+      "Tower",
+      "Gaggle"
+    ],
+    "answer": "Crash"
+  },
+  {
+    "category": "Animals",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "What is the primary food source of the Blue Whale?",
+    "options": [
+      "Krill",
+      "Plankton",
+      "Small Fish",
+      "Squid"
+    ],
+    "answer": "Krill"
+  },
+  {
+    "category": "Animals",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "What is the scientific name for the Snow Leopard?",
+    "options": [
+      "Panthera uncia",
+      "Panthera leo",
+      "Panthera pardus",
+      "Panthera tigris"
+    ],
+    "answer": "Panthera uncia"
+  },
+  {
+    "category": "Animals",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "What is the average lifespan of a Greenland Shark?",
+    "options": [
+      "Over 200 years",
+      "Over 100 years",
+      "Over 300 years",
+      "Over 400 years"
+    ],
+    "answer": "Over 200 years"
+  },
+  {
+    "category": "Animals",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "Which of these is the largest species of jellyfish?",
+    "options": [
+      "Lion's Mane Jellyfish",
+      "Box Jellyfish",
+      "Portuguese Man o' War",
+      "Moon Jellyfish"
+    ],
+    "answer": "Lion's Mane Jellyfish"
+  },
+  {
+    "category": "Animals",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "What is the scientific name for the Emperor Penguin?",
+    "options": [
+      "Aptenodytes forsteri",
+      "Aptenodytes patagonicus",
+      "Spheniscus demersus",
+      "Pygoscelis adeliae"
+    ],
+    "answer": "Aptenodytes forsteri"
+  },
+  {
+    "category": "Animals",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "What is the top speed of a Sailfish?",
+    "options": [
+      "Over 68 mph (110 km/h)",
+      "Over 75 mph (120 km/h)",
+      "Over 55 mph (90 km/h)",
+      "Over 60 mph (97 km/h)"
+    ],
+    "answer": "Over 68 mph (110 km/h)"
+  },
+  {
+    "category": "Animals",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "Which of these is the largest species of stingray?",
+    "options": [
+      "Giant Freshwater Stingray",
+      "Short-tail Stingray",
+      "Spotted Eagle Ray",
+      "Manta Ray"
+    ],
+    "answer": "Giant Freshwater Stingray"
+  },
+  {
+    "category": "Animals",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "What is the average wingspan of a Bald Eagle?",
+    "options": [
+      "Around 2.1 meters (7 feet)",
+      "Around 2.5 meters (8.2 feet)",
+      "Around 1.8 meters (6 feet)",
+      "Around 3 meters (10 feet)"
+    ],
+    "answer": "Around 2.5 meters (8.2 feet)"
+  },
+  {
+    "category": "Animals",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "What is the primary diet of the Sperm Whale?",
+    "options": [
+      "Squid",
+      "Krill",
+      "Plankton",
+      "Fish"
+    ],
+    "answer": "Squid"
+  },
+  {
+    "category": "Animals",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "What is the average lifespan of a Galápagos Tortoise?",
+    "options": [
+      "Over 150 years",
+      "Over 200 years",
+      "Over 250 years",
+      "Over 100 years"
+    ],
+    "answer": "Over 150 years"
+  },
+  {
+    "category": "Animals",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "What is the collective term for a group of ferrets?",
+    "options": [
+      "Business",
+      "Clowder",
+      "Aerie",
+      "Business"
+    ],
+    "answer": "Business"
+  },
+     {
+    "category": "celebrities",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "Which actor played the character of Tony Stark/Iron Man in the Marvel Cinematic Universe?",
+    "options": [
+      "Robert Downey Jr.",
+      "Chris Evans",
+      "Chris Hemsworth",
+      "Mark Ruffalo"
+    ],
+    "answer": "Robert Downey Jr."
+  },
+  {
+    "category": "general_knowledge",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "What is the chemical symbol for the element gold?",
+    "options": [
+      "Au",
+      "Ag",
+      "Fe",
+      "Cu"
+    ],
+    "answer": "Au"
+  },
+  {
+    "category": "geography",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "What is the capital of Mongolia?",
+    "options": [
+      "Ulaanbaatar",
+      "Astana",
+      "Kuala Lumpur",
+      "Jakarta"
+    ],
+    "answer": "Ulaanbaatar"
+  },
+  {
+    "category": "mythology",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "In Greek mythology, who was the goddess of wisdom?",
+    "options": [
+      "Athena",
+      "Aphrodite",
+      "Artemis",
+      "Hera"
+    ],
+    "answer": "Athena"
+  },
+  {
+    "category": "art",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "Who painted the famous work 'The Starry Night'?",
+    "options": [
+      "Vincent van Gogh",
+      "Pablo Picasso",
+      "Leonardo da Vinci",
+      "Claude Monet"
+    ],
+    "answer": "Vincent van Gogh"
+  },
+  {
+    "category": "literature",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "Who wrote the novel 'One Hundred Years of Solitude'?",
+    "options": [
+      "Gabriel García Márquez",
+      "Haruki Murakami",
+      "Fyodor Dostoevsky",
+      "Leo Tolstoy"
+    ],
+    "answer": "Gabriel García Márquez"
+  },
+  {
+    "category": "music",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "Which composer wrote the 'Moonlight Sonata'?",
+    "options": [
+      "Ludwig van Beethoven",
+      "Johann Sebastian Bach",
+      "Wolfgang Amadeus Mozart",
+      "Frederic Chopin"
+    ],
+    "answer": "Ludwig van Beethoven"
+  },
+  {
+    "category": "television",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "Which TV series features characters known as the Lannisters, Starks, and Targaryens?",
+    "options": [
+      "Game of Thrones",
+      "Breaking Bad",
+      "The Sopranos",
+      "The Walking Dead"
+    ],
+    "answer": "Game of Thrones"
+  },
+  {
+    "category": "film",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "Which movie won the Academy Award for Best Picture in 2019?",
+    "options": [
+      "Parasite",
+      "1917",
+      "Joker",
+      "The Shape of Water"
+    ],
+    "answer": "Parasite"
+  },
+  {
+    "category": "video_games",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "In the game 'The Legend of Zelda: Ocarina of Time', what is the name of the protagonist?",
+    "options": [
+      "Link",
+      "Zelda",
+      "Ganondorf",
+      "Sheik"
+    ],
+    "answer": "Link"
+  },
+  {
+    "category": "board_games",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "What is the maximum number of players allowed in a game of 'Risk'?",
+    "options": [
+      "6",
+      "8",
+      "10",
+      "12"
+    ],
+    "answer": "6"
+  },
+  {
+    "category": "computers",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "Who is often credited with inventing the World Wide Web?",
+    "options": [
+      "Tim Berners-Lee",
+      "Bill Gates",
+      "Steve Jobs",
+      "Larry Page"
+    ],
+    "answer": "Tim Berners-Lee"
+  },
+  {
+    "category": "mathematics",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "What is the number 'e' approximately equal to?",
+    "options": [
+      "2.71828",
+      "3.14159",
+      "1.61803",
+      "2.23607"
+    ],
+    "answer": "2.71828"
+  },
+  {
+    "category": "comic_books",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "Who is the alter ego of the comic book character Batman?",
+    "options": [
+      "Bruce Wayne",
+      "Clark Kent",
+      "Peter Parker",
+      "Tony Stark"
+    ],
+    "answer": "Bruce Wayne"
+  },
+  {
+    "category": "gadgets",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "What was the name of the first commercially available handheld mobile phone?",
+    "options": [
+      "Motorola DynaTAC 8000X",
+      "Nokia 3310",
+      "Apple iPhone",
+      "BlackBerry"
+    ],
+    "answer": "Motorola DynaTAC 8000X"
+  },
+  {
+    "category": "cartoon_animations",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "Who created the animated TV series 'The Simpsons'?",
+    "options": [
+      "Matt Groening",
+      "Seth MacFarlane",
+      "Mike Judge",
+      "Trey Parker and Matt Stone"
+    ],
+    "answer": "Matt Groening"
+  },
+  {
+    "category": "anime_manga",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "What is the name of the main character in the anime 'Naruto'?",
+    "options": [
+      "Naruto Uzumaki",
+      "Sasuke Uchiha",
+      "Sakura Haruno",
+      "Kakashi Hatake"
+    ],
+    "answer": "Naruto Uzumaki"
+  },
+  {
+    "category": "celebrities",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "Who won the Academy Award for Best Actress in 2014 for her role in the movie 'Blue Jasmine'?",
+    "options": [
+      "Cate Blanchett",
+      "Sandra Bullock",
+      "Meryl Streep",
+      "Jennifer Lawrence"
+    ],
+    "answer": "Cate Blanchett"
+  },
+  {
+    "category": "general_knowledge",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "What is the SI unit of electric charge?",
+    "options": [
+      "Coulomb",
+      "Volt",
+      "Ampere",
+      "Ohm"
+    ],
+    "answer": "Coulomb"
+  },
+  {
+    "category": "geography",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "What is the capital of Finland?",
+    "options": [
+      "Helsinki",
+      "Stockholm",
+      "Oslo",
+      "Copenhagen"
+    ],
+    "answer": "Helsinki"
+  },
+  {
+    "category": "mythology",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "In Norse mythology, who is the father of Thor?",
+    "options": [
+      "Odin",
+      "Loki",
+      "Frigg",
+      "Freyja"
+    ],
+    "answer": "Odin"
+  },
+  {
+    "category": "art",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "Which artist is famous for his painting 'The Persistence of Memory', featuring melting clocks?",
+    "options": [
+      "Salvador Dalí",
+      "Pablo Picasso",
+      "Vincent van Gogh",
+      "Leonardo da Vinci"
+    ],
+    "answer": "Salvador Dalí"
+  },
+  {
+    "category": "literature",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "Who wrote the novel 'To Kill a Mockingbird'?",
+    "options": [
+      "Harper Lee",
+      "John Steinbeck",
+      "Ernest Hemingway",
+      "William Faulkner"
+    ],
+    "answer": "Harper Lee"
+  },
+  {
+    "category": "music",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "Which composer wrote the opera 'The Marriage of Figaro'?",
+    "options": [
+      "Wolfgang Amadeus Mozart",
+      "Ludwig van Beethoven",
+      "Johann Sebastian Bach",
+      "Giuseppe Verdi"
+    ],
+    "answer": "Wolfgang Amadeus Mozart"
+  },
+  {
+    "category": "television",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "Which TV series featured the character Walter White, a high school chemistry teacher turned methamphetamine manufacturer?",
+    "options": [
+      "Breaking Bad",
+      "The Sopranos",
+      "Mad Men",
+      "Lost"
+    ],
+    "answer": "Breaking Bad"
+  },
+  {
+    "category": "film",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "Who directed the movie 'Inception'?",
+    "options": [
+      "Christopher Nolan",
+      "Quentin Tarantino",
+      "Martin Scorsese",
+      "Steven Spielberg"
+    ],
+    "answer": "Christopher Nolan"
+  },
+  {
+    "category": "video_games",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "Which video game franchise features characters such as Mario, Luigi, and Princess Peach?",
+    "options": [
+      "Super Mario",
+      "The Legend of Zelda",
+      "Final Fantasy",
+      "Pokemon"
+    ],
+    "answer": "Super Mario"
+  },
+  {
+    "category": "board_games",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "In the game 'Scrabble', what is the point value of the letter 'Z'?",
+    "options": [
+      "10",
+      "8",
+      "6",
+      "4"
+    ],
+    "answer": "10"
+  },
+  {
+    "category": "computers",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "Who co-founded the tech company Apple Inc. along with Steve Jobs and Steve Wozniak?",
+    "options": [
+      "Ronald Wayne",
+      "Bill Gates",
+      "Paul Allen",
+      "Tim Cook"
+    ],
+    "answer": "Ronald Wayne"
+  },
+  {
+    "category": "mathematics",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "What is the value of the mathematical constant 'π' (pi) to two decimal places?",
+    "options": [
+      "3.14",
+      "3.16",
+      "3.12",
+      "3.18"
+    ],
+    "answer": "3.14"
+  },
+  {
+    "category": "comic_books",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "Which comic book character is known as the 'Merc with a Mouth'?",
+    "options": [
+      "Deadpool",
+      "Spider-Man",
+      "Batman",
+      "Wolverine"
+    ],
+    "answer": "Deadpool"
+  },
+  {
+    "category": "gadgets",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "Which company produces the popular fitness tracker known as 'Fitbit'?",
+    "options": [
+      "Fitbit, Inc.",
+      "Apple Inc.",
+      "Samsung",
+      "Garmin Ltd."
+    ],
+    "answer": "Fitbit, Inc."
+  },
+  {
+    "category": "cartoon_animations",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "Which cartoon series features characters named Homer, Marge, Bart, Lisa, and Maggie?",
+    "options": [
+      "The Simpsons",
+      "Family Guy",
+      "South Park",
+      "Rick and Morty"
+    ],
+    "answer": "The Simpsons"
+  },
+  {
+    "category": "anime_manga",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "What is the name of the giant humanoid creatures that serve as the main antagonists in the anime 'Attack on Titan'?",
+    "options": [
+      "Titans",
+      "Giants",
+      "Colossi",
+      "Behemoths"
+    ],
+    "answer": "Titans"
+  },
+  {
+    "category": "celebrities",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "Who won the Academy Award for Best Actor in 2016 for his role in the movie 'The Revenant'?",
+    "options": [
+      "Leonardo DiCaprio",
+      "Eddie Redmayne",
+      "Matthew McConaughey",
+      "Joaquin Phoenix"
+    ],
+    "answer": "Leonardo DiCaprio"
+  },
+  {
+    "category": "general_knowledge",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "What is the unit of electrical resistance?",
+    "options": [
+      "Ohm",
+      "Ampere",
+      "Volt",
+      "Watt"
+    ],
+    "answer": "Ohm"
+  },
+  {
+    "category": "geography",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "What is the capital of New Zealand?",
+    "options": [
+      "Wellington",
+      "Auckland",
+      "Christchurch",
+      "Sydney"
+    ],
+    "answer": "Wellington"
+  },
+  {
+    "category": "mythology",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "In Roman mythology, who was the god of the sea?",
+    "options": [
+      "Neptune",
+      "Jupiter",
+      "Pluto",
+      "Mars"
+    ],
+    "answer": "Neptune"
+  },
+  {
+    "category": "art",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "Who painted the famous work 'The Birth of Venus'?",
+    "options": [
+      "Sandro Botticelli",
+      "Michelangelo",
+      "Leonardo da Vinci",
+      "Raphael"
+    ],
+    "answer": "Sandro Botticelli"
+  },
+  {
+    "category": "literature",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "Which Russian author wrote the novel 'Crime and Punishment'?",
+    "options": [
+      "Fyodor Dostoevsky",
+      "Leo Tolstoy",
+      "Anton Chekhov",
+      "Nikolai Gogol"
+    ],
+    "answer": "Fyodor Dostoevsky"
+  },
+  {
+    "category": "music",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "Who composed the famous 'Rhapsody in Blue'?",
+    "options": [
+      "George Gershwin",
+      "Johann Sebastian Bach",
+      "Ludwig van Beethoven",
+      "Wolfgang Amadeus Mozart"
+    ],
+    "answer": "George Gershwin"
+  },
+  {
+    "category": "television",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "Which TV series is set in the fictional town of Twin Peaks?",
+    "options": [
+      "Twin Peaks",
+      "Stranger Things",
+      "The X-Files",
+      "Lost"
+    ],
+    "answer": "Twin Peaks"
+  },
+  {
+    "category": "film",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "Who directed the movie 'Schindler's List'?",
+    "options": [
+      "Steven Spielberg",
+      "Quentin Tarantino",
+      "Martin Scorsese",
+      "Christopher Nolan"
+    ],
+    "answer": "Steven Spielberg"
+  },
+  {
+    "category": "video_games",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "Which video game series features the character Master Chief?",
+    "options": [
+      "Halo",
+      "Call of Duty",
+      "Gears of War",
+      "Destiny"
+    ],
+    "answer": "Halo"
+  },
+  {
+    "category": "board_games",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "In the game 'Catan', what is the maximum number of victory points needed to win?",
+    "options": [
+      "10",
+      "8",
+      "12",
+      "7"
+    ],
+    "answer": "10"
+  },
+  {
+    "category": "computers",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "What does 'HTTP' stand for in terms of internet technology?",
+    "options": [
+      "Hypertext Transfer Protocol",
+      "Hyperlink Text Transfer Protocol",
+      "Hypertext Terminal Protocol",
+      "Hyperlink Terminal Protocol"
+    ],
+    "answer": "Hypertext Transfer Protocol"
+  },
+  {
+    "category": "mathematics",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "What is the value of 'i' in mathematics?",
+    "options": [
+      "The square root of -1",
+      "The ratio of a circle's circumference to its diameter",
+      "The base of the natural logarithm",
+      "The universal gravitational constant"
+    ],
+    "answer": "The square root of -1"
+  },
+  {
+    "category": "comic_books",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "What is the real name of the superhero known as Superman?",
+    "options": [
+      "Clark Kent",
+      "Bruce Wayne",
+      "Peter Parker",
+      "Tony Stark"
+    ],
+    "answer": "Clark Kent"
+  },
+  {
+    "category": "gadgets",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "Who developed the first commercially successful portable MP3 player?",
+    "options": [
+      "Creative Technology",
+      "Apple Inc.",
+      "Sony Corporation",
+      "Samsung Electronics"
+    ],
+    "answer": "Creative Technology"
+  },
+  {
+    "category": "cartoon_animations",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "Who created the animated TV series 'Family Guy'?",
+    "options": [
+      "Seth MacFarlane",
+      "Matt Groening",
+      "Mike Judge",
+      "Trey Parker and Matt Stone"
+    ],
+    "answer": "Seth MacFarlane"
+  },
+  {
+    "category": "anime_manga",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "What is the name of the main character in the anime 'Dragon Ball Z'?",
+    "options": [
+      "Goku",
+      "Vegeta",
+      "Piccolo",
+      "Gohan"
+    ],
+    "answer": "Goku"
+  },
+     {
+    "category": "celebrities",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "Which actress won the Academy Award for Best Actress for her role in the movie 'Silver Linings Playbook'?",
+    "options": [
+      "Jennifer Lawrence",
+      "Emma Stone",
+      "Natalie Portman",
+      "Cate Blanchett"
+    ],
+    "answer": "Jennifer Lawrence"
+  },
+  {
+    "category": "general_knowledge",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "What is the chemical symbol for the element potassium?",
+    "options": [
+      "K",
+      "P",
+      "Po",
+      "Pt"
+    ],
+    "answer": "K"
+  },
+  {
+    "category": "geography",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "What is the capital of Colombia?",
+    "options": [
+      "Bogotá",
+      "Medellín",
+      "Cali",
+      "Cartagena"
+    ],
+    "answer": "Bogotá"
+  },
+  {
+    "category": "mythology",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "Who was the goddess of love and beauty in Greek mythology?",
+    "options": [
+      "Aphrodite",
+      "Artemis",
+      "Athena",
+      "Hera"
+    ],
+    "answer": "Aphrodite"
+  },
+  {
+    "category": "art",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "Which artist painted 'Guernica'?",
+    "options": [
+      "Pablo Picasso",
+      "Vincent van Gogh",
+      "Leonardo da Vinci",
+      "Claude Monet"
+    ],
+    "answer": "Pablo Picasso"
+  },
+  {
+    "category": "literature",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "Who wrote the novel 'The Catcher in the Rye'?",
+    "options": [
+      "J.D. Salinger",
+      "F. Scott Fitzgerald",
+      "Ernest Hemingway",
+      "Harper Lee"
+    ],
+    "answer": "J.D. Salinger"
+  },
+  {
+    "category": "music",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "Who composed the opera 'La Traviata'?",
+    "options": [
+      "Giuseppe Verdi",
+      "Gioachino Rossini",
+      "Richard Wagner",
+      "Wolfgang Amadeus Mozart"
+    ],
+    "answer": "Giuseppe Verdi"
+  },
+  {
+    "category": "television",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "Which TV series features the character Don Draper?",
+    "options": [
+      "Mad Men",
+      "Breaking Bad",
+      "The Sopranos",
+      "The Wire"
+    ],
+    "answer": "Mad Men"
+  },
+  {
+    "category": "film",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "Who directed the movie 'The Shawshank Redemption'?",
+    "options": [
+      "Frank Darabont",
+      "Quentin Tarantino",
+      "Christopher Nolan",
+      "Martin Scorsese"
+    ],
+    "answer": "Frank Darabont"
+  },
+  {
+    "category": "video_games",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "In the game 'Fallout', what is the name of the protagonist?",
+    "options": [
+      "Vault Dweller",
+      "Sole Survivor",
+      "Courier",
+      "Dragonborn"
+    ],
+    "answer": "Vault Dweller"
+  },
+  {
+    "category": "board_games",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "In the game 'Chess', what is the name of the piece that can move any number of squares in one direction?",
+    "options": [
+      "Queen",
+      "Bishop",
+      "Rook",
+      "Knight"
+    ],
+    "answer": "Queen"
+  },
+  {
+    "category": "computers",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "Who is often referred to as the 'father of the computer'?",
+    "options": [
+      "Charles Babbage",
+      "Alan Turing",
+      "John von Neumann",
+      "Tim Berners-Lee"
+    ],
+    "answer": "Charles Babbage"
+  },
+  {
+    "category": "mathematics",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "What is the name of the theorem that states that any positive integer greater than 1 can be written as a product of prime numbers in a unique way?",
+    "options": [
+      "Fundamental Theorem of Arithmetic",
+      "Pythagorean Theorem",
+      "Fermat's Last Theorem",
+      "Poincaré Conjecture"
+    ],
+    "answer": "Fundamental Theorem of Arithmetic"
+  },
+  {
+    "category": "comic_books",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "Who is the archenemy of Batman?",
+    "options": [
+      "The Joker",
+      "Lex Luthor",
+      "Green Goblin",
+      "The Riddler"
+    ],
+    "answer": "The Joker"
+  },
+  {
+    "category": "gadgets",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "What was the first commercially available personal computer?",
+    "options": [
+      "Altair 8800",
+      "IBM 5150",
+      "Apple I",
+      "Commodore PET"
+    ],
+    "answer": "Altair 8800"
+  },
+  {
+    "category": "cartoon_animations",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "Who created the animated TV series 'SpongeBob SquarePants'?",
+    "options": [
+      "Stephen Hillenburg",
+      "Seth MacFarlane",
+      "Mike Judge",
+      "Matt Groening"
+    ],
+    "answer": "Stephen Hillenburg"
+  },
+  {
+    "category": "anime_manga",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "What is the name of the main character in the manga 'Death Note'?",
+    "options": [
+      "Light Yagami",
+      "L Lawliet",
+      "Misa Amane",
+      "Ryuk"
+    ],
+    "answer": "Light Yagami"
+  },
+  {
+    "category": "celebrities",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "Who won the Academy Award for Best Actor in 2018 for his role in the movie 'Darkest Hour'?",
+    "options": [
+      "Gary Oldman",
+      "Daniel Day-Lewis",
+      "Tom Hanks",
+      "Leonardo DiCaprio"
+    ],
+    "answer": "Gary Oldman"
+  },
+  {
+    "category": "general_knowledge",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "What is the SI unit of luminous intensity?",
+    "options": [
+      "Candela",
+      "Lumen",
+      "Lux",
+      "Watt"
+    ],
+    "answer": "Candela"
+  },
+  {
+    "category": "geography",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "What is the capital of Egypt?",
+    "options": [
+      "Cairo",
+      "Alexandria",
+      "Luxor",
+      "Giza"
+    ],
+    "answer": "Cairo"
+  },
+  {
+    "category": "mythology",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "Who is the god of thunder in Norse mythology?",
+    "options": [
+      "Thor",
+      "Loki",
+      "Odin",
+      "Freya"
+    ],
+    "answer": "Thor"
+  },
+  {
+    "category": "art",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "Which artist painted 'The Last Supper'?",
+    "options": [
+      "Leonardo da Vinci",
+      "Raphael",
+      "Michelangelo",
+      "Donatello"
+    ],
+    "answer": "Leonardo da Vinci"
+  },
+  {
+    "category": "literature",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "Who wrote the novel '1984'?",
+    "options": [
+      "George Orwell",
+      "Aldous Huxley",
+      "Ray Bradbury",
+      "J.D. Salinger"
+    ],
+    "answer": "George Orwell"
+  },
+  {
+    "category": "music",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "Who composed the opera 'Carmen'?",
+    "options": [
+      "Georges Bizet",
+      "Gioachino Rossini",
+      "Giuseppe Verdi",
+      "Richard Wagner"
+    ],
+    "answer": "Georges Bizet"
+  },
+  {
+    "category": "television",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "Which TV series features the character Frank Underwood?",
+    "options": [
+      "House of Cards",
+      "The West Wing",
+      "Breaking Bad",
+      "Mad Men"
+    ],
+    "answer": "House of Cards"
+  },
+  {
+    "category": "film",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "Who directed the movie 'The Godfather'?",
+    "options": [
+      "Francis Ford Coppola",
+      "Martin Scorsese",
+      "Alfred Hitchcock",
+      "Stanley Kubrick"
+    ],
+    "answer": "Francis Ford Coppola"
+  },
+  {
+    "category": "video_games",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "In the game 'The Witcher 3: Wild Hunt', what is the name of the main protagonist?",
+    "options": [
+      "Geralt of Rivia",
+      "Ezio Auditore",
+      "Nathan Drake",
+      "Samus Aran"
+    ],
+    "answer": "Geralt of Rivia"
+  },
+  {
+    "category": "board_games",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "In the game 'Monopoly', what is the name of the most expensive property?",
+    "options": [
+      "Boardwalk",
+      "Park Place",
+      "Marvin Gardens",
+      "Pennsylvania Avenue"
+    ],
+    "answer": "Boardwalk"
+  },
+  {
+    "category": "computers",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "Who is the founder of SpaceX and Tesla?",
+    "options": [
+      "Elon Musk",
+      "Mark Zuckerberg",
+      "Jeff Bezos",
+      "Bill Gates"
+    ],
+    "answer": "Elon Musk"
+  },
+  {
+    "category": "mathematics",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "What is the mathematical term for a perfectly symmetrical curve?",
+    "options": [
+      "A parabola",
+      "A hyperbola",
+      "An ellipse",
+      "A circle"
+    ],
+    "answer": "A circle"
+  },
+  {
+    "category": "comic_books",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "Who is the archenemy of Spider-Man?",
+    "options": [
+      "Green Goblin",
+      "Doctor Octopus",
+      "Venom",
+      "The Lizard"
+    ],
+    "answer": "Green Goblin"
+  },
+  {
+    "category": "gadgets",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "Who developed the first commercially available digital camera?",
+    "options": [
+      "Kodak",
+      "Sony",
+      "Canon",
+      "Nikon"
+    ],
+    "answer": "Kodak"
+  },
+  {
+    "category": "cartoon_animations",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "Who created the animated TV series 'Rick and Morty'?",
+    "options": [
+      "Justin Roiland and Dan Harmon",
+      "Seth MacFarlane",
+      "Matt Groening",
+      "Mike Judge"
+    ],
+    "answer": "Justin Roiland and Dan Harmon"
+  },
+  {
+    "category": "anime_manga",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "What is the name of the protagonist in the anime 'One Piece'?",
+    "options": [
+      "Monkey D. Luffy",
+      "Roronoa Zoro",
+      "Nami",
+      "Usopp"
+    ],
+    "answer": "Monkey D. Luffy"
+  },
+     
+     {
+    "category": "Animals",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "What is the scientific name for the Giant Panda?",
+    "options": [
+      "Ailuropoda melanoleuca",
+      "Ursus arctos",
+      "Panthera tigris",
+      "Gorilla beringei"
+    ],
+    "answer": "Ailuropoda melanoleuca"
+  },
+  {
+    "category": "Animals",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "Which of these is the largest species of squid?",
+    "options": [
+      "Giant Squid",
+      "Colossal Squid",
+      "Humboldt Squid",
+      "Giant Pacific Octopus"
+    ],
+    "answer": "Colossal Squid"
+  },
+  {
+    "category": "Animals",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "What is the scientific name for the Bald Eagle?",
+    "options": [
+      "Haliaeetus leucocephalus",
+      "Pandion haliaetus",
+      "Aquila chrysaetos",
+      "Falco peregrinus"
+    ],
+    "answer": "Haliaeetus leucocephalus"
+  },
+  {
+    "category": "Animals",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "What is the top speed of a Peregrine Falcon in a hunting dive?",
+    "options": [
+      "Over 240 mph (386 km/h)",
+      "Over 200 mph (322 km/h)",
+      "Over 180 mph (290 km/h)",
+      "Over 160 mph (257 km/h)"
+    ],
+    "answer": "Over 240 mph (386 km/h)"
+  },
+  {
+    "category": "Animals",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "Which of these is the largest species of salamander?",
+    "options": [
+      "Chinese Giant Salamander",
+      "Hellbender",
+      "Axolotl",
+      "Mudpuppy"
+    ],
+    "answer": "Chinese Giant Salamander"
+  },
+  {
+    "category": "Animals",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "What is the scientific name for the Orca, or Killer Whale?",
+    "options": [
+      "Orcinus orca",
+      "Orcinus orcinus",
+      "Delphinus delphis",
+      "Physeter macrocephalus"
+    ],
+    "answer": "Orcinus orca"
+  },
+  {
+    "category": "Animals",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "What is the wingspan of the Andean Condor, the largest flying bird?",
+    "options": [
+      "Up to 3.3 meters (10.8 feet)",
+      "Up to 2.5 meters (8.2 feet)",
+      "Up to 4.5 meters (14.8 feet)",
+      "Up to 5.5 meters (18.0 feet)"
+    ],
+    "answer": "Up to 3.3 meters (10.8 feet)"
+  },
+  {
+    "category": "Animals",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "Which of these is the largest species of owl?",
+    "options": [
+      "Blakiston's Fish Owl",
+      "Great Horned Owl",
+      "Snowy Owl",
+      "Eurasian Eagle-Owl"
+    ],
+    "answer": "Blakiston's Fish Owl"
+  },
+  {
+    "category": "Animals",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "What is the average lifespan of a Blue Whale?",
+    "options": [
+      "Around 80-90 years",
+      "Around 50-60 years",
+      "Around 100-110 years",
+      "Around 120-130 years"
+    ],
+    "answer": "Around 80-90 years"
+  },
+  {
+    "category": "Animals",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "What is the scientific name for the Grey Wolf?",
+    "options": [
+      "Canis lupus",
+      "Canis latrans",
+      "Canis aureus",
+      "Canis simensis"
+    ],
+    "answer": "Canis lupus"
+  },
+  {
+    "category": "Animals",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "Which of these is the longest venomous snake in the world?",
+    "options": [
+      "King Cobra",
+      "Black Mamba",
+      "Inland Taipan",
+      "Russell's Viper"
+    ],
+    "answer": "King Cobra"
+  },
+  {
+    "category": "Animals",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "What is the wingspan of the Wandering Albatross, the largest wingspan of any living bird?",
+    "options": [
+      "Up to 3.5 meters (11.5 feet)",
+      "Up to 4 meters (13.1 feet)",
+      "Up to 5.5 meters (18.0 feet)",
+      "Up to 6.5 meters (21.3 feet)"
+    ],
+    "answer": "Up to 3.5 meters (11.5 feet)"
+  },
+    {
+    "category": "Animals",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "What is the gestation period of an African elephant?",
+    "options": [
+      "22 months",
+      "12 months",
+      "9 months",
+      "18 months"
+    ],
+    "answer": "22 months"
+  },
+  {
+    "category": "Animals",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "Which of these is the largest species of shark?",
+    "options": [
+      "Whale Shark",
+      "Great White Shark",
+      "Basking Shark",
+      "Tiger Shark"
+    ],
+    "answer": "Whale Shark"
+  },
+  {
+    "category": "Animals",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "What is the scientific name for the Western lowland gorilla?",
+    "options": [
+      "Gorilla beringei",
+      "Gorilla gorilla",
+      "Gorilla beringei graueri",
+      "Gorilla beringei beringei"
+    ],
+    "answer": "Gorilla gorilla"
+  },
+  {
+    "category": "Animals",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "Which of the following is the largest bird of prey in the world?",
+    "options": [
+      "Andean Condor",
+      "Golden Eagle",
+      "Steller's Sea Eagle",
+      "Harpy Eagle"
+    ],
+    "answer": "Andean Condor"
+  },
+  {
+    "category": "Animals",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "What is the scientific name for the Komodo dragon?",
+    "options": [
+      "Varanus komodoensis",
+      "Varanus salvator",
+      "Varanus exanthematicus",
+      "Varanus acanthurus"
+    ],
+    "answer": "Varanus komodoensis"
+  },
+  {
+    "category": "Animals",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "Which species of snake is known for its potent neurotoxic venom?",
+    "options": [
+      "Inland Taipan",
+      "Black Mamba",
+      "Boomslang",
+      "King Cobra"
+    ],
+    "answer": "Black Mamba"
+  },
+  {
+    "category": "Animals",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "What is the world's heaviest flying bird?",
+    "options": [
+      "Great Bustard",
+      "Wandering Albatross",
+      "Dalmatian Pelican",
+      "Kori Bustard"
+    ],
+    "answer": "Kori Bustard"
+  },
+  {
+    "category": "Animals",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "What is the scientific name for the Tasmanian Devil?",
+    "options": [
+      "Sarcophilus harrisii",
+      "Vulpes vulpes",
+      "Dasyurus viverrinus",
+      "Thylacinus cynocephalus"
+    ],
+    "answer": "Sarcophilus harrisii"
+  },
+  {
+    "category": "Animals",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "Which of these is the largest species of bear?",
+    "options": [
+      "Polar Bear",
+      "Kodiak Bear",
+      "Grizzly Bear",
+      "Black Bear"
+    ],
+    "answer": "Polar Bear"
+  },
+  {
+    "category": "Animals",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "What is the scientific name for the African buffalo?",
+    "options": [
+      "Syncerus caffer",
+      "Bison bison",
+      "Bos primigenius",
+      "Bubalus bubalis"
+    ],
+    "answer": "Syncerus caffer"
+  },
+  {
+    "category": "Animals",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "Which of these is the fastest land animal?",
+    "options": [
+      "Cheetah",
+      "Pronghorn",
+      "Lion",
+      "Springbok"
+    ],
+    "answer": "Cheetah"
+  },
+  {
+    "category": "Animals",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "What is the largest species of crocodilian?",
+    "options": [
+      "Saltwater Crocodile",
+      "American Alligator",
+      "Nile Crocodile",
+      "Gharial"
+    ],
+    "answer": "Saltwater Crocodile"
+  },
+  {
+    "category": "Animals",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "Which of these is the largest species of penguin?",
+    "options": [
+      "Emperor Penguin",
+      "King Penguin",
+      "Gentoo Penguin",
+      "Adélie Penguin"
+    ],
+    "answer": "Emperor Penguin"
+  },
+  {
+    "category": "Animals",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "What is the scientific name for the American Bison?",
+    "options": [
+      "Bison bison",
+      "Bos taurus",
+      "Bison bonasus",
+      "Bos primigenius"
+    ],
+    "answer": "Bison bison"
+  },
+  {
+    "category": "Animals",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "Which of these is the largest species of rodent?",
+    "options": [
+      "Capybara",
+      "Beaver",
+      "Porcupine",
+      "Giant Panda"
+    ],
+    "answer": "Capybara"
+  },
+  {
+    "category": "Animals",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "What is the scientific name for the polar bear?",
+    "options": [
+      "Ursus maritimus",
+      "Ursus americanus",
+      "Ursus arctos",
+      "Ursus thibetanus"
+    ],
+    "answer": "Ursus maritimus"
+  },
+  {
+    "category": "Animals",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "Which of these is the largest species of deer?",
+    "options": [
+      "Moose",
+      "Elk",
+      "Red Deer",
+      "Mule Deer"
+    ],
+    "answer": "Moose"
+  },
+  {
+    "category": "Animals",
+    "type": "multiple",
+    "difficulty": "easy",
+    "question": "Which animal is known for sleeping up to 22 hours a day?",
+    "options": [
+      "Koala",
+      "Sloth",
+      "Lion",
+      "Tiger"
+    ],
+    "answer": "Sloth"
+  },
+{
+    "category": "Animals",
+    "type": "multiple",
+    "difficulty": "medium",
+    "question": "What is the scientific name for the African elephant?",
+    "options": [
+      "Loxodonta africana",
+      "Elephas maximus",
+      "Panthera leo",
+      "Giraffa camelopardalis"
+    ],
+    "answer": "Loxodonta africana"
+  },
+  {
+    "category": "Animals",
+    "type": "multiple",
+    "difficulty": "medium",
+    "question": "Which of the following animals does NOT hibernate?",
+    "options": [
+      "Elephant",
+      "Groundhog",
+      "Bear",
+      "Hedgehog"
+    ],
+    "answer": "Elephant"
+  },
+  {
+    "category": "Animals",
+    "type": "multiple",
+    "difficulty": "medium",
+    "question": "What is the scientific name for the red fox?",
+    "options": [
+      "Vulpes vulpes",
+      "Canis lupus",
+      "Felis catus",
+      "Mustela nivalis"
+    ],
+    "answer": "Vulpes vulpes"
+  },
+  {
+    "category": "Animals",
+    "type": "multiple",
+    "difficulty": "medium",
+    "question": "What is the collective noun for a group of owls?",
+    "options": [
+      "Parliament",
+      "Herd",
+      "Flock",
+      "Pack"
+    ],
+    "answer": "Parliament"
+  },
+  {
+    "category": "Animals",
+    "type": "multiple",
+    "difficulty": "medium",
+    "question": "Which animal has the longest gestation period?",
+    "options": [
+      "Elephant",
+      "Giraffe",
+      "Kangaroo",
+      "Blue Whale"
+    ],
+    "answer": "Elephant"
+  },
+  {
+    "category": "Animals",
+    "type": "multiple",
+    "difficulty": "medium",
+    "question": "What is the primary diet of a koala?",
+    "options": [
+      "Eucalyptus Leaves",
+      "Bamboo",
+      "Grass",
+      "Insects"
+    ],
+    "answer": "Eucalyptus Leaves"
+  },
+  {
+    "category": "Animals",
+    "type": "multiple",
+    "difficulty": "medium",
+    "question": "What is a group of dolphins called?",
+    "options": [
+      "Pod",
+      "Herd",
+      "School",
+      "Flock"
+    ],
+    "answer": "Pod"
+  },
+  {
+    "category": "Animals",
+    "type": "multiple",
+    "difficulty": "medium",
+    "question": "What is the scientific name for the polar bear?",
+    "options": [
+      "Ursus maritimus",
+      "Ursus arctos",
+      "Ursus americanus",
+      "Ursus spelaeus"
+    ],
+    "answer": "Ursus maritimus"
+  },
+  {
+    "category": "Animals",
+    "type": "multiple",
+    "difficulty": "medium",
+    "question": "What is the primary diet of a flamingo?",
+    "options": [
+      "Shrimp",
+      "Fish",
+      "Plankton",
+      "Algae"
+    ],
+    "answer": "Shrimp"
+  },
+  {
+    "category": "Animals",
+    "type": "multiple",
+    "difficulty": "medium",
+    "question": "What is the scientific name for the Great White Shark?",
+    "options": [
+      "Carcharodon carcharias",
+      "Megaptera novaeangliae",
+      "Lamnidae",
+      "Cetacea"
+    ],
+    "answer": "Carcharodon carcharias"
+  },
+  {
+    "category": "Animals",
+    "type": "multiple",
+    "difficulty": "medium",
+    "question": "Which animal is known as the 'king of the jungle'?",
+    "options": [
+      "Lion",
+      "Tiger",
+      "Leopard",
+      "Cheetah"
+    ],
+    "answer": "Lion"
+  },
+  {
+    "category": "Animals",
+    "type": "multiple",
+    "difficulty": "medium",
+    "question": "What is the scientific name for the domestic dog?",
+    "options": [
+      "Canis lupus familiaris",
+      "Felis catus",
+      "Equus ferus caballus",
+      "Panthera leo"
+    ],
+    "answer": "Canis lupus familiaris"
+  },
+  {
+    "category": "Animals",
+    "type": "multiple",
+    "difficulty": "medium",
+    "question": "What is the scientific name for the common house cat?",
+    "options": [
+      "Felis catus",
+      "Canis lupus",
+      "Panthera tigris",
+      "Mustela nivalis"
+    ],
+    "answer": "Felis catus"
+  },
+  {
+    "category": "Animals",
+    "type": "multiple",
+    "difficulty": "medium",
+    "question": "What is a group of kangaroos called?",
+    "options": [
+      "Mob",
+      "Pack",
+      "Pride",
+      "Flock"
+    ],
+    "answer": "Mob"
+  },
+  {
+    "category": "Animals",
+    "type": "multiple",
+    "difficulty": "medium",
+    "question": "What is the primary diet of a panda?",
+    "options": [
+      "Bamboo",
+      "Fish",
+      "Meat",
+      "Grass"
+    ],
+    "answer": "Bamboo"
+  },
+  {
+    "category": "Animals",
+    "type": "multiple",
+    "difficulty": "medium",
+    "question": "What is the primary diet of a cheetah?",
+    "options": [
+      "Antelope",
+      "Gazelle",
+      "Zebra",
+      "Impala"
+    ],
+    "answer": "Gazelle"
+  },
+  {
+    "category": "Animals",
+    "type": "multiple",
+    "difficulty": "medium",
+    "question": "What is a group of butterflies called?",
+    "options": [
+      "Flutter",
+      "Swarm",
+      "Flock",
+      "Gaggle"
+    ],
+    "answer": "Flutter"
+  },
+  {
+    "category": "Animals",
+    "type": "multiple",
+    "difficulty": "medium",
+    "question": "What is the primary diet of a grizzly bear?",
+    "options": [
+      "Salmon",
+      "Berries",
+      "Honey",
+      "Ants"
+    ],
+    "answer": "Salmon"
+  },
+  {
+    "category": "Animals",
+    "type": "multiple",
+    "difficulty": "medium",
+    "question": "What is the primary diet of a blue whale?",
+    "options": [
+      "Krill",
+      "Plankton",
+      "Fish",
+      "Squid"
+    ],
+    "answer": "Krill"
+  }, 
+{
+    "category": "Animals",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "What is the scientific name for the African elephant?",
+    "options": [
+      "Loxodonta africana",
+      "Elephas maximus",
+      "Panthera leo",
+      "Giraffa camelopardalis"
+    ],
+    "answer": "Loxodonta africana"
+  },
+  {
+    "category": "Animals",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "Which animal has the longest gestation period?",
+    "options": [
+      "Elephant",
+      "Giraffe",
+      "Kangaroo",
+      "Blue Whale"
+    ],
+    "answer": "Elephant"
+  },
+  {
+    "category": "Animals",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "What is a group of owls called?",
+    "options": [
+      "Parliament",
+      "Herd",
+      "Flock",
+      "Pack"
+    ],
+    "answer": "Parliament"
+  },
+  {
+    "category": "Animals",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "What is the scientific name for the polar bear?",
+    "options": [
+      "Ursus maritimus",
+      "Ursus arctos",
+      "Ursus americanus",
+      "Ursus spelaeus"
+    ],
+    "answer": "Ursus maritimus"
+  },
+  {
+    "category": "Animals",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "What is the scientific name for the Great White Shark?",
+    "options": [
+      "Carcharodon carcharias",
+      "Megaptera novaeangliae",
+      "Lamnidae",
+      "Cetacea"
+    ],
+    "answer": "Carcharodon carcharias"
+  },
+  {
+    "category": "Animals",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "What is the scientific name for the domestic dog?",
+    "options": [
+      "Canis lupus familiaris",
+      "Felis catus",
+      "Equus ferus caballus",
+      "Panthera leo"
+    ],
+    "answer": "Canis lupus familiaris"
+  },
+  {
+    "category": "Animals",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "What is the scientific name for the common house cat?",
+    "options": [
+      "Felis catus",
+      "Canis lupus",
+      "Panthera tigris",
+      "Mustela nivalis"
+    ],
+    "answer": "Felis catus"
+  },
+  {
+    "category": "Animals",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "What is the scientific name for the Blue Whale?",
+    "options": [
+      "Balaenoptera musculus",
+      "Physeter macrocephalus",
+      "Orcinus orca",
+      "Delphinus delphis"
+    ],
+    "answer": "Balaenoptera musculus"
+  },
+  {
+    "category": "Animals",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "What is the scientific name for the Tiger?",
+    "options": [
+      "Panthera tigris",
+      "Panthera leo",
+      "Panthera onca",
+      "Panthera pardus"
+    ],
+    "answer": "Panthera tigris"
+  },
+  {
+    "category": "Animals",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "What is the scientific name for the African Lion?",
+    "options": [
+      "Panthera leo",
+      "Panthera tigris",
+      "Panthera onca",
+      "Panthera pardus"
+    ],
+    "answer": "Panthera leo"
+  },
+  {
+    "category": "Animals",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "What is the scientific name for the Gray Wolf?",
+    "options": [
+      "Canis lupus",
+      "Canis latrans",
+      "Canis aureus",
+      "Canis lupus familiaris"
+    ],
+    "answer": "Canis lupus"
+  },
+  {
+    "category": "Animals",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "What is the scientific name for the Bottlenose Dolphin?",
+    "options": [
+      "Tursiops truncatus",
+      "Delphinus delphis",
+      "Orcinus orca",
+      "Physeter macrocephalus"
+    ],
+    "answer": "Tursiops truncatus"
+  },
+  {
+    "category": "Animals",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "What is the scientific name for the Orangutan?",
+    "options": [
+      "Pongo pygmaeus",
+      "Gorilla beringei",
+      "Pan troglodytes",
+      "Pongo abelii"
+    ],
+    "answer": "Pongo pygmaeus"
+  },
+  {
+    "category": "Animals",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "What is the scientific name for the Gray Whale?",
+    "options": [
+      "Eschrichtius robustus",
+      "Megaptera novaeangliae",
+      "Orcinus orca",
+      "Physeter macrocephalus"
+    ],
+    "answer": "Eschrichtius robustus"
+  },
+  {
+    "category": "Animals",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "What is the scientific name for the Bald Eagle?",
+    "options": [
+      "Haliaeetus leucocephalus",
+      "Accipiter gentilis",
+      "Falco peregrinus",
+      "Pandion haliaetus"
+    ],
+    "answer": "Haliaeetus leucocephalus"
+  },
+  {
+    "category": "Animals",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "What is the scientific name for the California Condor?",
+    "options": [
+      "Gymnogyps californianus",
+      "Aquila chrysaetos",
+      "Falco peregrinus",
+      "Pandion haliaetus"
+    ],
+    "answer": "Gymnogyps californianus"
+  },
+  {
+    "category": "Animals",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "What is the scientific name for the Giant Panda?",
+    "options": [
+      "Ailuropoda melanoleuca",
+      "Ursus maritimus",
+      "Ursus americanus",
+      "Ursus arctos"
+    ],
+    "answer": "Ailuropoda melanoleuca"
+  },
+  {
+    "category": "Animals",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "What is the scientific name for the Peregrine Falcon?",
+    "options": [
+      "Falco peregrinus",
+      "Haliaeetus leucocephalus",
+      "Accipiter gentilis",
+      "Buteo jamaicensis"
+    ],
+    "answer": "Falco peregrinus"
+  },
+  {
+    "category": "Animals",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "What is the scientific name for the Komodo Dragon?",
+    "options": [
+      "Varanus komodoensis",
+      "Draco volans",
+      "Crocodilus niloticus",
+      "Iguana iguana"
+    ],
+    "answer": "Varanus komodoensis"
+  },
+  {
+    "category": "Animals",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "What is the scientific name for the Bottlenose Dolphin?",
+    "options": [
+      "Tursiops truncatus",
+      "Delphinus delphis",
+      "Orcinus orca",
+      "Physeter macrocephalus"
+    ],
+    "answer": "Tursiops truncatus"
+  },
+
+  {
+    "category": "Sports",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "Who won the FIFA Women's World Cup in 2019?",
+    "options": [
+      "United States",
+      "Netherlands",
+      "Sweden",
+      "Germany"
+    ],
+    "answer": "United States"
+  },
+  {
+    "category": "Sports",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "Which country won the most medals in the 2016 Summer Olympics?",
+    "options": [
+      "United States",
+      "China",
+      "Great Britain",
+      "Russia"
+    ],
+    "answer": "United States"
+  },
+  {
+    "category": "Sports",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "Who has won the most Super Bowl MVP awards?",
+    "options": [
+      "Tom Brady",
+      "Joe Montana",
+      "Terry Bradshaw",
+      "Peyton Manning"
+    ],
+    "answer": "Tom Brady"
+  },
+  {
+    "category": "Sports",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "Which boxer has the nickname 'Pac-Man'?",
+    "options": [
+      "Manny Pacquiao",
+      "Floyd Mayweather Jr.",
+      "Mike Tyson",
+      "Muhammad Ali"
+    ],
+    "answer": "Manny Pacquiao"
+  },
+  {
+    "category": "Sports",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "Who holds the record for the most career home runs in Major League Baseball (MLB)?",
+    "options": [
+      "Barry Bonds",
+      "Hank Aaron",
+      "Babe Ruth",
+      "Alex Rodriguez"
+    ],
+    "answer": "Barry Bonds"
+  },
+  {
+    "category": "Sports",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "Who won the men's singles title at Wimbledon in 2019?",
+    "options": [
+      "Novak Djokovic",
+      "Roger Federer",
+      "Rafael Nadal",
+      "Andy Murray"
+    ],
+    "answer": "Novak Djokovic"
+  },
+  {
+    "category": "Sports",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "Which team won the NBA Championship in 2019?",
+    "options": [
+      "Toronto Raptors",
+      "Golden State Warriors",
+      "Cleveland Cavaliers",
+      "Los Angeles Lakers"
+    ],
+    "answer": "Toronto Raptors"
+  },
+  {
+    "category": "Sports",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "Who is the only soccer player to have won the Ballon d'Or five times?",
+    "options": [
+      "Lionel Messi",
+      "Cristiano Ronaldo",
+      "Diego Maradona",
+      "Pele"
+    ],
+    "answer": "Lionel Messi"
+  },
+  {
+    "category": "Sports",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "Who won the Formula 1 World Championship in 2020?",
+    "options": [
+      "Lewis Hamilton",
+      "Max Verstappen",
+      "Sebastian Vettel",
+      "Valtteri Bottas"
+    ],
+    "answer": "Lewis Hamilton"
+  },
+  {
+    "category": "Sports",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "Who holds the record for the most Olympic gold medals in swimming?",
+    "options": [
+      "Michael Phelps",
+      "Mark Spitz",
+      "Katie Ledecky",
+      "Ian Thorpe"
+    ],
+    "answer": "Michael Phelps"
+  },
+  {
+    "category": "Sports",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "Which country won the most medals in the 2018 Winter Olympics?",
+    "options": [
+      "Norway",
+      "Germany",
+      "United States",
+      "Canada"
+    ],
+    "answer": "Norway"
+  },
+  {
+    "category": "Sports",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "Who won the FIFA Ballon d'Or in 2019?",
+    "options": [
+      "Lionel Messi",
+      "Cristiano Ronaldo",
+      "Virgil van Dijk",
+      "Kylian Mbappe"
+    ],
+    "answer": "Lionel Messi"
+  },
+  {
+    "category": "Sports",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "Who is the oldest player to win a PGA Tour major?",
+    "options": [
+      "Julius Boros",
+      "Jack Nicklaus",
+      "Tiger Woods",
+      "Phil Mickelson"
+    ],
+    "answer": "Julius Boros"
+  },
+  {
+    "category": "Sports",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "Who won the Stanley Cup in 2019?",
+    "options": [
+      "St. Louis Blues",
+      "Boston Bruins",
+      "Chicago Blackhawks",
+      "Pittsburgh Penguins"
+    ],
+    "answer": "St. Louis Blues"
+  },
+  {
+    "category": "Sports",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "Who won the UEFA Champions League in 2020?",
+    "options": [
+      "Bayern Munich",
+      "Paris Saint-Germain",
+      "Real Madrid",
+      "Liverpool"
+    ],
+    "answer": "Bayern Munich"
+  },
+  {
+    "category": "Sports",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "Who holds the record for the most goals scored in a single NHL season?",
+    "options": [
+      "Wayne Gretzky",
+      "Mario Lemieux",
+      "Bobby Hull",
+      "Alexander Ovechkin"
+    ],
+    "answer": "Wayne Gretzky"
+  },
+  {
+    "category": "Sports",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "Who won the Rugby World Cup in 2019?",
+    "options": [
+      "South Africa",
+      "New Zealand",
+      "England",
+      "Australia"
+    ],
+    "answer": "South Africa"
+  },
+  {
+    "category": "Sports",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "Who holds the record for the most Grand Slam singles titles in tennis?",
+    "options": [
+      "Margaret Court",
+      "Serena Williams",
+      "Steffi Graf",
+      "Martina Navratilova"
+    ],
+    "answer": "Margaret Court"
+  },
+  {
+    "category": "Sports",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "Which athlete has won the most Olympic medals of all time?",
+    "options": [
+      "Michael Phelps",
+      "Usain Bolt",
+      "Larisa Latynina",
+      "Carl Lewis"
+    ],
+    "answer": "Michael Phelps"
+  },
+  {
+    "category": "Sports",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "Who was the first African-American to play in Major League Baseball (MLB)?",
+    "options": [
+      "Jackie Robinson",
+      "Hank Aaron",
+      "Willie Mays",
+      "Satchel Paige"
+    ],
+    "answer": "Jackie Robinson"
+  },
+  {
+    "category": "Sports",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "Who won the Copa America in 2019?",
+    "options": [
+      "Brazil",
+      "Argentina",
+      "Chile",
+      "Peru"
+    ],
+    "answer": "Brazil"
+  },
+  {
+    "category": "Sports",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "Who holds the record for the most goals scored in a single FIFA World Cup tournament?",
+    "options": [
+      "Just Fontaine",
+      "Pele",
+      "Gerd Muller",
+      "Miroslav Klose"
+    ],
+    "answer": "Just Fontaine"
+  },
+  {
+    "category": "Sports",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "Which horse won the Triple Crown in 2018?",
+    "options": [
+      "Justify",
+      "American Pharoah",
+      "California Chrome",
+      "Secretariat"
+    ],
+    "answer": "Justify"
+  },
+{
+    "category": "Sports",
+    "type": "multiple",
+    "difficulty": "medium",
+    "question": "Who won the men's singles title at the Australian Open in 2020?",
+    "options": [
+      "Novak Djokovic",
+      "Rafael Nadal",
+      "Roger Federer",
+      "Dominic Thiem"
+    ],
+    "answer": "Novak Djokovic"
+  },
+  {
+    "category": "Sports",
+    "type": "multiple",
+    "difficulty": "medium",
+    "question": "Which team won the UEFA European Championship in 2016?",
+    "options": [
+      "Portugal",
+      "France",
+      "Germany",
+      "Spain"
+    ],
+    "answer": "Portugal"
+  },
+  {
+    "category": "Sports",
+    "type": "multiple",
+    "difficulty": "medium",
+    "question": "Who won the NBA MVP award for the 2018-2019 season?",
+    "options": [
+      "Giannis Antetokounmpo",
+      "James Harden",
+      "LeBron James",
+      "Kevin Durant"
+    ],
+    "answer": "Giannis Antetokounmpo"
+  },
+  {
+    "category": "Sports",
+    "type": "multiple",
+    "difficulty": "medium",
+    "question": "Which country won the Cricket World Cup in 2019?",
+    "options": [
+      "England",
+      "India",
+      "Australia",
+      "New Zealand"
+    ],
+    "answer": "England"
+  },
+  {
+    "category": "Sports",
+    "type": "multiple",
+    "difficulty": "medium",
+    "question": "Who won the FIFA World Cup in 2018?",
+    "options": [
+      "France",
+      "Croatia",
+      "Brazil",
+      "Germany"
+    ],
+    "answer": "France"
+  },
+  {
+    "category": "Sports",
+    "type": "multiple",
+    "difficulty": "medium",
+    "question": "Who was the top scorer in the English Premier League for the 2019-2020 season?",
+    "options": [
+      "Jamie Vardy",
+      "Pierre-Emerick Aubameyang",
+      "Mohamed Salah",
+      "Sadio Mane"
+    ],
+    "answer": "Jamie Vardy"
+  },
+  {
+    "category": "Sports",
+    "type": "multiple",
+    "difficulty": "medium",
+    "question": "Who won the Stanley Cup in 2020?",
+    "options": [
+      "Tampa Bay Lightning",
+      "Dallas Stars",
+      "Vegas Golden Knights",
+      "New York Islanders"
+    ],
+    "answer": "Tampa Bay Lightning"
+  },
+  {
+    "category": "Sports",
+    "type": "multiple",
+    "difficulty": "medium",
+    "question": "Which golfer has won the most Masters Tournaments?",
+    "options": [
+      "Jack Nicklaus",
+      "Tiger Woods",
+      "Arnold Palmer",
+      "Phil Mickelson"
+    ],
+    "answer": "Jack Nicklaus"
+  },
+  {
+    "category": "Sports",
+    "type": "multiple",
+    "difficulty": "medium",
+    "question": "Who won the UEFA Champions League in 2019?",
+    "options": [
+      "Liverpool",
+      "Tottenham Hotspur",
+      "Real Madrid",
+      "Bayern Munich"
+    ],
+    "answer": "Liverpool"
+  },
+  {
+    "category": "Sports",
+    "type": "multiple",
+    "difficulty": "medium",
+    "question": "Who won the FIFA Ballon d'Or in 2020?",
+    "options": [
+      "Robert Lewandowski",
+      "Lionel Messi",
+      "Cristiano Ronaldo",
+      "Virgil van Dijk"
+    ],
+    "answer": "Robert Lewandowski"
+  },
+  {
+    "category": "Sports",
+    "type": "multiple",
+    "difficulty": "medium",
+    "question": "Which boxer has the nickname 'Money'?",
+    "options": [
+      "Floyd Mayweather Jr.",
+      "Manny Pacquiao",
+      "Mike Tyson",
+      "Muhammad Ali"
+    ],
+    "answer": "Floyd Mayweather Jr."
+  },
+  {
+    "category": "Sports",
+    "type": "multiple",
+    "difficulty": "medium",
+    "question": "Who won the Women's Singles title at Wimbledon in 2019?",
+    "options": [
+      "Simona Halep",
+      "Serena Williams",
+      "Angelique Kerber",
+      "Garbine Muguruza"
+    ],
+    "answer": "Simona Halep"
+  },
+  {
+    "category": "Sports",
+    "type": "multiple",
+    "difficulty": "medium",
+    "question": "Which team won the 2019 MLB World Series?",
+    "options": [
+      "Washington Nationals",
+      "Houston Astros",
+      "Los Angeles Dodgers",
+      "New York Yankees"
+    ],
+    "answer": "Washington Nationals"
+  },
+  {
+    "category": "Sports",
+    "type": "multiple",
+    "difficulty": "medium",
+    "question": "Who won the NFL MVP award for the 2019 season?",
+    "options": [
+      "Lamar Jackson",
+      "Patrick Mahomes",
+      "Aaron Rodgers",
+      "Drew Brees"
+    ],
+    "answer": "Lamar Jackson"
+  },
+  {
+    "category": "Sports",
+    "type": "multiple",
+    "difficulty": "medium",
+    "question": "Who won the 2020 Formula 1 Bahrain Grand Prix?",
+    "options": [
+      "Lewis Hamilton",
+      "Max Verstappen",
+      "Charles Leclerc",
+      "Valtteri Bottas"
+    ],
+    "answer": "Lewis Hamilton"
+  },
+  {
+    "category": "Sports",
+    "type": "multiple",
+    "difficulty": "medium",
+    "question": "Who won the NHL Hart Memorial Trophy for the 2018-2019 season?",
+    "options": [
+      "Nikita Kucherov",
+      "Connor McDavid",
+      "Sidney Crosby",
+      "Patrick Kane"
+    ],
+    "answer": "Nikita Kucherov"
+  },
+  {
+    "category": "Sports",
+    "type": "multiple",
+    "difficulty": "medium",
+    "question": "Who won the 2018 FIFA World Cup Golden Boot?",
+    "options": [
+      "Harry Kane",
+      "Antoine Griezmann",
+      "Luka Modric",
+      "Kylian Mbappe"
+    ],
+    "answer": "Harry Kane"
+  },
+  {
+    "category": "Sports",
+    "type": "multiple",
+    "difficulty": "medium",
+    "question": "Who won the 2020 NBA Defensive Player of the Year award?",
+    "options": [
+      "Giannis Antetokounmpo",
+      "Anthony Davis",
+      "Rudy Gobert",
+      "Kawhi Leonard"
+    ],
+    "answer": "Giannis Antetokounmpo"
+  },
+  {
+    "category": "Sports",
+    "type": "multiple",
+    "difficulty": "medium",
+    "question": "Who won the 2020 PGA Championship?",
+    "options": [
+      "Collin Morikawa",
+      "Dustin Johnson",
+      "Rory McIlroy",
+      "Justin Thomas"
+    ],
+    "answer": "Collin Morikawa"
+  },
+  {
+    "category": "Sports",
+    "type": "multiple",
+    "difficulty": "medium",
+    "question": "Which team won the 2019 Rugby World Cup?",
+    "options": [
+      "South Africa",
+      "New Zealand",
+      "England",
+      "Australia"
+    ],
+    "answer": "South Africa"
+  },
+  {
+    "category": "Sports",
+    "type": "multiple",
+    "difficulty": "medium",
+    "question": "Who won the 2019 Tour de France?",
+    "options": [
+      "Egan Bernal",
+      "Geraint Thomas",
+      "Chris Froome",
+      "Julian Alaphilippe"
+    ],
+    "answer": "Egan Bernal"
+  },
+  {
+    "category": "Sports",
+    "type": "multiple",
+    "difficulty": "medium",
+    "question": "Who won the 2020 US Open men's singles title?",
+    "options": [
+      "Dominic Thiem",
+      "Alexander Zverev",
+      "Novak Djokovic",
+      "Rafael Nadal"
+    ],
+    "answer": "Dominic Thiem"
+  },
+  {
+    "category": "Sports",
+    "type": "multiple",
+    "difficulty": "medium",
+    "question": "Who won the 2018-2019 UEFA Europa League?",
+    "options": [
+      "Chelsea",
+      "Arsenal",
+      "Manchester United",
+      "Sevilla"
+    ],
+    "answer": "Chelsea"
+  },
+  {
+    "category": "Sports",
+    "type": "multiple",
+    "difficulty": "medium",
+    "question": "Who won the 2019 MLB American League MVP award?",
+    "options": [
+      "Mike Trout",
+      "Alex Bregman",
+      "Marcus Semien",
+      "Jose Altuve"
+    ],
+    "answer": "Mike Trout"
+  },
+  {
+    "category": "Sports",
+    "type": "multiple",
+    "difficulty": "medium",
+    "question": "Which country won the most gold medals in the 2016 Summer Olympics?",
+    "options": [
+      "United States",
+      "China",
+      "Great Britain",
+      "Russia"
+    ],
+    "answer": "United States"
+  }, 
+   {
+    "category": "geography",
+    "type": "multiple",
+    "difficulty": "medium",
+    "question": "What is the capital city of Australia?",
+    "options": [
+      "Canberra",
+      "Sydney",
+      "Melbourne",
+      "Brisbane"
+    ],
+    "answer": "Canberra"
+  },
+  {
+    "category": "literature",
+    "type": "multiple",
+    "difficulty": "medium",
+    "question": "Who wrote the novel 'Pride and Prejudice'?",
+    "options": [
+      "Jane Austen",
+      "Charles Dickens",
+      "Leo Tolstoy",
+      "Emily Brontë"
+    ],
+    "answer": "Jane Austen"
+  },
+  {
+    "category": "music",
+    "type": "multiple",
+    "difficulty": "medium",
+    "question": "Which band released the album 'The Dark Side of the Moon'?",
+    "options": [
+      "Pink Floyd",
+      "Led Zeppelin",
+      "The Beatles",
+      "The Rolling Stones"
+    ],
+    "answer": "Pink Floyd"
+  },
+  {
+    "category": "video games",
+    "type": "multiple",
+    "difficulty": "medium",
+    "question": "Who is the main protagonist of the video game series 'The Legend of Zelda'?",
+    "options": [
+      "Link",
+      "Zelda",
+      "Ganondorf",
+      "Impa"
+    ],
+    "answer": "Link"
+  },
+  {
+    "category": "computers",
+    "type": "multiple",
+    "difficulty": "medium",
+    "question": "Who is known as the father of computer science?",
+    "options": [
+      "Alan Turing",
+      "Bill Gates",
+      "Steve Jobs",
+      "Tim Berners-Lee"
+    ],
+    "answer": "Alan Turing"
+  },
+  {
+    "category": "mythology",
+    "type": "multiple",
+    "difficulty": "medium",
+    "question": "Who is the Greek god of the sea?",
+    "options": [
+      "Poseidon",
+      "Zeus",
+      "Hades",
+      "Apollo"
+    ],
+    "answer": "Poseidon"
+  },
+  {
+    "category": "film",
+    "type": "multiple",
+    "difficulty": "medium",
+    "question": "Who directed the movie 'Inception'?",
+    "options": [
+      "Christopher Nolan",
+      "Steven Spielberg",
+      "Martin Scorsese",
+      "Quentin Tarantino"
+    ],
+    "answer": "Christopher Nolan"
+  },
+  {
+    "category": "cartoon_animations",
+    "type": "multiple",
+    "difficulty": "medium",
+    "question": "Who created the animated TV series 'The Simpsons'?",
+    "options": [
+      "Matt Groening",
+      "Seth MacFarlane",
+      "Mike Judge",
+      "Trey Parker"
+    ],
+    "answer": "Matt Groening"
+  },
+  {
+    "category": "art",
+    "type": "multiple",
+    "difficulty": "medium",
+    "question": "Who painted the 'Mona Lisa'?",
+    "options": [
+      "Leonardo da Vinci",
+      "Vincent van Gogh",
+      "Pablo Picasso",
+      "Michelangelo"
+    ],
+    "answer": "Leonardo da Vinci"
+  },
+  {
+    "category": "anime_manga",
+    "type": "multiple",
+    "difficulty": "medium",
+    "question": "Who created the anime series 'Naruto'?",
+    "options": [
+      "Masashi Kishimoto",
+      "Akira Toriyama",
+      "Eiichiro Oda",
+      "Tite Kubo"
+    ],
+    "answer": "Masashi Kishimoto"
+  },
+  {
+    "category": "board_games",
+    "type": "multiple",
+    "difficulty": "medium",
+    "question": "In the board game Monopoly, what is the name of the most expensive property?",
+    "options": [
+      "Boardwalk",
+      "Park Place",
+      "Marvin Gardens",
+      "Broadway"
+    ],
+    "answer": "Boardwalk"
+  },
+  {
+    "category": "gadgets",
+    "type": "multiple",
+    "difficulty": "medium",
+    "question": "Which company produces the smartphone model 'Galaxy S'?",
+    "options": [
+      "Samsung",
+      "Apple",
+      "Huawei",
+      "Google"
+    ],
+    "answer": "Samsung"
+  },
+  {
+    "category": "mathematics",
+    "type": "multiple",
+    "difficulty": "medium",
+    "question": "What is the value of Pi (π) to two decimal places?",
+    "options": [
+      "3.14",
+      "3.16",
+      "3.18",
+      "3.12"
+    ],
+    "answer": "3.14"
+  },
+  {
+    "category": "television",
+    "type": "multiple",
+    "difficulty": "medium",
+    "question": "Which TV series features characters such as Walter White and Jesse Pinkman?",
+    "options": [
+      "Breaking Bad",
+      "The Sopranos",
+      "Mad Men",
+      "The Wire"
+    ],
+    "answer": "Breaking Bad"
+  },
+  {
+    "category": "geography",
+    "type": "multiple",
+    "difficulty": "medium",
+    "question": "What is the capital city of Canada?",
+    "options": [
+      "Ottawa",
+      "Toronto",
+      "Vancouver",
+      "Montreal"
+    ],
+    "answer": "Ottawa"
+  },
+  {
+    "category": "literature",
+    "type": "multiple",
+    "difficulty": "medium",
+    "question": "Who wrote the novel 'To Kill a Mockingbird'?",
+    "options": [
+      "Harper Lee",
+      "Mark Twain",
+      "John Steinbeck",
+      "F. Scott Fitzgerald"
+    ],
+    "answer": "Harper Lee"
+  },
+  {
+    "category": "music",
+    "type": "multiple",
+    "difficulty": "medium",
+    "question": "Which artist released the album 'Thriller'?",
+    "options": [
+      "Michael Jackson",
+      "Elvis Presley",
+      "Madonna",
+      "Prince"
+    ],
+    "answer": "Michael Jackson"
+  },
+  {
+    "category": "video games",
+    "type": "multiple",
+    "difficulty": "medium",
+    "question": "Which video game features characters such as Mario, Luigi, and Bowser?",
+    "options": [
+      "Super Mario",
+      "Sonic the Hedgehog",
+      "The Legend of Zelda",
+      "Minecraft"
+    ],
+    "answer": "Super Mario"
+  },
+  {
+    "category": "computers",
+    "type": "multiple",
+    "difficulty": "medium",
+    "question": "What does 'HTTP' stand for in website addresses?",
+    "options": [
+      "Hypertext Transfer Protocol",
+      "Highway Traffic Throughput",
+      "High Tolerance Tonal Haptics",
+      "Hypertext Terminal Protocol"
+    ],
+    "answer": "Hypertext Transfer Protocol"
+  },
+  {
+    "category": "mythology",
+    "type": "multiple",
+    "difficulty": "medium",
+    "question": "Who is the Norse god of thunder?",
+    "options": [
+      "Thor",
+      "Loki",
+      "Odin",
+      "Balder"
+    ],
+    "answer": "Thor"
+  },
+  {
+    "category": "film",
+    "type": "multiple",
+    "difficulty": "medium",
+    "question": "Which actor portrayed the character Neo in the movie 'The Matrix'?",
+    "options": [
+      "Keanu Reeves",
+      "Brad Pitt",
+      "Leonardo DiCaprio",
+      "Tom Cruise"
+    ],
+    "answer": "Keanu Reeves"
+  },
+  {
+    "category": "cartoon_animations",
+    "type": "multiple",
+    "difficulty": "medium",
+    "question": "Who voices the character Homer Simpson in the animated TV series 'The Simpsons'?",
+    "options": [
+      "Dan Castellaneta",
+      "Seth MacFarlane",
+      "Mike Judge",
+      "Harry Shearer"
+    ],
+    "answer": "Dan Castellaneta"
+  },
+  {
+    "category": "art",
+    "type": "multiple",
+    "difficulty": "medium",
+    "question": "Which famous artist is known for painting 'The Starry Night'?",
+    "options": [
+      "Vincent van Gogh",
+      "Pablo Picasso",
+      "Claude Monet",
+      "Leonardo da Vinci"
+    ],
+    "answer": "Vincent van Gogh"
+  },
+  {
+    "category": "anime_manga",
+    "type": "multiple",
+    "difficulty": "medium",
+    "question": "Who created the manga series 'One Piece'?",
+    "options": [
+      "Eiichiro Oda",
+      "Masashi Kishimoto",
+      "Akira Toriyama",
+      "Tite Kubo"
+    ],
+    "answer": "Eiichiro Oda"
+  },
+  {
+    "category": "board_games",
+    "type": "multiple",
+    "difficulty": "medium",
+    "question": "In the board game Scrabble, what is the value of the letter 'X'?",
+    "options": [
+      "8",
+      "10",
+      "5",
+      "3"
+    ],
+    "answer": "8"
+  },
+  {
+    "category": "gadgets",
+    "type": "multiple",
+    "difficulty": "medium",
+    "question": "Which company produces the gaming console 'PlayStation'?",
+    "options": [
+      "Sony",
+      "Microsoft",
+      "Nintendo",
+      "Sega"
+    ],
+    "answer": "Sony"
+  },
+  {
+    "category": "mathematics",
+    "type": "multiple",
+    "difficulty": "medium",
+    "question": "What is the value of the mathematical constant 'e' (Euler's number) approximately equal to?",
+    "options": [
+      "2.718",
+      "3.142",
+      "1.618",
+      "1.414"
+    ],
+    "answer": "2.718"
+  },
+  {
+    "category": "television",
+    "type": "multiple",
+    "difficulty": "medium",
+    "question": "Which TV series is set in the fictional land of Westeros?",
+    "options": [
+      "Game of Thrones",
+      "The Walking Dead",
+      "Breaking Bad",
+      "Stranger Things"
+    ],
+    "answer": "Game of Thrones"
+  },
+{
+    "category": "geography",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "Which country is the largest by land area?",
+    "options": [
+      "Russia",
+      "Canada",
+      "China",
+      "United States"
+    ],
+    "answer": "Russia"
+  },
+  {
+    "category": "literature",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "Who wrote the play 'Hamlet'?",
+    "options": [
+      "William Shakespeare",
+      "Charles Dickens",
+      "Fyodor Dostoevsky",
+      "Jane Austen"
+    ],
+    "answer": "William Shakespeare"
+  },
+  {
+    "category": "music",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "Who composed the 'Symphony No. 9 in D minor, Op. 125'?",
+    "options": [
+      "Ludwig van Beethoven",
+      "Wolfgang Amadeus Mozart",
+      "Johann Sebastian Bach",
+      "Johannes Brahms"
+    ],
+    "answer": "Ludwig van Beethoven"
+  },
+  {
+    "category": "video_games",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "In the video game 'The Legend of Zelda: Ocarina of Time', what is the name of the main antagonist?",
+    "options": [
+      "Ganondorf",
+      "Zant",
+      "Vaati",
+      "Dark Link"
+    ],
+    "answer": "Ganondorf"
+  },
+  {
+    "category": "computers",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "Which programming language is often used for artificial intelligence and machine learning?",
+    "options": [
+      "Python",
+      "Java",
+      "C++",
+      "Ruby"
+    ],
+    "answer": "Python"
+  },
+  {
+    "category": "mythology",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "Who is the god of thunder in Norse mythology?",
+    "options": [
+      "Thor",
+      "Odin",
+      "Loki",
+      "Freyr"
+    ],
+    "answer": "Thor"
+  },
+  {
+    "category": "film",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "Which movie won the Academy Award for Best Picture in 1994?",
+    "options": [
+      "Forrest Gump",
+      "Schindler's List",
+      "Braveheart",
+      "The Silence of the Lambs"
+    ],
+    "answer": "Forrest Gump"
+  },
+  {
+    "category": "cartoon_animations",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "What year was the first episode of 'SpongeBob SquarePants' aired?",
+    "options": [
+      "1999",
+      "2001",
+      "1997",
+      "2003"
+    ],
+    "answer": "1999"
+  },
+  {
+    "category": "art",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "Who painted the 'Guernica'?",
+    "options": [
+      "Pablo Picasso",
+      "Vincent van Gogh",
+      "Leonardo da Vinci",
+      "Claude Monet"
+    ],
+    "answer": "Pablo Picasso"
+  },
+  {
+    "category": "anime_manga",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "What is the highest-grossing anime film of all time?",
+    "options": [
+      "Your Name",
+      "Spirited Away",
+      "Demon Slayer: Mugen Train",
+      "Pokemon: The First Movie"
+    ],
+    "answer": "Demon Slayer: Mugen Train"
+  },
+  {
+    "category": "board_games",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "In the board game 'Risk', what color is Asia?",
+    "options": [
+      "Red",
+      "Yellow",
+      "Green",
+      "Black"
+    ],
+    "answer": "Red"
+  },
+  {
+    "category": "gadgets",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "Which company produced the first commercially available smartphone?",
+    "options": [
+      "IBM",
+      "Motorola",
+      "BlackBerry",
+      "Apple"
+    ],
+    "answer": "IBM"
+  },
+  {
+    "category": "mathematics",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "What is the Riemann hypothesis?",
+    "options": [
+      "A conjecture about the distribution of prime numbers",
+      "An equation describing the shape of a sphere",
+      "A theory about the origin of the universe",
+      "A proof of Fermat's Last Theorem"
+    ],
+    "answer": "A conjecture about the distribution of prime numbers"
+  },
+  {
+    "category": "television",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "Which TV series has the tagline 'Winter is Coming'?",
+    "options": [
+      "Game of Thrones",
+      "Breaking Bad",
+      "The Walking Dead",
+      "Stranger Things"
+    ],
+    "answer": "Game of Thrones"
+  },
+  {
+    "category": "geography",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "What is the capital city of Sweden?",
+    "options": [
+      "Stockholm",
+      "Oslo",
+      "Helsinki",
+      "Copenhagen"
+    ],
+    "answer": "Stockholm"
+  },
+  {
+    "category": "literature",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "Which author wrote the 'Divine Comedy'?",
+    "options": [
+      "Dante Alighieri",
+      "Geoffrey Chaucer",
+      "John Milton",
+      "Homer"
+    ],
+    "answer": "Dante Alighieri"
+  },
+  {
+    "category": "music",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "Which composer wrote the 'Four Seasons'?",
+    "options": [
+      "Antonio Vivaldi",
+      "Johann Sebastian Bach",
+      "Ludwig van Beethoven",
+      "Wolfgang Amadeus Mozart"
+    ],
+    "answer": "Antonio Vivaldi"
+  },
+  {
+    "category": "video_games",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "In the video game 'Final Fantasy VII', what is the name of the main character?",
+    "options": [
+      "Cloud Strife",
+      "Squall Leonhart",
+      "Tidus",
+      "Zidane Tribal"
+    ],
+    "answer": "Cloud Strife"
+  },
+  {
+    "category": "computers",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "What does 'GUI' stand for in computing?",
+    "options": [
+      "Graphical User Interface",
+      "General Utility Interface",
+      "Global Unification Indicator",
+      "General Usage Implementation"
+    ],
+    "answer": "Graphical User Interface"
+  },
+  {
+    "category": "mythology",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "Who is the goddess of wisdom in Greek mythology?",
+    "options": [
+      "Athena",
+      "Hera",
+      "Aphrodite",
+      "Artemis"
+    ],
+    "answer": "Athena"
+  },
+  {
+    "category": "film",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "Who directed the movie '2001: A Space Odyssey'?",
+    "options": [
+      "Stanley Kubrick",
+      "Steven Spielberg",
+      "Alfred Hitchcock",
+      "Martin Scorsese"
+    ],
+    "answer": "Stanley Kubrick"
+  },
+  {
+    "category": "cartoon_animations",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "Who created the animated TV series 'Rick and Morty'?",
+    "options": [
+      "Justin Roiland and Dan Harmon",
+      "Matt Groening",
+      "Seth MacFarlane",
+      "Mike Judge"
+    ],
+    "answer": "Justin Roiland and Dan Harmon"
+  },
+  {
+    "category": "art",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "Who painted 'The Persistence of Memory'?",
+    "options": [
+      "Salvador Dalí",
+      "Pablo Picasso",
+      "Vincent van Gogh",
+      "Claude Monet"
+    ],
+    "answer": "Salvador Dalí"
+  },
+  {
+    "category": "anime_manga",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "What is the name of the giant humanoid creatures in the anime series 'Attack on Titan'?",
+    "options": [
+      "Titans",
+      "Colossus Titans",
+      "Eldians",
+      "Shifters"
+    ],
+    "answer": "Titans"
+  },
+  {
+    "category": "board_games",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "In the board game 'Catan', what resource is represented by the color red?",
+    "options": [
+      "Brick",
+      "Wood",
+      "Sheep",
+      "Wheat"
+    ],
+    "answer": "Brick"
+  },
+  {
+    "category": "gadgets",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "What year was the first iPhone released?",
+    "options": [
+      "2007",
+      "2005",
+      "2009",
+      "2003"
+    ],
+    "answer": "2007"
+  },
+  {
+    "category": "mathematics",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "What is the famous mathematical constant approximately equal to 3.14159?",
+    "options": [
+      "Pi (π)",
+      "Euler's number (e)",
+      "Golden ratio (φ)",
+      "Avogadro's number"
+    ],
+    "answer": "Pi (π)"
+  },
+  {
+    "category": "television",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "Which TV series features characters such as Don Draper and Peggy Olson?",
+    "options": [
+      "Mad Men",
+      "The Sopranos",
+      "Breaking Bad",
+      "The Wire"
+    ],
+    "answer": "Mad Men"
+  },
+    {
+    "category": "Science",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "What is the molecular formula of ozone?",
+    "options": [
+      "O2",
+      "O",
+      "O3",
+      "CO2"
+    ],
+    "answer": "O3"
+  },
+  {
+    "category": "Science",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "What is the chemical symbol for uranium?",
+    "options": [
+      "U",
+      "Ur",
+      "Un",
+      "Um"
+    ],
+    "answer": "U"
+  },
+  {
+    "category": "Science",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "What is the scientific name for the fear of spiders?",
+    "options": [
+      "Arachnophobia",
+      "Acrophobia",
+      "Cynophobia",
+      "Ophidiophobia"
+    ],
+    "answer": "Arachnophobia"
+  },
+  {
+    "category": "Science",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "What is the chemical formula for glucose?",
+    "options": [
+      "C6H12O6",
+      "CO2",
+      "H2O",
+      "CH4"
+    ],
+    "answer": "C6H12O6"
+  },
+  {
+    "category": "Science",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "What is the scientific term for the study of insects?",
+    "options": [
+      "Ornithology",
+      "Entomology",
+      "Herpetology",
+      "Botany"
+    ],
+    "answer": "Entomology"
+  },
+  {
+    "category": "Science",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "What is the chemical symbol for helium?",
+    "options": [
+      "He",
+      "H",
+      "Hu",
+      "Ho"
+    ],
+    "answer": "He"
+  },
+  {
+    "category": "Science",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "What is the speed of light in a vacuum?",
+    "options": [
+      "299,792,458 meters per second",
+      "300,000,000 meters per second",
+      "288,000 meters per second",
+      "500,000,000 meters per second"
+    ],
+    "answer": "299,792,458 meters per second"
+  },
+  {
+    "category": "Science",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "Which of the following is not a greenhouse gas?",
+    "options": [
+      "Carbon Dioxide",
+      "Methane",
+      "Nitrogen",
+      "Water Vapor"
+    ],
+    "answer": "Nitrogen"
+  },
+  {
+    "category": "Science",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "What is the chemical symbol for silver?",
+    "options": [
+      "Si",
+      "Sv",
+      "Ag",
+      "Sl"
+    ],
+    "answer": "Ag"
+  },
+  {
+    "category": "Science",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "What is the medical term for the voice box?",
+    "options": [
+      "Trachea",
+      "Larynx",
+      "Pharynx",
+      "Epiglottis"
+    ],
+    "answer": "Larynx"
+  },
+  {
+    "category": "Science",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "What is the chemical formula for sulfuric acid?",
+    "options": [
+      "H2SO3",
+      "HCl",
+      "H2SO4",
+      "HNO3"
+    ],
+    "answer": "H2SO4"
+  },
+  {
+    "category": "Science",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "What is the scientific name for the human tailbone?",
+    "options": [
+      "Coccyx",
+      "Femur",
+      "Tibia",
+      "Patella"
+    ],
+    "answer": "Coccyx"
+  },
+  {
+    "category": "Science",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "What is the chemical symbol for potassium?",
+    "options": [
+      "Pt",
+      "Po",
+      "K",
+      "P"
+    ],
+    "answer": "K"
+  },
+  {
+    "category": "Science",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "What is the largest cell in the human body?",
+    "options": [
+      "Nerve Cell",
+      "Liver Cell",
+      "Skin Cell",
+      "Egg Cell"
+    ],
+    "answer": "Egg Cell"
+  },
+  {
+    "category": "Science",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "What is the scientific name for the 'study of birds'?",
+    "options": [
+      "Herpetology",
+      "Ornithology",
+      "Ichthyology",
+      "Entomology"
+    ],
+    "answer": "Ornithology"
+  },
+  {
+    "category": "Science",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "Which planet has the most moons in our solar system?",
+    "options": [
+      "Saturn",
+      "Jupiter",
+      "Neptune",
+      "Uranus"
+    ],
+    "answer": "Jupiter"
+  },
+  {
+    "category": "Science",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "What is the chemical symbol for mercury?",
+    "options": [
+      "Hg",
+      "Me",
+      "MeHg",
+      "Mg"
+    ],
+    "answer": "Hg"
+  },
+  {
+    "category": "Science",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "What is the chemical symbol for nitrogen?",
+    "options": [
+      "N",
+      "Ni",
+      "Ng",
+      "No"
+    ],
+    "answer": "N"
+  },
+  {
+    "category": "Science",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "What is the medical term for the shoulder blade?",
+    "options": [
+      "Humerus",
+      "Scapula",
+      "Femur",
+      "Clavicle"
+    ],
+    "answer": "Scapula"
+  },
+  {
+    "category": "Science",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "Which type of electromagnetic radiation has the shortest wavelength?",
+    "options": [
+      "Radio Waves",
+      "Microwaves",
+      "Ultraviolet",
+      "Gamma Rays"
+    ],
+    "answer": "Gamma Rays"
+  },
+  {
+    "category": "Science",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "What is the chemical symbol for tin?",
+    "options": [
+      "Ti",
+      "Tn",
+      "Sn",
+      "T"
+    ],
+    "answer": "Sn"
+  },
+  {
+    "category": "Science",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "What is the largest organ in the human body?",
+    "options": [
+      "Heart",
+      "Liver",
+      "Skin",
+      "Brain"
+    ],
+    "answer": "Skin"
+  },
+  {
+    "category": "Science",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "What is the chemical symbol for lead?",
+    "options": [
+      "Le",
+      "Ld",
+      "Pb",
+      "Pl"
+    ],
+    "answer": "Pb"
+  },
+  {
+    "category": "Science",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "What is the chemical formula for table salt?",
+    "options": [
+      "NaCl",
+      "HCl",
+      "H2O",
+      "CO2"
+    ],
+    "answer": "NaCl"
+  },
+  {
+    "category": "Science",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "What is the scientific term for the 'study of fossils'?",
+    "options": [
+      "Paleontology",
+      "Geology",
+      "Archaeology",
+      "Anthropology"
+    ],
+    "answer": "Paleontology"
+  },
+  {
+    "category": "Science",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "What is the scientific term for the 'study of rocks'?",
+    "options": [
+      "Paleontology",
+      "Geology",
+      "Archaeology",
+      "Anthropology"
+    ],
+    "answer": "Geology"
+  },
+  {
+    "category": "Science",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "What is the medical term for the thigh bone?",
+    "options": [
+      "Tibia",
+      "Femur",
+      "Fibula",
+      "Patella"
+    ],
+    "answer": "Femur"
+  },
+  {
+    "category": "Science",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "What is the scientific term for the 'study of stars and galaxies'?",
+    "options": [
+      "Astronomy",
+      "Astrology",
+      "Cosmology",
+      "Meteorology"
+    ],
+    "answer": "Astronomy"
+  },
+  {
+    "category": "Science",
+    "type": "multiple",
+    "difficulty": "medium",
+    "question": "What is the boiling point of water in Fahrenheit?",
+    "options": [
+      "100°F",
+      "180°F",
+      "212°F",
+      "250°F"
+    ],
+    "answer": "212°F"
+  },
+  {
+    "category": "Science",
+    "type": "multiple",
+    "difficulty": "medium",
+    "question": "What is the chemical symbol for sodium?",
+    "options": [
+      "So",
+      "Na",
+      "S",
+      "No"
+    ],
+    "answer": "Na"
+  },
+  {
+    "category": "Science",
+    "type": "multiple",
+    "difficulty": "medium",
+    "question": "What is the scientific term for the 'study of weather'?",
+    "options": [
+      "Astronomy",
+      "Astrology",
+      "Meteorology",
+      "Cosmology"
+    ],
+    "answer": "Meteorology"
+  },
+  {
+    "category": "Science",
+    "type": "multiple",
+    "difficulty": "medium",
+    "question": "What is the chemical formula for ammonia?",
+    "options": [
+      "AH3",
+      "NH4",
+      "NH3",
+      "NH2"
+    ],
+    "answer": "NH3"
+  },
+  {
+    "category": "Science",
+    "type": "multiple",
+    "difficulty": "medium",
+    "question": "What is the scientific term for the 'study of sound'?",
+    "options": [
+      "Astronomy",
+      "Acoustics",
+      "Anthropology",
+      "Geology"
+    ],
+    "answer": "Acoustics"
+  },
+  {
+    "category": "Science",
+    "type": "multiple",
+    "difficulty": "medium",
+    "question": "What is the chemical formula for carbon monoxide?",
+    "options": [
+      "CO2",
+      "CO",
+      "C2O",
+      "C"
+    ],
+    "answer": "CO"
+  },
+  {
+    "category": "Science",
+    "type": "multiple",
+    "difficulty": "medium",
+    "question": "What is the chemical symbol for gold?",
+    "options": [
+      "Go",
+      "Au",
+      "Ag",
+      "Ge"
+    ],
+    "answer": "Au"
+  },
+  {
+    "category": "Science",
+    "type": "multiple",
+    "difficulty": "medium",
+    "question": "What is the medical term for the hip bone?",
+    "options": [
+      "Patella",
+      "Femur",
+      "Ilium",
+      "Coccyx"
+    ],
+    "answer": "Ilium"
+  },
+  {
+    "category": "Science",
+    "type": "multiple",
+    "difficulty": "medium",
+    "question": "What is the chemical symbol for carbon?",
+    "options": [
+      "Co",
+      "C",
+      "Ca",
+      "Cu"
+    ],
+    "answer": "C"
+  },
+  {
+    "category": "Science",
+    "type": "multiple",
+    "difficulty": "medium",
+    "question": "What is the freezing point of water in Celsius?",
+    "options": [
+      "0°C",
+      "32°C",
+      "-20°C",
+      "-10°C"
+    ],
+    "answer": "0°C"
+  },
+  {
+    "category": "Science",
+    "type": "multiple",
+    "difficulty": "medium",
+    "question": "What is the scientific name for the 'study of light'?",
+    "options": [
+      "Astronomy",
+      "Acoustics",
+      "Optics",
+      "Seismology"
+    ],
+    "answer": "Optics"
+  },
+  {
+    "category": "Science",
+    "type": "multiple",
+    "difficulty": "medium",
+    "question": "Which element is a noble gas?",
+    "options": [
+      "Oxygen",
+      "Nitrogen",
+      "Helium",
+      "Carbon"
+    ],
+    "answer": "Helium"
+  },
+  {
+    "category": "Science",
+    "type": "multiple",
+    "difficulty": "medium",
+    "question": "What is the scientific name for the 'study of motion'?",
+    "options": [
+      "Biology",
+      "Physics",
+      "Kinematics",
+      "Geology"
+    ],
+    "answer": "Kinematics"
+  },
+  {
+    "category": "Science",
+    "type": "multiple",
+    "difficulty": "medium",
+    "question": "What is the chemical symbol for iron?",
+    "options": [
+      "Ir",
+      "Fe",
+      "In",
+      "Au"
+    ],
+    "answer": "Fe"
+  },
+  {
+    "category": "Science",
+    "type": "multiple",
+    "difficulty": "medium",
+    "question": "What is the atomic number of carbon?",
+    "options": [
+      "6",
+      "8",
+      "12",
+      "14"
+    ],
+    "answer": "6"
+  },
+
+{
+    "category": "History",
+    "type": "multiple",
+    "difficulty": "medium",
+    "question": "Who was the first president of the United States?",
+    "options": [
+      "George Washington",
+      "Thomas Jefferson",
+      "John Adams",
+      "Abraham Lincoln"
+    ],
+    "answer": "George Washington"
+  },
+  {
+    "category": "History",
+    "type": "multiple",
+    "difficulty": "medium",
+    "question": "Who wrote 'The Communist Manifesto'?",
+    "options": [
+      "Karl Marx and Friedrich Engels",
+      "Joseph Stalin",
+      "Vladimir Lenin",
+      "Mao Zedong"
+    ],
+    "answer": "Karl Marx and Friedrich Engels"
+  },
+  {
+    "category": "History",
+    "type": "multiple",
+    "difficulty": "medium",
+    "question": "Who was the first emperor of Rome?",
+    "options": [
+      "Augustus",
+      "Julius Caesar",
+      "Nero",
+      "Constantine"
+    ],
+    "answer": "Augustus"
+  },
+  {
+    "category": "History",
+    "type": "multiple",
+    "difficulty": "medium",
+    "question": "Which famous document begins: 'When in the course of human events...'?",
+    "options": [
+      "The Declaration of Independence",
+      "The Magna Carta",
+      "The Gettysburg Address",
+      "The Emancipation Proclamation"
+    ],
+    "answer": "The Declaration of Independence"
+  },
+  {
+    "category": "History",
+    "type": "multiple",
+    "difficulty": "medium",
+    "question": "Who was the first female Prime Minister of the United Kingdom?",
+    "options": [
+      "Margaret Thatcher",
+      "Theresa May",
+      "Indira Gandhi",
+      "Angela Merkel"
+    ],
+    "answer": "Margaret Thatcher"
+  },
+  {
+    "category": "History",
+    "type": "multiple",
+    "difficulty": "medium",
+    "question": "Who was the first person to step onto the surface of the moon?",
+    "options": [
+      "Neil Armstrong",
+      "Buzz Aldrin",
+      "Yuri Gagarin",
+      "John Glenn"
+    ],
+    "answer": "Neil Armstrong"
+  },
+  {
+    "category": "History",
+    "type": "multiple",
+    "difficulty": "medium",
+    "question": "Which Russian tsar is known as 'Ivan the Terrible'?",
+    "options": [
+      "Ivan IV",
+      "Ivan V",
+      "Ivan III",
+      "Ivan II"
+    ],
+    "answer": "Ivan IV"
+  },
+  {
+    "category": "History",
+    "type": "multiple",
+    "difficulty": "medium",
+    "question": "Who was the first African American to be elected President of the United States?",
+    "options": [
+      "Barack Obama",
+      "Martin Luther King Jr.",
+      "Malcolm X",
+      "Jesse Jackson"
+    ],
+    "answer": "Barack Obama"
+  },
+  {
+    "category": "History",
+    "type": "multiple",
+    "difficulty": "medium",
+    "question": "Which war lasted from 1954 to 1975?",
+    "options": [
+      "Vietnam War",
+      "Korean War",
+      "World War II",
+      "Gulf War"
+    ],
+    "answer": "Vietnam War"
+  },
+  {
+    "category": "History",
+    "type": "multiple",
+    "difficulty": "medium",
+    "question": "Who was the first woman to win a Nobel Prize?",
+    "options": [
+      "Marie Curie",
+      "Rosalind Franklin",
+      "Florence Nightingale",
+      "Mother Teresa"
+    ],
+    "answer": "Marie Curie"
+  },
+  {
+    "category": "History",
+    "type": "multiple",
+    "difficulty": "medium",
+    "question": "Which year did the Titanic sink?",
+    "options": [
+      "1912",
+      "1914",
+      "1916",
+      "1908"
+    ],
+    "answer": "1912"
+  },
+  {
+    "category": "History",
+    "type": "multiple",
+    "difficulty": "medium",
+    "question": "Who was the first woman to fly solo across the Atlantic Ocean?",
+    "options": [
+      "Amelia Earhart",
+      "Bessie Coleman",
+      "Harriet Quimby",
+      "Jacqueline Cochran"
+    ],
+    "answer": "Amelia Earhart"
+  },
+  {
+    "category": "History",
+    "type": "multiple",
+    "difficulty": "medium",
+    "question": "Who was the last queen of France before the French Revolution?",
+    "options": [
+      "Marie Antoinette",
+      "Catherine de' Medici",
+      "Mary, Queen of Scots",
+      "Anne Boleyn"
+    ],
+    "answer": "Marie Antoinette"
+  },
+  {
+    "category": "History",
+    "type": "multiple",
+    "difficulty": "medium",
+    "question": "What was the name of the ship that brought the Pilgrims to America in 1620?",
+    "options": [
+      "Mayflower",
+      "Nina",
+      "Santa Maria",
+      "Victoria"
+    ],
+    "answer": "Mayflower"
+  },
+  {
+    "category": "History",
+    "type": "multiple",
+    "difficulty": "medium",
+    "question": "Who wrote the 'I Have a Dream' speech?",
+    "options": [
+      "Martin Luther King Jr.",
+      "Malcolm X",
+      "Jesse Jackson",
+      "Abraham Lincoln"
+    ],
+    "answer": "Martin Luther King Jr."
+  },
+  {
+    "category": "History",
+    "type": "multiple",
+    "difficulty": "medium",
+    "question": "Which country was ruled by Adolf Hitler?",
+    "options": [
+      "Germany",
+      "Italy",
+      "Japan",
+      "Soviet Union"
+    ],
+    "answer": "Germany"
+  },
+  {
+    "category": "History",
+    "type": "multiple",
+    "difficulty": "medium",
+    "question": "Who was the first female Prime Minister of India?",
+    "options": [
+      "Indira Gandhi",
+      "Sonia Gandhi",
+      "Margaret Thatcher",
+      "Golda Meir"
+    ],
+    "answer": "Indira Gandhi"
+  },
+  {
+    "category": "History",
+    "type": "multiple",
+    "difficulty": "medium",
+    "question": "Which English king was married to Eleanor of Aquitaine?",
+    "options": [
+      "Henry II",
+      "Richard I",
+      "John",
+      "Henry V"
+    ],
+    "answer": "Henry II"
+  },
+  {
+    "category": "History",
+    "type": "multiple",
+    "difficulty": "medium",
+    "question": "What year did World War I begin?",
+    "options": [
+      "1914",
+      "1916",
+      "1918",
+      "1919"
+    ],
+    "answer": "1914"
+  },
+  {
+    "category": "History",
+    "type": "multiple",
+    "difficulty": "medium",
+    "question": "Who was the first emperor of China?",
+    "options": [
+      "Qin Shi Huang",
+      "Emperor Wu of Han",
+      "Emperor Taizong of Tang",
+      "Emperor Kangxi"
+    ],
+    "answer": "Qin Shi Huang"
+  },
+  {
+    "category": "History",
+    "type": "multiple",
+    "difficulty": "medium",
+    "question": "Who was the longest-reigning British monarch?",
+    "options": [
+      "Queen Victoria",
+      "Queen Elizabeth II",
+      "King George III",
+      "Queen Elizabeth I"
+    ],
+    "answer": "Queen Elizabeth II"
+  },
+  {
+    "category": "History",
+    "type": "multiple",
+    "difficulty": "medium",
+    "question": "Who was the founder of the Mongol Empire?",
+    "options": [
+      "Genghis Khan",
+      "Kublai Khan",
+      "Ogedei Khan",
+      "Temujin"
+    ],
+    "answer": "Genghis Khan"
+  },
+  {
+    "category": "History",
+    "type": "multiple",
+    "difficulty": "medium",
+    "question": "Which U.S. president served the shortest term in office?",
+    "options": [
+      "William Henry Harrison",
+      "James A. Garfield",
+      "Zachary Taylor",
+      "John F. Kennedy"
+    ],
+    "answer": "William Henry Harrison"
+  },
+  {
+    "category": "History",
+    "type": "multiple",
+    "difficulty": "medium",
+    "question": "Which war was fought between the North and the South regions of the United States?",
+    "options": [
+      "American Civil War",
+      "Revolutionary War",
+      "World War II",
+      "Vietnam War"
+    ],
+    "answer": "American Civil War"
+  },
+  {
+    "category": "History",
+    "type": "multiple",
+    "difficulty": "medium",
+    "question": "What was the name of the organization that oversaw the Marshall Plan?",
+    "options": [
+      "Organisation for European Economic Co-operation",
+      "United Nations",
+      "World Bank",
+      "North Atlantic Treaty Organization"
+    ],
+    "answer": "Organisation for European Economic Co-operation"
+  },
+  {
+    "category": "History",
+    "type": "multiple",
+    "difficulty": "medium",
+    "question": "Which English king was known as 'The Lionheart'?",
+    "options": [
+      "Richard I",
+      "Henry II",
+      "Edward III",
+      "Henry V"
+    ],
+    "answer": "Richard I"
+  },
+  {
+    "category": "History",
+    "type": "multiple",
+    "difficulty": "medium",
+    "question": "What was the first successful English colony in the New World?",
+    "options": [
+      "Jamestown",
+      "Plymouth",
+      "Roanoke",
+      "Massachusetts Bay"
+    ],
+    "answer": "Jamestown"
+  },
+  {
+    "category": "History",
+    "type": "multiple",
+    "difficulty": "medium",
+    "question": "Who was the first female pharaoh of ancient Egypt?",
+    "options": [
+      "Hatshepsut",
+      "Nefertiti",
+      "Cleopatra",
+      "Merit-Ptah"
+    ],
+    "answer": "Hatshepsut"
+  },
+  {
+    "category": "History",
+    "type": "multiple",
+    "difficulty": "medium",
+    "question": "In which year did World War II end?",
+    "options": [
+      "1945",
+      "1941",
+      "1942",
+      "1944"
+    ],
+    "answer": "1945"
+  },
+  {
+    "category": "History",
+    "type": "multiple",
+    "difficulty": "medium",
+    "question": "Who was the first emperor of Japan?",
+    "options": [
+      "Emperor Jimmu",
+      "Emperor Kanmu",
+      "Emperor Kammu",
+      "Emperor Go-Kameyama"
+    ],
+    "answer": "Emperor Jimmu"
+  },
+  {
+    "category": "History",
+    "type": "multiple",
+    "difficulty": "medium",
+    "question": "Who was the first woman to fly solo across the Atlantic Ocean?",
+    "options": [
+      "Amelia Earhart",
+      "Bessie Coleman",
+      "Harriet Quimby",
+      "Jacqueline Cochran"
+    ],
+    "answer": "Amelia Earhart"
+  },
+  {
+    "category": "History",
+    "type": "multiple",
+    "difficulty": "medium",
+    "question": "What year did the Berlin Wall fall?",
+    "options": [
+      "1989",
+      "1987",
+      "1991",
+      "1993"
+    ],
+    "answer": "1989"
+  },
+  {
+    "category": "History",
+    "type": "multiple",
+    "difficulty": "medium",
+    "question": "Which American president famously declared: 'Mr. Gorbachev, tear down this wall!'?",
+    "options": [
+      "Ronald Reagan",
+      "George H.W. Bush",
+      "Bill Clinton",
+      "Jimmy Carter"
+    ],
+    "answer": "Ronald Reagan"
+  },
+  {
+    "category": "History",
+    "type": "multiple",
+    "difficulty": "medium",
+    "question": "Which country was not a member of the Axis Powers during World War II?",
+    "options": [
+      "Sweden",
+      "Italy",
+      "Japan",
+      "Hungary"
+    ],
+    "answer": "Sweden"
+  },
+  {
+    "category": "History",
+    "type": "multiple",
+    "difficulty": "medium",
+    "question": "Who was the first emperor of Russia?",
+    "options": [
+      "Peter the Great",
+      "Ivan IV",
+      "Catherine the Great",
+      "Nicholas II"
+    ],
+    "answer": "Peter the Great"
+  },
+  {
+    "category": "History",
+    "type": "multiple",
+    "difficulty": "medium",
+    "question": "What was the name of the ship that sank in 1912 and led to the loss of over 1,500 lives?",
+    "options": [
+      "Titanic",
+      "Lusitania",
+      "Britannic",
+      "Carpathia"
+    ],
+    "answer": "Titanic"
+  },
+  {
+    "category": "History",
+    "type": "multiple",
+    "difficulty": "medium",
+    "question": "Who was the last emperor of Russia?",
+    "options": [
+      "Nicholas II",
+      "Peter the Great",
+      "Catherine the Great",
+      "Alexander II"
+    ],
+    "answer": "Nicholas II"
+  },
+  {
+    "category": "History",
+    "type": "multiple",
+    "difficulty": "medium",
+    "question": "Who was the first president of South Africa?",
+    "options": [
+      "Nelson Mandela",
+      "F.W. de Klerk",
+      "Jan Smuts",
+      "Paul Kruger"
+    ],
+    "answer": "Nelson Mandela"
+  },
+  {
+    "category": "History",
+    "type": "multiple",
+    "difficulty": "medium",
+    "question": "Who was the first president of the United States?",
+    "options": [
+      "George Washington",
+      "Thomas Jefferson",
+      "John Adams",
+      "Abraham Lincoln"
+    ],
+    "answer": "George Washington"
+  },
+  {
+    "category": "History",
+    "type": "multiple",
+    "difficulty": "medium",
+    "question": "In which year did the United States enter World War II?",
+    "options": [
+      "1941",
+      "1939",
+      "1943",
+      "1945"
+    ],
+    "answer": "1941"
+  },
+  {
+    "category": "History",
+    "type": "multiple",
+    "difficulty": "medium",
+    "question": "Who was the first European explorer to reach India by sea?",
+    "options": [
+      "Vasco da Gama",
+      "Christopher Columbus",
+      "Ferdinand Magellan",
+      "Marco Polo"
+    ],
+    "answer": "Vasco da Gama"
+  },
+  {
+    "category": "History",
+    "type": "multiple",
+    "difficulty": "medium",
+    "question": "Who was the first president of the Soviet Union?",
+    "options": [
+      "Vladimir Lenin",
+      "Joseph Stalin",
+      "Mikhail Gorbachev",
+      "Leon Trotsky"
+    ],
+    "answer": "Vladimir Lenin"
+  },
+  {
+    "category": "History",
+    "type": "multiple",
+    "difficulty": "medium",
+    "question": "Who was the first emperor of Japan?",
+    "options": [
+      "Emperor Jimmu",
+      "Emperor Kanmu",
+      "Emperor Kammu",
+      "Emperor Go-Kameyama"
+    ],
+    "answer": "Emperor Jimmu"
+  },
+  {
+    "category": "History",
+    "type": "multiple",
+    "difficulty": "medium",
+    "question": "Who was the first Roman emperor?",
+    "options": [
+      "Augustus",
+      "Julius Caesar",
+      "Nero",
+      "Caligula"
+    ],
+    "answer": "Augustus"
+  },
+  {
+    "category": "History",
+    "type": "multiple",
+    "difficulty": "medium",
+    "question": "Which English king was known as 'The Confessor'?",
+    "options": [
+      "Edward the Confessor",
+      "William the Conqueror",
+      "Alfred the Great",
+      "Henry VIII"
+    ],
+    "answer": "Edward the Confessor"
+  },
+
+   {
+    "category": "General Knowledge",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "Which of these cities does NOT have a United States Minting location?",
+    "options": [
+      "San Francisco, CA",
+      "St. Louis, MO",
+      "West Point, NY",
+      "Philadelphia, PA"
+    ],
+    "answer": "St. Louis, MO"
+  },
+  {
+    "category": "General Knowledge",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "How many notes are there on a standard grand piano?",
+    "options": [
+      "88",
+      "98",
+      "108",
+      "78"
+    ],
+    "answer": "88"
+  },
+  {
+    "category": "General Knowledge",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "Which African country was formerly known as Abyssinia?",
+    "options": [
+      "Ethiopia",
+      "Egypt",
+      "Nigeria",
+      "Algeria"
+    ],
+    "answer": "Ethiopia"
+  },
+  {
+    "category": "General Knowledge",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "What is the scientific term for the 'study of fossils'?",
+    "options": [
+      "Paleontology",
+      "Geology",
+      "Archaeology",
+      "Anthropology"
+    ],
+    "answer": "Paleontology"
+  },
+  {
+    "category": "General Knowledge",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "In the periodic table, which element has the chemical symbol 'Na'?",
+    "options": [
+      "Nitrogen",
+      "Neon",
+      "Nickel",
+      "Sodium"
+    ],
+    "answer": "Sodium"
+  },
+  {
+    "category": "General Knowledge",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "What is the chemical symbol for the element lead?",
+    "options": [
+      "Le",
+      "Ld",
+      "Pb",
+      "Pl"
+    ],
+    "answer": "Pb"
+  },
+  {
+    "category": "General Knowledge",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "Which country is the largest by land area?",
+    "options": [
+      "Russia",
+      "United States",
+      "Canada",
+      "China"
+    ],
+    "answer": "Russia"
+  },
+  {
+    "category": "General Knowledge",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "What is the largest organ in the human body?",
+    "options": [
+      "Heart",
+      "Liver",
+      "Skin",
+      "Brain"
+    ],
+    "answer": "Skin"
+  },
+  {
+    "category": "General Knowledge",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "What is the chemical formula for table salt?",
+    "options": [
+      "NaCl",
+      "HCl",
+      "H2O",
+      "CO2"
+    ],
+    "answer": "NaCl"
+  },
+  {
+    "category": "General Knowledge",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "Who wrote the novel '1984'?",
+    "options": [
+      "George Orwell",
+      "Ernest Hemingway",
+      "F. Scott Fitzgerald",
+      "J.D. Salinger"
+    ],
+    "answer": "George Orwell"
+  },
+  {
+    "category": "General Knowledge",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "What is the smallest country in the world?",
+    "options": [
+      "Monaco",
+      "Nauru",
+      "Maldives",
+      "Vatican City"
+    ],
+    "answer": "Vatican City"
+  },
+  {
+    "category": "General Knowledge",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "What is the chemical formula for ammonia?",
+    "options": [
+      "AH3",
+      "NH4",
+      "NH3",
+      "NH2"
+    ],
+    "answer": "NH3"
+  },
+  {
+    "category": "General Knowledge",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "Which planet is known as the 'Evening Star'?",
+    "options": [
+      "Mars",
+      "Venus",
+      "Mercury",
+      "Saturn"
+    ],
+    "answer": "Venus"
+  },
+  {
+    "category": "General Knowledge",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "Who discovered penicillin?",
+    "options": [
+      "Alexander Fleming",
+      "Louis Pasteur",
+      "Robert Koch",
+      "Joseph Lister"
+    ],
+    "answer": "Alexander Fleming"
+  },
+  {
+    "category": "General Knowledge",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "What is the chemical symbol for mercury?",
+    "options": [
+      "Hg",
+      "Me",
+      "MeHg",
+      "Mg"
+    ],
+    "answer": "Hg"
+  },
+  {
+    "category": "General Knowledge",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "Who is the author of 'Pride and Prejudice'?",
+    "options": [
+      "Jane Austen",
+      "Emily Bronte",
+      "Charlotte Bronte",
+      "Charles Dickens"
+    ],
+    "answer": "Jane Austen"
+  },
+  {
+    "category": "General Knowledge",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "What is the chemical formula for hydrogen peroxide?",
+    "options": [
+      "H2O2",
+      "H2O",
+      "HOH",
+      "HCl"
+    ],
+    "answer": "H2O2"
+  },
+  {
+    "category": "General Knowledge",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "Who developed the theory of relativity?",
+    "options": [
+      "Albert Einstein",
+      "Isaac Newton",
+      "Galileo Galilei",
+      "Nikola Tesla"
+    ],
+    "answer": "Albert Einstein"
+  },
+  {
+    "category": "General Knowledge",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "What is the chemical symbol for potassium?",
+    "options": [
+      "Pt",
+      "Po",
+      "K",
+      "P"
+    ],
+    "answer": "K"
+  },
+  {
+    "category": "General Knowledge",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "Who wrote 'The Great Gatsby'?",
+    "options": [
+      "F. Scott Fitzgerald",
+      "Ernest Hemingway",
+      "John Steinbeck",
+      "William Faulkner"
+    ],
+    "answer": "F. Scott Fitzgerald"
+  },
+  {
+    "category": "General Knowledge",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "What is the chemical formula for sulfuric acid?",
+    "options": [
+      "H2SO3",
+      "HCl",
+      "H2SO4",
+      "HNO3"
+    ],
+    "answer": "H2SO4"
+  },
+  {
+    "category": "General Knowledge",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "Who painted 'The Starry Night'?",
+    "options": [
+      "Pablo Picasso",
+      "Vincent van Gogh",
+      "Leonardo da Vinci",
+      "Claude Monet"
+    ],
+    "answer": "Vincent van Gogh"
+  },
+  {
+    "category": "General Knowledge",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "What is the chemical symbol for silver?",
+    "options": [
+      "Si",
+      "Sv",
+      "Ag",
+      "Sl"
+    ],
+    "answer": "Ag"
+  },
+  {
+    "category": "General Knowledge",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "Who is credited with developing the first successful vaccine?",
+    "options": [
+      "Louis Pasteur",
+      "Edward Jenner",
+      "Alexander Fleming",
+      "Joseph Lister"
+    ],
+    "answer": "Edward Jenner"
+  },
+  {
+    "category": "General Knowledge",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "What is the chemical formula for carbon dioxide?",
+    "options": [
+      "CO2",
+      "CO",
+      "C2O",
+      "C"
+    ],
+    "answer": "CO2"
+  },
+  {
+    "category": "General Knowledge",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "Who is known as the 'Father of Geometry'?",
+    "options": [
+      "Euclid",
+      "Pythagoras",
+      "Aristotle",
+      "Archimedes"
+    ],
+    "answer": "Euclid"
+  },
+  {
+    "category": "General Knowledge",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "What is the chemical symbol for oxygen?",
+    "options": [
+      "O2",
+      "O",
+      "Ox",
+      "Om"
+    ],
+    "answer": "O"
+  },
+  {
+    "category": "General Knowledge",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "Who is the Greek god of the sea?",
+    "options": [
+      "Hades",
+      "Zeus",
+      "Poseidon",
+      "Ares"
+    ],
+    "answer": "Poseidon"
+  },
+  {
+    "category": "General Knowledge",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "What is the chemical symbol for nitrogen?",
+    "options": [
+      "N",
+      "Ni",
+      "Ng",
+      "No"
+    ],
+    "answer": "N"
+  },
+  {
+    "category": "General Knowledge",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "What is the boiling point of water in Fahrenheit?",
+    "options": [
+      "100°F",
+      "180°F",
+      "212°F",
+      "250°F"
+    ],
+    "answer": "212°F"
+  },
+  {
+    "category": "General Knowledge",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "Who was the first woman to fly solo across the Atlantic Ocean?",
+    "options": [
+      "Amelia Earhart",
+      "Bessie Coleman",
+      "Harriet Quimby",
+      "Jacqueline Cochran"
+    ],
+    "answer": "Amelia Earhart"
+  },
+  {
+    "category": "General Knowledge",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "Who wrote 'The Catcher in the Rye'?",
+    "options": [
+      "J.D. Salinger",
+      "F. Scott Fitzgerald",
+      "Ernest Hemingway",
+      "Mark Twain"
+    ],
+    "answer": "J.D. Salinger"
+  },
+  {
+    "category": "General Knowledge",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "What is the chemical symbol for calcium?",
+    "options": [
+      "Co",
+      "Ca",
+      "Cl",
+      "C"
+    ],
+    "answer": "Ca"
+  },
+  {
+    "category": "General Knowledge",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "What is the capital city of Canada?",
+    "options": [
+      "Vancouver",
+      "Toronto",
+      "Ottawa",
+      "Montreal"
+    ],
+    "answer": "Ottawa"
+  },
+  {
+    "category": "General Knowledge",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "Who is the author of 'The Old Man and the Sea'?",
+    "options": [
+      "Ernest Hemingway",
+      "F. Scott Fitzgerald",
+      "John Steinbeck",
+      "Mark Twain"
+    ],
+    "answer": "Ernest Hemingway"
+  },
+  {
+    "category": "General Knowledge",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "What is the chemical formula for carbon monoxide?",
+    "options": [
+      "CO2",
+      "CO",
+      "C2O",
+      "C"
+    ],
+    "answer": "CO"
+  },
+  {
+    "category": "General Knowledge",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "Who is known as the 'Father of Chemistry'?",
+    "options": [
+      "John Dalton",
+      "Dmitri Mendeleev",
+      "Antoine Lavoisier",
+      "Marie Curie"
+    ],
+    "answer": "Antoine Lavoisier"
+  },
+  {
+    "category": "General Knowledge",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "What is the chemical symbol for tungsten?",
+    "options": [
+      "Tn",
+      "W",
+      "Tg",
+      "Tu"
+    ],
+    "answer": "W"
+  },
+  {
+    "category": "General Knowledge",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "Who discovered the theory of radioactivity?",
+    "options": [
+      "Marie Curie",
+      "Albert Einstein",
+      "Niels Bohr",
+      "Enrico Fermi"
+    ],
+    "answer": "Marie Curie"
+  },
+
+
+  {
+    "category": "General Knowledge",
+    "type": "multiple",
+    "difficulty": "medium",
+    "question": "What is the currency of Japan?",
+    "options": [
+      "Yuan",
+      "Yen",
+      "Dollar",
+      "Pound"
+    ],
+    "answer": "Yen"
+  },
+  {
+    "category": "General Knowledge",
+    "type": "multiple",
+    "difficulty": "medium",
+    "question": "Who wrote 'To Kill a Mockingbird'?",
+    "options": [
+      "Harper Lee",
+      "J.K. Rowling",
+      "Ernest Hemingway",
+      "Mark Twain"
+    ],
+    "answer": "Harper Lee"
+  },
+  {
+    "category": "General Knowledge",
+    "type": "multiple",
+    "difficulty": "medium",
+    "question": "What is the chemical symbol for iron?",
+    "options": [
+      "Ir",
+      "Fe",
+      "In",
+      "Au"
+    ],
+    "answer": "Fe"
+  },
+  {
+    "category": "General Knowledge",
+    "type": "multiple",
+    "difficulty": "medium",
+    "question": "Who is known as the 'Father of Computers'?",
+    "options": [
+      "Alan Turing",
+      "Bill Gates",
+      "Charles Babbage",
+      "Steve Jobs"
+    ],
+    "answer": "Charles Babbage"
+  },
+  {
+    "category": "General Knowledge",
+    "type": "multiple",
+    "difficulty": "medium",
+    "question": "Which planet is the closest to the Sun?",
+    "options": [
+      "Earth",
+      "Mars",
+      "Venus",
+      "Mercury"
+    ],
+    "answer": "Mercury"
+  },
+  {
+    "category": "General Knowledge",
+    "type": "multiple",
+    "difficulty": "medium",
+    "question": "Who composed the famous musical piece 'Symphony No. 9'?",
+    "options": [
+      "Wolfgang Amadeus Mozart",
+      "Johann Sebastian Bach",
+      "Ludwig van Beethoven",
+      "Franz Schubert"
+    ],
+    "answer": "Ludwig van Beethoven"
+  },
+  {
+    "category": "General Knowledge",
+    "type": "multiple",
+    "difficulty": "medium",
+    "question": "What is the largest mammal in the world?",
+    "options": [
+      "Elephant",
+      "Blue Whale",
+      "Giraffe",
+      "Hippopotamus"
+    ],
+    "answer": "Blue Whale"
+  }, 
+
+  {
+    "category": "General Knowledge",
+    "type": "multiple",
+    "difficulty": "medium",
+    "question": "What is the capital city of Australia?",
+    "options": [
+      "Sydney",
+      "Melbourne",
+      "Canberra",
+      "Brisbane"
+    ],
+    "answer": "Canberra"
+  },
+  {
+    "category": "General Knowledge",
+    "type": "multiple",
+    "difficulty": "medium",
+    "question": "Which planet is known as the 'Red Planet'?",
+    "options": [
+      "Jupiter",
+      "Mars",
+      "Venus",
+      "Saturn"
+    ],
+    "answer": "Mars"
+  },
+  {
+    "category": "General Knowledge",
+    "type": "multiple",
+    "difficulty": "medium",
+    "question": "What is the chemical symbol for gold?",
+    "options": [
+      "Go",
+      "Au",
+      "Ag",
+      "Ge"
+    ],
+    "answer": "Au"
+  },
+  {
+    "category": "General Knowledge",
+    "type": "multiple",
+    "difficulty": "medium",
+    "question": "What is the largest ocean on Earth?",
+    "options": [
+      "Atlantic Ocean",
+      "Indian Ocean",
+      "Arctic Ocean",
+      "Pacific Ocean"
+    ],
+    "answer": "Pacific Ocean"
+  },
+  {
+    "category": "General Knowledge",
+    "type": "multiple",
+    "difficulty": "medium",
+    "question": "What is the chemical symbol for water?",
+    "options": [
+      "Wa",
+      "Wo",
+      "W",
+      "H2O"
+    ],
+    "answer": "H2O"
+  },
+  {
+    "category": "General Knowledge",
+    "type": "multiple",
+    "difficulty": "medium",
+    "question": "What is the tallest mountain in the world?",
+    "options": [
+      "Mount Kilimanjaro",
+      "Mount Everest",
+      "K2",
+      "Mount Fuji"
+    ],
+    "answer": "Mount Everest"
+  },
+  {
+    "category": "General Knowledge",
+    "type": "multiple",
+    "difficulty": "medium",
+    "question": "Who painted the Mona Lisa?",
+    "options": [
+      "Vincent van Gogh",
+      "Leonardo da Vinci",
+      "Pablo Picasso",
+      "Michelangelo"
+    ],
+    "answer": "Leonardo da Vinci"
+  },
+
+  {
+    "category": "General Knowledge",
+    "type": "multiple",
+    "difficulty": "medium",
+    "question": "Which of the following Ivy League universities has its official motto in Hebrew as well as in Latin?",
+    "options": [
+      "Princeton University",
+      "Harvard University",
+      "Columbia University",
+      "Yale University"
+    ],
+    "answer": "Yale University"
+  },
+  {
+    "category": "General Knowledge",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "In &quot;Resident Evil 3&quot;, how many inventory slots does Jill have at the start of the game?",
+    "options": [
+      "12",
+      "8",
+      "10",
+      "6"
+    ],
+    "answer": "10"
+  },
+  {
+    "category": "General Knowledge",
+    "type": "multiple",
+    "difficulty": "medium",
+    "question": "Whose greyscale face is on the kappa emoticon on Twitch?",
+    "options": [
+      "Josh DeSeno",
+      "Jimmy DeSeno",
+      "John DeSeno",
+      "Justin DeSeno"
+    ],
+    "answer": "Josh DeSeno"
+  },
+  {
+    "category": "General Knowledge",
+    "type": "multiple",
+    "difficulty": "medium",
+    "question": "Earl Grey tea is black tea flavoured with what?",
+    "options": [
+      "Honey",
+      "Vanilla",
+      "Bergamot oil",
+      "Lavender"
+    ],
+    "answer": "Bergamot oil"
+  },
+  {
+    "category": "General Knowledge",
+    "type": "multiple",
+    "difficulty": "easy",
+    "question": "The Flag of the European Union has how many stars on it?",
+    "options": [
+      "10",
+      "14",
+      "16",
+      "12"
+    ],
+    "answer": "12"
+  },
+  {
+    "category": "General Knowledge",
+    "type": "multiple",
+    "difficulty": "medium",
+    "question": "What did the Spanish autonomous community of Catalonia ban in 2010, that took effect in 2012?",
+    "options": [
+      "Flamenco",
+      "Mariachi",
+      "Fiestas",
+      "Bullfighting"
+    ],
+    "answer": "Bullfighting"
+  },
+  {
+    "category": "General Knowledge",
+    "type": "multiple",
+    "difficulty": "medium",
+    "question": "What country saw a world record 315 million voters turn out for elections on May 20, 1991?",
+    "options": [
+      "United States of America",
+      "Soviet Union",
+      "Poland",
+      "India"
+    ],
+    "answer": "India"
+  },
+  {
+    "category": "General Knowledge",
+    "type": "multiple",
+    "difficulty": "easy",
+    "question": "How many colors are there in a rainbow?",
+    "options": [
+      "7",
+      "10",
+      "9",
+      "8"
+    ],
+    "answer": "7"
+  },
+  {
+    "category": "General Knowledge",
+    "type": "multiple",
+    "difficulty": "easy",
+    "question": "If you are caught &quot;Goldbricking&quot;, what are you doing wrong?",
+    "options": [
+      "Smoking",
+      "Slacking",
+      "Stealing",
+      "Cheating"
+    ],
+    "answer": "Slacking"
+  },
+  {
+    "category": "General Knowledge",
+    "type": "multiple",
+    "difficulty": "easy",
+    "question": "What is the official language of Brazil?",
+    "options": [
+      "English",
+      "Spanish",
+      "Portugese",
+      "Brazilian"
+    ],
+    "answer": "Portugese"
+  },
+  {
+    "category": "General Knowledge",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "Named after the mallow flower, mauve is a shade of what?",
+    "options": [
+      "Red",
+      "Pink",
+      "Brown",
+      "Purple"
+    ],
+    "answer": "Purple"
+  },
+  {
+    "category": "General Knowledge",
+    "type": "multiple",
+    "difficulty": "medium",
+    "question": "What is the unit of currency in Laos?",
+    "options": [
+      "Dollar",
+      "Kip",
+      "Ruble",
+      "Konra"
+    ],
+    "answer": "Kip"
+  },
+  {
+    "category": "General Knowledge",
+    "type": "multiple",
+    "difficulty": "medium",
+    "question": "What was Mountain Dew&#039;s original slogan?",
+    "options": [
+      "Give Me A Dew",
+      "Do The Dew",
+      "Get&#039; that barefoot feelin&#039; drinkin&#039; Mountain Dew",
+      "Yahoo! Mountain Dew... It&#039;ll tickle your innards!"
+    ],
+    "answer": "Yahoo! Mountain Dew... It&#039;ll tickle your innards!"
+  },
+  {
+    "category": "General Knowledge",
+    "type": "multiple",
+    "difficulty": "medium",
+    "question": "What is the German word for &quot;spoon&quot;?",
+    "options": [
+      "Essst&auml;bchen",
+      "Messer",
+      "Gabel",
+      "L&ouml;ffel"
+    ],
+    "answer": "L&ouml;ffel"
+  },
+  {
+    "category": "General Knowledge",
+    "type": "multiple",
+    "difficulty": "easy",
+    "question": "In Half-Life, what is the name of the alien that attaches to heads?",
+    "options": [
+      "Vortigaunt",
+      "Headcrab",
+      "Facehugger",
+      "Bullsquid"
+    ],
+    "answer": "Headcrab"
+  },
+  {
+    "category": "General Knowledge",
+    "type": "multiple",
+    "difficulty": "easy",
+    "question": "What machine element is located in the center of fidget spinners?",
+    "options": [
+      "Axles",
+      "Gears",
+      "Belts",
+      "Bearings"
+    ],
+    "answer": "Bearings"
+  },
+  {
+    "category": "General Knowledge",
+    "type": "multiple",
+    "difficulty": "easy",
+    "question": "What do the letters of the fast food chain KFC stand for?",
+    "options": [
+      "Kibbled Freaky Cow",
+      "Kentucky Fried Chicken",
+      "Kiwi Food Cut",
+      "Kentucky Fresh Cheese"
+    ],
+    "answer": "Kentucky Fried Chicken"
+  },
+  {
+    "category": "General Knowledge",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "Disney&#039;s Haunted Mansion is home to a trio of Hitchhiking Ghosts. Which of these is NOT one of them?",
+    "options": [
+      "Gus",
+      "Harry",
+      "Ezra",
+      "Phineas"
+    ],
+    "answer": "Harry"
+  },
+  {
+    "category": "General Knowledge",
+    "type": "multiple",
+    "difficulty": "easy",
+    "question": "In past times, what would a gentleman keep in his fob pocket?",
+    "options": [
+      "Keys",
+      "Notebook",
+      "Money",
+      "Watch"
+    ],
+    "answer": "Watch"
+  },
+  {
+    "category": "General Knowledge",
+    "type": "multiple",
+    "difficulty": "easy",
+    "question": "When was the Playstation 3 released?",
+    "options": [
+      "November 11, 2006",
+      "January 8, 2007",
+      "December 25, 2007",
+      "July 16, 2006"
+    ],
+    "answer": "November 11, 2006"
+  },
+  {
+    "category": "General Knowledge",
+    "type": "multiple",
+    "difficulty": "easy",
+    "question": "Who is depicted on the US hundred dollar bill?",
+    "options": [
+      "Thomas Jefferson",
+      "Abraham Lincoln",
+      "Benjamin Franklin",
+      "George Washington"
+    ],
+    "answer": "Benjamin Franklin"
+  },
+  {
+    "category": "General Knowledge",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "Where is Apple Inc. headquartered?",
+    "options": [
+      "Redmond, Washington",
+      "Santa Monica, CA",
+      "Cupertino, California",
+      "Redwood City, California"
+    ],
+    "answer": "Cupertino, California"
+  },
+  {
+    "category": "General Knowledge",
+    "type": "multiple",
+    "difficulty": "medium",
+    "question": "Apple co-founder Steve Jobs died from complications of which form of cancer?",
+    "options": [
+      "Stomach",
+      "Liver",
+      "Pancreatic",
+      "Bone"
+    ],
+    "answer": "Pancreatic"
+  },
+  {
+    "category": "General Knowledge",
+    "type": "multiple",
+    "difficulty": "medium",
+    "question": "Rolex is a company that specializes in what type of product?",
+    "options": [
+      "Watches",
+      "Cars",
+      "Computers",
+      "Sports equipment"
+    ],
+    "answer": "Watches"
+  },
+  {
+    "category": "General Knowledge",
+    "type": "multiple",
+    "difficulty": "easy",
+    "question": "Virgin Trains, Virgin Atlantic and Virgin Racing, are all companies owned by which famous entrepreneur?   ",
+    "options": [
+      "Alan Sugar",
+      "Donald Trump",
+      "Bill Gates",
+      "Richard Branson"
+    ],
+    "answer": "Richard Branson"
+  },
+  {
+    "category": "General Knowledge",
+    "type": "multiple",
+    "difficulty": "medium",
+    "question": "What was the original name of the search engine &quot;Google&quot;?",
+    "options": [
+      "Netscape Navigator",
+      "SearchPro",
+      "CatMassage",
+      "BackRub"
+    ],
+    "answer": "BackRub"
+  },
+  {
+    "category": "General Knowledge",
+    "type": "multiple",
+    "difficulty": "medium",
+    "question": "Directly between the Washington Monument and the Reflecting Pool is a memorial to which war?",
+    "options": [
+      "Vietnam War",
+      "American Civil War",
+      "American Revolutionary War",
+      "World War II"
+    ],
+    "answer": "World War II"
+  },
+  {
+    "category": "General Knowledge",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "What is the weight of a Gold Bar in Fallout: New Vegas?",
+    "options": [
+      "30 Pounds",
+      "40 Pounds",
+      "32.50 Pounds",
+      "35 Pounds"
+    ],
+    "answer": "35 Pounds"
+  },
+  {
+    "category": "General Knowledge",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "The Swedish word &quot;Grunka&quot; means what in English?",
+    "options": [
+      "People",
+      "Place",
+      "Pineapple",
+      "Thing"
+    ],
+    "answer": "Thing"
+  },
+  {
+    "category": "General Knowledge",
+    "type": "multiple",
+    "difficulty": "medium",
+    "question": "Where does water from Poland Spring water bottles come from?",
+    "options": [
+      "Maine, United States",
+      "Masovia, Poland",
+      "Hesse, Germany",
+      "Bavaria, Poland"
+    ],
+    "answer": "Maine, United States"
+  },
+  {
+    "category": "General Knowledge",
+    "type": "multiple",
+    "difficulty": "medium",
+    "question": "Which slogan did the fast food company, McDonald&#039;s, use before their &quot;I&#039;m Lovin&#039; It&quot; slogan?",
+    "options": [
+      "Making People Happy Through Food",
+      "We Love to See You Smile",
+      "Have It Your Way",
+      "Why Pay More!?"
+    ],
+    "answer": "We Love to See You Smile"
+  },
+  {
+    "category": "General Knowledge",
+    "type": "multiple",
+    "difficulty": "easy",
+    "question": "Five dollars is worth how many nickles?",
+    "options": [
+      "69",
+      "100",
+      "25",
+      "50"
+    ],
+    "answer": "100"
+  },
+  {
+    "category": "General Knowledge",
+    "type": "multiple",
+    "difficulty": "easy",
+    "question": "Area 51 is located in which US state?",
+    "options": [
+      "Utah",
+      "New Mexico",
+      "Nevada",
+      "Arizona"
+    ],
+    "answer": "Nevada"
+  },
+  {
+    "category": "General Knowledge",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "The word &quot;astasia&quot; means which of the following?",
+    "options": [
+      "The inability to make decisions",
+      "The inability to stand up",
+      "The inability to concentrate on anything",
+      "A feverish desire to rip one&#039;s clothes off"
+    ],
+    "answer": "The inability to stand up"
+  },
+  {
+    "category": "General Knowledge",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "Which of the following languages does NOT use gender as a part of its grammar?",
+    "options": [
+      "German",
+      "Turkish",
+      "Danish",
+      "Polish"
+    ],
+    "answer": "Turkish"
+  },
+  {
+    "category": "General Knowledge",
+    "type": "multiple",
+    "difficulty": "medium",
+    "question": "Which Italian automobile manufacturer gained majority control of U.S. automobile manufacturer Chrysler in 2011?",
+    "options": [
+      "Ferrari",
+      "Fiat",
+      "Alfa Romeo",
+      "Maserati"
+    ],
+    "answer": "Fiat"
+  },
+  {
+    "category": "General Knowledge",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "What is the romanized Arabic word for &quot;moon&quot;?",
+    "options": [
+      "Qamar",
+      "Shams",
+      "Kawkab",
+      "Najma"
+    ],
+    "answer": "Qamar"
+  },
+  {
+    "category": "General Knowledge",
+    "type": "multiple",
+    "difficulty": "easy",
+    "question": "Foie gras is a French delicacy typically made from what part of a duck or goose?",
+    "options": [
+      "Stomach",
+      "Intestines",
+      "Heart",
+      "Liver"
+    ],
+    "answer": "Liver"
+  },
+  {
+    "category": "General Knowledge",
+    "type": "multiple",
+    "difficulty": "medium",
+    "question": "When was the Declaration of Independence approved by the Second Continental Congress?",
+    "options": [
+      "May 4, 1776",
+      "July 4, 1776",
+      "June 4, 1776",
+      "July 2, 1776"
+    ],
+    "answer": "July 4, 1776"
+  },
+  {
+    "category": "General Knowledge",
+    "type": "multiple",
+    "difficulty": "easy",
+    "question": "Which best selling toy of 1983 caused hysteria, resulting in riots breaking out in stores?",
+    "options": [
+      "Care Bears",
+      "Transformers",
+      "Cabbage Patch Kids",
+      "Rubik&rsquo;s Cube"
+    ],
+    "answer": "Cabbage Patch Kids"
+  },
+  {
+    "category": "General Knowledge",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "What year was the RoboSapien toy robot released?",
+    "options": [
+      "2000",
+      "2001",
+      "2006",
+      "2004"
+    ],
+    "answer": "2004"
+  },
+  {
+    "category": "General Knowledge",
+    "type": "multiple",
+    "difficulty": "easy",
+    "question": "Which of the following blood component forms a plug at the site of injuries?",
+    "options": [
+      "Red blood cells",
+      "Blood plasma",
+      "Platelets",
+      "White blood cells"
+    ],
+    "answer": "Platelets"
+  },
+  {
+    "category": "General Knowledge",
+    "type": "multiple",
+    "difficulty": "easy",
+    "question": "Which sign of the zodiac is represented by the Crab?",
+    "options": [
+      "Cancer",
+      "Libra",
+      "Virgo",
+      "Sagittarius"
+    ],
+    "answer": "Cancer"
+  },
+  {
+    "category": "General Knowledge",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "The Quadrangularis Reversum is best described as which of the following?",
+    "options": [
+      "A geometric theorem",
+      "A chess move",
+      "A building in Oxford University",
+      "A percussion instrument"
+    ],
+    "answer": "A percussion instrument"
+  },
+  {
+    "category": "General Knowledge",
+    "type": "multiple",
+    "difficulty": "easy",
+    "question": "In the video-game franchise Kingdom Hearts, the main protagonist, carries a weapon with what shape?",
+    "options": [
+      "Cellphone",
+      "Pen",
+      "Sword",
+      "Key"
+    ],
+    "answer": "Key"
+  },
+  {
+    "category": "General Knowledge",
+    "type": "multiple",
+    "difficulty": "medium",
+    "question": "What is the average life span of a garden ant?",
+    "options": [
+      "24 hours",
+      "1 week",
+      "3 years",
+      "15 years"
+    ],
+    "answer": "15 years"
+  },
+  {
+    "category": "General Knowledge",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "Which of these cities does NOT have a United States Minting location?",
+    "options": [
+      "San Fransisco, CA",
+      "St. Louis, MO",
+      "West Point, NY",
+      "Philidelphia, PA"
+    ],
+    "answer": "St. Louis, MO"
+  },
+  {
+    "category": "General Knowledge",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "How many notes are there on a standard grand piano?",
+    "options": [
+      "88",
+      "98",
+      "108",
+      "78"
+    ],
+    "answer": "88"
+  },
+  {
+    "category": "General Knowledge",
+    "type": "multiple",
+    "difficulty": "medium",
+    "question": "What is the currency of Poland?",
+    "options": [
+      "Ruble",
+      "Krone",
+      "Złoty",
+      "Euro"
+    ],
+    "answer": "Złoty"
+  },
+  {
+    "category": "General Knowledge",
+    "type": "multiple",
+    "difficulty": "easy",
+    "question": "What word represents the letter &#039;T&#039; in the NATO phonetic alphabet?",
+    "options": [
+      "Target",
+      "Tango",
+      "Taxi",
+      "Turkey"
+    ],
+    "answer": "Tango"
+  },
+     {
+    "category": "anime_manga",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "What is the name of the main character in the anime 'Naruto'?",
+    "options": [
+      "Naruto Uzumaki",
+      "Sasuke Uchiha",
+      "Sakura Haruno",
+      "Kakashi Hatake"
+    ],
+    "answer": "Naruto Uzumaki"
+  },
+  {
+    "category": "anime_manga",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "In 'Attack on Titan', what is the name of the city protected by the walls?",
+    "options": [
+      "Shiganshina",
+      "Trost",
+      "Wall Maria",
+      "Wall Rose"
+    ],
+    "answer": "Shiganshina"
+  },
+  {
+    "category": "anime_manga",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "What is the name of the giant humanoid creatures in 'Attack on Titan'?",
+    "options": [
+      "Titans",
+      "Giants",
+      "Colossi",
+      "Behemoths"
+    ],
+    "answer": "Titans"
+  },
+  {
+    "category": "anime_manga",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "In 'Death Note', what is the name of the Shinigami who owns the Death Note?",
+    "options": [
+      "Ryuk",
+      "Rem",
+      "Shinigami",
+      "Kira"
+    ],
+    "answer": "Ryuk"
+  },
+  {
+    "category": "anime_manga",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "In 'Dragon Ball Z', what is the name of Goku's father?",
+    "options": [
+      "Bardock",
+      "Vegeta",
+      "Raditz",
+      "King Vegeta"
+    ],
+    "answer": "Bardock"
+  },
+  {
+    "category": "anime_manga",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "What is the name of the main character in 'Fullmetal Alchemist'?",
+    "options": [
+      "Edward Elric",
+      "Alphonse Elric",
+      "Roy Mustang",
+      "Winry Rockbell"
+    ],
+    "answer": "Edward Elric"
+  },
+  {
+    "category": "anime_manga",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "In 'One Piece', what is the name of Monkey D. Luffy's signature attack?",
+    "options": [
+      "Gomu Gomu no Pistol",
+      "Gomu Gomu no Gatling",
+      "Gomu Gomu no Red Hawk",
+      "Gomu Gomu no Elephant Gatling"
+    ],
+    "answer": "Gomu Gomu no Pistol"
+  },
+  {
+    "category": "anime_manga",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "In 'Naruto', what is the name of Kakashi Hatake's Sharingan eye technique?",
+    "options": [
+      "Kamui",
+      "Chidori",
+      "Amaterasu",
+      "Mangekyou Sharingan"
+    ],
+    "answer": "Kamui"
+  },
+  {
+    "category": "anime_manga",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "What is the name of the female protagonist in 'Sword Art Online'?",
+    "options": [
+      "Asuna Yuuki",
+      "Kirito",
+      "Leafa",
+      "Sinon"
+    ],
+    "answer": "Asuna Yuuki"
+  },
+  {
+    "category": "anime_manga",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "In 'My Hero Academia', what is the name of Izuku Midoriya's quirk?",
+    "options": [
+      "One For All",
+      "All For One",
+      "Explosion",
+      "Half-Cold Half-Hot"
+    ],
+    "answer": "One For All"
+  },
+  {
+    "category": "anime_manga",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "In 'Tokyo Ghoul', what is the name of the main protagonist who becomes a half-ghoul?",
+    "options": [
+      "Ken Kaneki",
+      "Touka Kirishima",
+      "Rize Kamishiro",
+      "Hideyoshi Nagachika"
+    ],
+    "answer": "Ken Kaneki"
+  },
+  {
+    "category": "anime_manga",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "What is the name of the protagonist in 'Attack on Titan'?",
+    "options": [
+      "Eren Yeager",
+      "Mikasa Ackerman",
+      "Armin Arlert",
+      "Levi Ackerman"
+    ],
+    "answer": "Eren Yeager"
+  },
+  {
+    "category": "anime_manga",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "In 'One Punch Man', what is the name of the protagonist who can defeat any opponent with a single punch?",
+    "options": [
+      "Saitama",
+      "Genos",
+      "Mumen Rider",
+      "Speed-o'-Sound Sonic"
+    ],
+    "answer": "Saitama"
+  },
+  {
+    "category": "anime_manga",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "In 'Cowboy Bebop', what is the name of Spike Spiegel's former crime syndicate?",
+    "options": [
+      "Red Dragon Syndicate",
+      "Black Dog Syndicate",
+      "Blue Falcon Syndicate",
+      "Green Serpent Syndicate"
+    ],
+    "answer": "Red Dragon Syndicate"
+  },
+  {
+    "category": "anime_manga",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "What is the name of the creator of 'Dragon Ball'?",
+    "options": [
+      "Akira Toriyama",
+      "Masashi Kishimoto",
+      "Eiichiro Oda",
+      "Rumiko Takahashi"
+    ],
+    "answer": "Akira Toriyama"
+  },
+  {
+    "category": "anime_manga",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "In 'Neon Genesis Evangelion', what is the name of the main character?",
+    "options": [
+      "Shinji Ikari",
+      "Rei Ayanami",
+      "Asuka Langley Soryu",
+      "Misato Katsuragi"
+    ],
+    "answer": "Shinji Ikari"
+  },
+  {
+    "category": "anime_manga",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "What is the name of the magical notebook in 'Death Note'?",
+    "options": [
+      "Death Note",
+      "Shinigami Notebook",
+      "Dark Diary",
+      "Soul Note"
+    ],
+    "answer": "Death Note"
+  },
+  {
+    "category": "anime_manga",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "In 'Fairy Tail', what is the name of Natsu's flying cat companion?",
+    "options": [
+      "Happy",
+      "Carla",
+      "Lily",
+      "Frosch"
+    ],
+    "answer": "Happy"
+  },
+  {
+    "category": "anime_manga",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "Who is the creator of 'One Piece'?",
+    "options": [
+      "Eiichiro Oda",
+      "Akira Toriyama",
+      "Hiromu Arakawa",
+      "Masashi Kishimoto"
+    ],
+    "answer": "Eiichiro Oda"
+  },
+  {
+    "category": "anime_manga",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "What is the name of the military organization in 'Attack on Titan'?",
+    "options": [
+      "Survey Corps",
+      "Military Police Brigade",
+      "Garrison Regiment",
+      "Scouting Legion"
+    ],
+    "answer": "Survey Corps"
+  },
+  {
+    "category": "anime_manga",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "In 'My Hero Academia', what is the name of the hero who can create objects from his body?",
+    "options": [
+      "Eijiro Kirishima",
+      "Denki Kaminari",
+      "Mina Ashido",
+      "Momo Yaoyorozu"
+    ],
+    "answer": "Momo Yaoyorozu"
+  },
+  {
+    "category": "anime_manga",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "In 'Sword Art Online', what is the name of the virtual reality MMORPG?",
+    "options": [
+      "Sword Art Online",
+      "ALfheim Online",
+      "Gun Gale Online",
+      "Underworld"
+    ],
+    "answer": "Sword Art Online"
+  },
+  {
+    "category": "anime_manga",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "What is the name of the organization that trains Assassins in 'Assassination Classroom'?",
+    "options": [
+      "Kunugigaoka Junior High School",
+      "Akatsuki",
+      "Black Order",
+      "League of Villains"
+    ],
+    "answer": "Kunugigaoka Junior High School"
+  },
+  {
+    "category": "anime_manga",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "Who is the creator of 'Attack on Titan'?",
+    "options": [
+      "Hajime Isayama",
+      "Masashi Kishimoto",
+      "Tite Kubo",
+      "Naoko Takeuchi"
+    ],
+    "answer": "Hajime Isayama"
+  },
+  {
+    "category": "anime_manga",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "In 'Hunter x Hunter', what is the name of the protagonist searching for his father?",
+    "options": [
+      "Gon Freecss",
+      "Killua Zoldyck",
+      "Kurapika",
+      "Leorio Paradinight"
+    ],
+    "answer": "Gon Freecss"
+  },
+  {
+    "category": "anime_manga",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "What is the name of the demon fox sealed inside Naruto in 'Naruto'?",
+    "options": [
+      "Kurama",
+      "Shukaku",
+      "Matatabi",
+      "Son Goku"
+    ],
+    "answer": "Kurama"
+  },
+  {
+    "category": "anime_manga",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "In 'My Hero Academia', what is the name of All Might's ultimate move?",
+    "options": [
+      "United States of Smash",
+      "Detroit Smash",
+      "Texas Smash",
+      "Oklahoma Smash"
+    ],
+    "answer": "United States of Smash"
+  },
+  {
+    "category": "anime_manga",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "What is the name of the protagonist in 'Tokyo Ghoul'?",
+    "options": [
+      "Ken Kaneki",
+      "Touka Kirishima",
+      "Rize Kamishiro",
+      "Hideyoshi Nagachika"
+    ],
+    "answer": "Ken Kaneki"
+  },
+  {
+    "category": "anime_manga",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "In 'Naruto', what is the name of the village hidden in the sand?",
+    "options": [
+      "Sunagakure",
+      "Konohagakure",
+      "Kirigakure",
+      "Iwagakure"
+    ],
+    "answer": "Sunagakure"
+  },
+  {
+    "category": "anime_manga",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "What is the name of the protagonist in 'One Punch Man'?",
+    "options": [
+      "Saitama",
+      "Genos",
+      "Mumen Rider",
+      "Speed-o'-Sound Sonic"
+    ],
+    "answer": "Saitama"
+  },
+  {
+    "category": "anime_manga",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "In 'Dragon Ball Z', what is the name of Goku's wife?",
+    "options": [
+      "Chi-Chi",
+      "Bulma",
+      "Android 18",
+      "Videl"
+    ],
+    "answer": "Chi-Chi"
+  },
+  {
+    "category": "anime_manga",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "What is the name of Luffy's signature attack in 'One Piece'?",
+    "options": [
+      "Gomu Gomu no Pistol",
+      "Gomu Gomu no Gatling",
+      "Gomu Gomu no Red Hawk",
+      "Gomu Gomu no Elephant Gatling"
+    ],
+    "answer": "Gomu Gomu no Pistol"
+  }
+]

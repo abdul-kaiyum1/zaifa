@@ -1,0 +1,58 @@
+{
+  "commandBanned": {},
+  "envGlobal": {
+    "weatherApiKey": "d7e795ae6a0d44aaa8abb1a0a7ac19e4",
+    "goatbotApikey": ""
+  },
+  "envCommands": {
+    "daily": {
+      "rewardFirstDay": {
+        "coin": 100,
+        "exp": 10
+      }
+    },
+    "notification": {
+      "delayPerGroup": 250
+    },
+    "rank": {
+      "deltaNext": 5
+    },
+    "rankup": {
+      "deltaNext": 5
+    },
+    "appstore": {
+      "limitResult": 3
+    },
+    "dhbc": {
+      "reward": 1000
+    },
+    "logsbot": {
+      "allow": true
+    },
+    "doraemon": {
+      "reward": 100
+    },
+    "doremon": {
+      "reward": 100
+    }
+  },
+  "envEvents": {
+    "logsbot": {
+      "allow": true
+    }
+  },
+  "commandUnload": [
+    "memori.js",
+    "cekar.js",
+    "translate.js",
+    "e.js",
+    "fb.js",
+    "rank.js",
+    "adventure.js",
+    "pb.js",
+    "moviedl.js",
+    "bank.js",
+    "alldl.js",
+    "bank2.js"
+  ]
+}

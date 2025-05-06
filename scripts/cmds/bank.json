@@ -1,0 +1,27 @@
+{
+  "100041931226770": {
+    "bank": 99.1683,
+    "lastInterestClaimed": 1746424779307,
+    "history": [
+      {
+        "id": "RQVA87F0",
+        "type": "deposit",
+        "amount": 99,
+        "tax": 1,
+        "date": "2025-05-05T05:58:42.393Z",
+        "recipient": null
+      },
+      {
+        "id": "8Z7MT33E",
+        "type": "interest",
+        "amount": 0.1683,
+        "tax": 0.0297,
+        "date": "2025-05-05T05:59:39.307Z",
+        "recipient": null
+      }
+    ],
+    "loan": 0,
+    "loanPayed": true,
+    "accountCreated": 1746424722060
+  }
+}
