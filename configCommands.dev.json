@@ -53,6 +53,7 @@
     "moviedl.js",
     "bank.js",
     "alldl.js",
-    "bank2.js"
+    "bank2.js",
+    "spamkick.js"
   ]
 }
