@@ -1,1 +1,30 @@
-
+{
+  "100057399829870": [
+    {
+      "name": "Dark Feraligatr",
+      "hp": 80,
+      "maxHp": 80,
+      "type": "Water",
+      "attack": 50,
+      "imageUrl": "https://images.pokemontcg.io/neo4/5_hires.png",
+      "id": 1748694797112
+    },
+    {
+      "name": "Raichu",
+      "hp": 90,
+      "maxHp": 90,
+      "type": "Lightning",
+      "attack": 30,
+      "imageUrl": "https://images.pokemontcg.io/pop9/3_hires.png",
+      "id": "100057399829870_1748695598175"
+    },
+    {
+      "name": "Gloom",
+      "hp": 80,
+      "maxHp": 80,
+      "type": "Grass",
+      "attack": 0,
+      "id": "100057399829870_1748696601994"
+    }
+  ]
+}

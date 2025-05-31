@@ -48,12 +48,12 @@
     "e.js",
     "fb.js",
     "adventure.js",
-    "pb.js",
     "moviedl.js",
     "bank2.js",
     "autolink.js",
     "sing2.js",
-    "spamkick.js"
+    "spamkick.js",
+    "pb.js"
   ],
   "commandEventUnload": [
     "autoClear.js",

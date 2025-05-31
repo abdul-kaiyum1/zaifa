@@ -1,1 +1,26 @@
-
+{
+  "100057399829870": {
+    "coins": 250,
+    "currentChallenge": {
+      "name": "Lt. Surge's Magneton",
+      "hp": "70",
+      "type": "Lightning",
+      "attack": "50"
+    },
+    "currentBattle": null,
+    "pendingPvpChallenge": null,
+    "lastChallengeTime": 1748696643406
+  },
+  "100041931226770": {
+    "coins": 100,
+    "currentChallenge": {
+      "name": "Forretress",
+      "hp": "70",
+      "type": "Metal",
+      "attack": "20"
+    },
+    "currentBattle": null,
+    "pendingPvpChallenge": null,
+    "lastChallengeTime": 1748696994773
+  }
+}
