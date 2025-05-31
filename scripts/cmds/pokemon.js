@@ -23,7 +23,7 @@ MongoClient.connect(mongoURI, { useNewUrlParser: true, useUnifiedTopology: true 
   .catch(error => console.error('Pokémon Command: Error connecting to MongoDB:', error));
 
 // --- Constants ---
-const ONE_HOUR_MS = 60 * 1000;
+const ONE_HOUR_MS = 60 * 60 * 1000;
 const CHALLENGE_TIMEOUT_MS = 60 * 1000; // 1 minute for challenge timeout
 const POKEMON_TCG_API_KEY = '4b2b15c7-27f0-4c3e-aa24-8474d551500c'; // <<<< REPLACE THIS WITH YOUR ACTUAL KEY
 const NAME_OBSCURE_AREA = { x: 0.1, y: 0.04, width: 0.8, height: 0.08, color: 'black' }; // Adjust as needed
