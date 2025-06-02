@@ -9,12 +9,12 @@ module.exports = {
   config: {
     name: "help",
     version: "1.17",
-    author: "sheikh",
+    author: "Aiko",
     countDown: 5,
     role: 0,
     shortDescription: { en: "View command usage and list all commands directly" },
     longDescription: { en: "View command usage and list all commands directly" },
-    category: "Info 📜",
+    category: "Info",
     guide: { en: "{pn} / help cmdName" },
     priority: 1,
   },
@@ -48,7 +48,7 @@ module.exports = {
       });
 
       const totalCommands = commands.size;
-      msg += `◎ Octa\nTotal Commands » ${totalCommands}\nUse help (cmd name) to see cmd usage details`;
+      msg += `◎ AI KoH\nTotal Commands » ${totalCommands}\nUse help (cmd name) to see cmd usage details`;
 
       await message.reply({ body: msg });
     } else {
