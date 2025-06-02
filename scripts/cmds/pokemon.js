@@ -1,6 +1,3 @@
-// scripts/cmds/pokemon.js
-// Author: Abdul Kaiyum
-
 const fs = require("fs-extra");
 const path = require("path");
 const axios = require("axios");
@@ -22,8 +19,9 @@ MongoClient.connect(mongoURI, { useNewUrlParser: true, useUnifiedTopology: true 
 .catch(error => console.error('Pokémon Command: Error connecting to MongoDB:', error));
 
 // --- Constants ---
-const ONE_HOUR_MS = 60 * 60 * 1000;
-const CHALLENGE_TIMEOUT_MS = 60 * 1000; // 1 minute
+const ONE_HOUR_MS = 30 * 60 * 1000;
+const CHALLENGE_TIMEOUT_MS = 60 * 1000; // 1 minute for name challenge
+const PVP_ACCEPT_TIMEOUT_MS = CHALLENGE_TIMEOUT_MS * 2; // 2 minutes for PvP acceptance
 const POKEMON_TCG_API_KEY = '4b2b15c7-27f0-4c3e-aa24-8474d551500c'; // <<<< REPLACE THIS!
 const NAME_OBSCURE_AREA = { x: 0.1, y: 0.04, width: 0.8, height: 0.08, color: 'black' };
 const CACHE_FOLDER_PATH = path.join(__dirname, 'cache');
@@ -110,13 +108,13 @@ const cmdModule = {
     config: {
         name: "pokemon",
         aliases: ["pkmn", "game"],
-        version: "1.3.0",
+        version: "1.3.3", // Incremented version
         author: "Abdul Kaiyum",
         countDown: 5, role: 0,
         shortDescription: { en: "Pokémon game with moves, status, battle cancel, timeout, MongoDB." },
         longDescription: { en: "Full Pokémon TCG game experience with selectable moves and basic status effects. All data stored in MongoDB. Challenges hide names, timeout if no reply, or can be cancelled. Battles can also be cancelled." },
         category: "pokemon",
-        guide: { en: `Usage:\n• {pn} challenge\n• {pn} cancel challenge\n• {pn} battle ai\n• {pn} battle pvp <@user>\n• {pn} cancel battle\n• {pn} status\n• {pn} leaderboard` }
+        guide: { en: `Usage:\n• {pn} challenge\n• {pn} cancel challenge (for name identification)\n• {pn} cancel battle (for ongoing battles)\n• {pn} cancel pvp (to cancel a PvP challenge you sent)\n• {pn} battle ai\n• {pn} battle pvp <@user>\n• {pn} status\n• {pn} leaderboard` }
     },
 
     async getPokemonDetailsFromAPI(pokemonName) {
@@ -125,7 +123,7 @@ const cmdModule = {
             const card = response.data.data.find(c => c.name.toLowerCase() === pokemonName.toLowerCase()) || response.data.data[0];
             if (card) {
                 return {
-                    id: card.id, name: card.name, type: card.types ? card.types.join(", ") : "N/A",
+                    id: card.id, name: card.name, type: card.types ? card.types[0] : "N/A", // Primary type
                     hp: card.hp || "N/A", rarity: card.rarity || "N/A", set: card.set?.name || "N/A",
                     attacks: parseAttacksFromAPI(card.attacks),
                     abilities: card.abilities ? card.abilities.map(a => `${a.name}: ${a.text}`).join('\\n') : "N/A",
@@ -167,11 +165,20 @@ const cmdModule = {
 
     getTypeAdvantage(attackingType, defendingType) {
         const advantages = {"Fire":{"weakTo":["Water"],"strongAgainst":["Grass","Metal"]},"Water":{"weakTo":["Lightning","Grass"],"strongAgainst":["Fire","Fighting"]},"Grass":{"weakTo":["Fire","Psychic"],"strongAgainst":["Water","Fighting"]},"Lightning":{"weakTo":["Fighting"],"strongAgainst":["Water","Colorless"]},"Fighting":{"weakTo":["Psychic","Fairy"],"strongAgainst":["Darkness","Metal","Colorless"]},"Psychic":{"weakTo":["Darkness","Psychic"],"strongAgainst":["Fighting","Grass"]},"Darkness":{"weakTo":["Fighting","Fairy"],"strongAgainst":["Psychic"]},"Colorless":{"weakTo":["Fighting","Lightning"],"strongAgainst":[]},"Metal":{"weakTo":["Fire","Fighting"],"strongAgainst":["Fairy","Water"]},"Fairy":{"weakTo":["Metal","Darkness"],"strongAgainst":["Fighting","Dragon","Darkness"]},"Dragon":{"weakTo":["Fairy","Dragon"],"strongAgainst":["Dragon"]}};
-        const attackerInfo=advantages[attackingType];const defenderInfo=advantages[defendingType];
-        if(attackerInfo&&attackerInfo.strongAgainst&&attackerInfo.strongAgainst.includes(defendingType))return 2;
-        if(defenderInfo&&defenderInfo.weakTo&&defenderInfo.weakTo.includes(attackingType))return 2;
-        if(attackerInfo&&attackerInfo.weakTo&&attackerInfo.weakTo.includes(defendingType))return 0.5;
-        return 1;
+        // Ensure types are capitalized for lookup as keys in `advantages` are capitalized
+        const capAttackingType = attackingType ? attackingType.charAt(0).toUpperCase() + attackingType.slice(1) : null;
+        const capDefendingType = defendingType ? defendingType.charAt(0).toUpperCase() + defendingType.slice(1) : null;
+
+        const attackerInfo=advantages[capAttackingType];
+        const defenderInfo=advantages[capDefendingType];
+
+        if(attackerInfo?.strongAgainst?.includes(capDefendingType)) return 2; // Super effective
+        if(defenderInfo?.weakTo?.includes(capAttackingType)) return 2; // Also super effective (defender is weak)
+        
+        if(attackerInfo?.weakTo?.includes(capDefendingType)) return 0.5; // Not very effective
+        // No specific check for defender being strong against attacker, as that's covered by attacker being weak.
+        
+        return 1; // Normal effectiveness
     },
 
     onStart: async function ({ api, event, args, usersData }) {
@@ -190,7 +197,7 @@ const cmdModule = {
 
         const userID = event.senderID;
         const threadID = event.threadID;
-        const userName = await usersData.getName(userID); // userName is defined here
+        const userName = await usersData.getName(userID); 
         let userState = await getGameStateForUser(userID);
 
         if (!userState) { 
@@ -198,7 +205,7 @@ const cmdModule = {
         }
 
         const command = args[0]?.toLowerCase();
-        const subCommand = args[1]?.toLowerCase();
+        const subCommand = args[1]?.toLowerCase(); 
 
         let currentPrefix = "!"; 
         if (global.utils && typeof global.utils.getPrefix === 'function') {
@@ -211,21 +218,22 @@ const cmdModule = {
         }
 
         if (command === "cancel") {
-            if (subCommand === "challenge") {
+            const cancelType = args[1]?.toLowerCase(); 
+            if (cancelType === "challenge") { 
                 if (userState.currentChallenge) {
                     if (userState.currentChallenge.timeoutID) {
                         clearTimeout(parseInt(userState.currentChallenge.timeoutID));
                     }
                     if (userState.currentChallenge.messageID) {
-                        api.unsendMessage(userState.currentChallenge.messageID).catch(e => console.warn("Cancel Challenge: Error un-sending original challenge message:", e.message));
+                        api.unsendMessage(userState.currentChallenge.messageID).catch(e => console.warn("Cancel Name Challenge: Error un-sending original message:", e.message));
                     }
                     userState.currentChallenge = null;
                     await saveGameStateForUser(userID, userState);
-                    return api.sendMessage("✅ Your active Pokémon challenge has been cancelled.", threadID);
+                    return api.sendMessage("✅ Your active Pokémon identification challenge has been cancelled.", threadID);
                 } else {
-                    return api.sendMessage("You don't have an active Pokémon challenge to cancel.", threadID);
+                    return api.sendMessage("You don't have an active Pokémon identification challenge to cancel.", threadID);
                 }
-            } else if (subCommand === "battle") {
+            } else if (cancelType === "battle") { 
                 if (userState.currentBattle) {
                     const battleToEnd = { ...userState.currentBattle }; 
                     const battleType = battleToEnd.type;
@@ -234,51 +242,97 @@ const cmdModule = {
 
                     userState.currentBattle = null;
                     await saveGameStateForUser(userID, userState);
-                    api.sendMessage(`✅ ${userName}, you have cancelled the battle.`, threadID);
+                    api.sendMessage(`✅ ${userName}, you have cancelled the ongoing battle.`, threadID);
 
                     if (battleType === "pvp") {
                         const opponentID = (p1ID === userID) ? p2ID : p1ID;
                         if (opponentID) {
                             let opponentState = await getGameStateForUser(opponentID);
-                            if (opponentState && opponentState.currentBattle &&
+                            if (opponentState && opponentState.currentBattle && 
                                 ((opponentState.currentBattle.player1ID === p1ID && opponentState.currentBattle.player2ID === p2ID) ||
                                  (opponentState.currentBattle.player1ID === p2ID && opponentState.currentBattle.player2ID === p1ID)) ) {
                                 opponentState.currentBattle = null;
                                 await saveGameStateForUser(opponentID, opponentState);
-                                try { api.sendMessage(`ℹ️ ${userName} has cancelled your PvP battle.`, opponentID); }
+                                try { api.sendMessage(`ℹ️ ${userName} has cancelled your PvP battle.`, opponentID); } 
                                 catch(e) { console.warn("Failed to notify opponent of battle cancellation via DM", e.message); }
                             }
                         }
                     }
-                    return;
+                    return; 
                 } else {
-                    return api.sendMessage("You are not in a battle to cancel.", threadID);
+                    return api.sendMessage("You are not in an active battle to cancel.", threadID);
                 }
+            } else if (cancelType === "pvp") { 
+                if (userState.pendingPvpChallenge && userState.pendingPvpChallenge.challengerID === userID) {
+                    const challengedUserName = await usersData.getName(userState.pendingPvpChallenge.challengedUserID);
+                    if (userState.pendingPvpChallenge.acceptTimeoutID) { 
+                        clearTimeout(parseInt(userState.pendingPvpChallenge.acceptTimeoutID));
+                    }
+                    userState.pendingPvpChallenge = null;
+                    await saveGameStateForUser(userID, userState);
+                    return api.sendMessage(`Your sent PvP challenge to ${challengedUserName} has been cancelled.`, threadID);
+                } else {
+                    return api.sendMessage("You do not have a pending sent PvP challenge to cancel.", threadID);
+                }
+            } else {
+                return api.sendMessage(`Invalid cancel type. Use: "${currentPrefix}pokemon cancel challenge", "${currentPrefix}pokemon cancel battle", or "${currentPrefix}pokemon cancel pvp".`, threadID);
             }
         }
 
+
         if (userState.currentChallenge) { return api.sendMessage(`You have an active Pokémon identification challenge! Reply to its image or use "${currentPrefix}${this.config.name} cancel challenge".`, threadID); }
         if (userState.currentBattle) {
-            let battleMsg = `⚔️ You are currently in an ongoing battle!\n\n`;
-            battleMsg += `Your opponent: ${userState.currentBattle.opponentName || (userState.currentBattle.player1ID === userID ? await usersData.getName(userState.currentBattle.player2ID) : await usersData.getName(userState.currentBattle.player1ID))}.\n`;
+            let battleMsg = `⚔️ You are currently in an ongoing battle! ⚔️\n\n`;
+            const opponentPlayerID = userState.currentBattle.player1ID === userID ? userState.currentBattle.player2ID : userState.currentBattle.player1ID;
+            const opponentDisplayName = userState.currentBattle.type === "ai" ? userState.currentBattle.opponentName : await usersData.getName(opponentPlayerID);
+            battleMsg += `Your opponent: ${opponentDisplayName}.\n`;
             battleMsg += `It's currently ${userState.currentBattle.currentTurn === userID ? "your" : (await usersData.getName(userState.currentBattle.currentTurn)) + "'s"} turn.\n`;
             battleMsg += `You can use "${currentPrefix}${this.config.name} cancel battle" to forfeit.`;
             return api.sendMessage(battleMsg, threadID);
         }
-        if (userState.pendingPvpChallenge && userState.pendingPvpChallenge.challengerID === userID) { const cUserName = await usersData.getName(userState.pendingPvpChallenge.challengedUserID); return api.sendMessage(`⏳ Pending PvP challenge to ${cUserName}. Waiting for their response.`, threadID); }
-        if (db) { const incomingChallenge = await db.collection('pokemon_game_states').findOne({ "pendingPvpChallenge.challengedUserID": userID, "pendingPvpChallenge.challengerID": { $ne: userID} }); if (incomingChallenge && incomingChallenge.pendingPvpChallenge) { const challengerName = await usersData.getName(incomingChallenge.pendingPvpChallenge.challengerID); return api.sendMessage(`📩 Incoming PvP challenge from ${challengerName}! Reply to their challenge message.`, threadID);}}
+        if (userState.pendingPvpChallenge && userState.pendingPvpChallenge.challengerID === userID) { 
+            const cUserName = await usersData.getName(userState.pendingPvpChallenge.challengedUserID); 
+            let msg = `⏳ Pending PvP challenge sent to ${cUserName}. Waiting for their response. You can use "${currentPrefix}pokemon cancel pvp" to withdraw it.`;
+            if (userState.pendingPvpChallenge.challengeSentTime) {
+                const timeElapsed = Date.now() - userState.pendingPvpChallenge.challengeSentTime;
+                const timeRemaining = PVP_ACCEPT_TIMEOUT_MS - timeElapsed;
+                if (timeRemaining > 0) {
+                    msg += ` (Expires in ~${Math.ceil(timeRemaining / 60000)} min)`;
+                } else {
+                    userState.pendingPvpChallenge = null;
+                    await saveGameStateForUser(userID, userState);
+                    msg = `Your previous PvP challenge to ${cUserName} has expired.`; 
+                }
+            }
+            return api.sendMessage(msg, threadID); 
+        }
+        if (db) { 
+            const incomingChallenge = await db.collection('pokemon_game_states').findOne({ 
+                "pendingPvpChallenge.challengedUserID": userID, 
+                "pendingPvpChallenge.challengerID": { $ne: userID } 
+            }); 
+            if (incomingChallenge && incomingChallenge.pendingPvpChallenge) { 
+                const challengerName = await usersData.getName(incomingChallenge.pendingPvpChallenge.challengerID); 
+                const timeSinceSent = Date.now() - (incomingChallenge.pendingPvpChallenge.challengeSentTime || 0);
+                if (timeSinceSent < PVP_ACCEPT_TIMEOUT_MS) {
+                    return api.sendMessage(`📩 Incoming PvP challenge from ${challengerName}! Reply to their challenge message with "accept" or "decline".`, threadID);
+                }
+            }
+        }
+
 
         switch (command) {
             case "challenge":
                 if (userState.lastChallengeTime && (Date.now() - userState.lastChallengeTime < ONE_HOUR_MS)) {
                     const timeLeftMs = ONE_HOUR_MS - (Date.now() - userState.lastChallengeTime);
-                    return api.sendMessage(`⏳ New challenge available in ~${Math.ceil(timeLeftMs / 60000)} min.`, threadID);
+                    return api.sendMessage(`⏳ New name challenge available in ~${Math.ceil(timeLeftMs / 60000)} min.`, threadID);
                 }
-                api.sendMessage("⏳ Generating Pokémon challenge (name hidden, 1 min to reply)...", threadID);
+                api.sendMessage("⏳ Generating Pokémon name challenge (name hidden, 1 min to reply)...", threadID);
                 const challengePokemon = await this.getRandomPokemonForChallengeDisplay();
                 if (challengePokemon) {
                     userState.currentChallenge = {
                         name: challengePokemon.name, hp: challengePokemon.hp, type: challengePokemon.type,
+                        attacks: challengePokemon.attacks, 
                         originalImageUrl: challengePokemon.imageUrl,
                         messageID: null, timeoutID: null
                     };
@@ -320,16 +374,16 @@ const cmdModule = {
                             let currentState = await getGameStateForUser(userID);
                             if (currentState && currentState.currentChallenge && currentState.currentChallenge.name === challengePokemon.name && !currentState.currentChallenge.messageID) {
                                 currentState.currentChallenge.messageID = msgInfo.messageID;
-                                const challengeTimeoutID = setTimeout(async () => {
+                                const nameChallengeTimeoutID = setTimeout(async () => {
                                     let timedOutState = await getGameStateForUser(userID);
                                     if (timedOutState && timedOutState.currentChallenge && timedOutState.currentChallenge.messageID === msgInfo.messageID) {
-                                        api.unsendMessage(msgInfo.messageID).catch(unsendErr => console.error("Failed to unsend timed-out challenge:", unsendErr));
-                                        api.sendMessage(`⏰ Time's up for Pokémon challenge! Removed. Try again.`, threadID);
+                                        api.unsendMessage(msgInfo.messageID).catch(unsendErr => console.error("Failed to unsend timed-out name challenge:", unsendErr));
+                                        api.sendMessage(`⏰ Time's up for Pokémon name challenge! Removed. Try again.`, threadID);
                                         timedOutState.currentChallenge = null;
                                         await saveGameStateForUser(userID, timedOutState); 
                                     }
                                 }, CHALLENGE_TIMEOUT_MS);
-                                currentState.currentChallenge.timeoutID = challengeTimeoutID.toString();
+                                currentState.currentChallenge.timeoutID = nameChallengeTimeoutID.toString();
                                 await saveGameStateForUser(userID, currentState);
                                 global.GoatBot.onReply.set(msgInfo.messageID, { commandName: this.config.name, senderID: userID, challengeData: currentState.currentChallenge, type: "challenge_answer", originalMID: msgInfo.messageID });
                             }
@@ -340,7 +394,7 @@ const cmdModule = {
                         const rMNA = await api.sendMessage(messageBody, threadID);
                         global.GoatBot.onReply.set(rMNA.messageID, { commandName: this.config.name, senderID: userID, challengeData: {name: challengePokemon.name, originalImageUrl: challengePokemon.imageUrl, hp: challengePokemon.hp, type: challengePokemon.type, attacks: challengePokemon.attacks }, type: "challenge_answer", originalMID: rMNA.messageID });
                     }
-                } else { api.sendMessage("❌ Challenge generation failed.", threadID); }
+                } else { api.sendMessage("❌ Name challenge generation failed.", threadID); }
                 break;
 
             case "battle":
@@ -359,7 +413,7 @@ const cmdModule = {
                     name: playerActivePokemonDetails.name,
                     hp: parseInt(playerActivePokemonDetails.hp),
                     maxHp: parseInt(playerActivePokemonDetails.hp),
-                    type: playerActivePokemonDetails.type.split(',')[0].trim(), 
+                    type: playerActivePokemonDetails.type, 
                     attacks: playerActivePokemonDetails.attacks,
                     status: null
                 };
@@ -390,10 +444,10 @@ const cmdModule = {
                     };
                     await saveGameStateForUser(userID, userState);
 
-                    let msgAI = `⚔️ ${userName} vs ${userState.currentBattle.opponentName} (AI)!\n\n`;
-                    msgAI += `Your ${playerPokemonForBattle.name} (HP ${playerPokemonForBattle.hp}/${playerPokemonForBattle.maxHp})\n`;
-                    msgAI += `AI's ${opponentAI.name} (HP ${opponentAI.hp}/${opponentAI.maxHp})\n\n`;
-                    msgAI += `Your turn! Choose a move:\n`;
+                    let msgAI = `⚔️ ${userName} vs ${userState.currentBattle.opponentName} (AI) ⚔️\n\n`;
+                    msgAI += `Your ${playerPokemonForBattle.name} (${playerPokemonForBattle.type} - HP ${playerPokemonForBattle.hp}/${playerPokemonForBattle.maxHp})\n`;
+                    msgAI += `AI's ${opponentAI.name} (${opponentAI.type} - HP ${opponentAI.hp}/${opponentAI.maxHp})\n\n`;
+                    msgAI += `--- Your Turn, ${userName}! ---\nChoose a move:\n`;
                     (playerPokemonForBattle.attacks || []).forEach((move, index) => {
                         msgAI += `${index + 1}. ${move.name} (Dmg: ${move.damageString || '0'})${move.text ? ` - ${move.text.substring(0,30)}...` : ''}\n`;
                     });
@@ -411,28 +465,62 @@ const cmdModule = {
                     const challengedNamePvP = await usersData.getName(challengedIDPvP);
                     let challengedStatePvP = await getGameStateForUser(challengedIDPvP);
                     if (challengedStatePvP.currentBattle || challengedStatePvP.currentChallenge || challengedStatePvP.pendingPvpChallenge) return api.sendMessage(`${challengedNamePvP} is currently busy. Try again later.`, threadID);
+                    
+                    const existingSentChallenge = await db.collection('pokemon_game_states').findOne({ "pendingPvpChallenge.challengerID": userID });
+                    if (existingSentChallenge && existingSentChallenge.pendingPvpChallenge) {
+                         return api.sendMessage(`You already have a pending PvP challenge sent to ${await usersData.getName(existingSentChallenge.pendingPvpChallenge.challengedUserID)}. Please wait or cancel it using "${currentPrefix}pokemon cancel pvp".`, threadID);
+                    }
 
                     let challengedPokemonsPvP = await getUserPokemonCollectionList(challengedIDPvP);
                     if (challengedPokemonsPvP.length === 0) return api.sendMessage(`${challengedNamePvP} has no Pokémon to battle with!`, threadID);
+                    
+                    const pvpAcceptTimeoutID = setTimeout(async () => {
+                        let currentChallengerState = await getGameStateForUser(userID); 
+                        if (currentChallengerState && 
+                            currentChallengerState.pendingPvpChallenge && 
+                            currentChallengerState.pendingPvpChallenge.challengedUserID === challengedIDPvP &&
+                            currentChallengerState.pendingPvpChallenge.challengerID === userID) { 
+                            
+                            const originalChallengedName = await usersData.getName(challengedIDPvP); 
+                            const originalChallengerName = await usersData.getName(userID);
+
+                            console.log(`PvP Challenge from ${originalChallengerName} to ${originalChallengedName} timed out.`);
+                            try {
+                                await api.sendMessage(`Your PvP challenge to ${originalChallengedName} has expired as they did not respond in time.`, userID); 
+                            } catch (e) { console.warn("Failed to DM challenger about PvP timeout", e.message)}
+                            
+                            const challengeOriginThread = currentChallengerState.pendingPvpChallenge.threadID;
+                            if (challengeOriginThread && challengeOriginThread !== userID) { 
+                                 try {
+                                    await api.sendMessage(`The PvP challenge from ${originalChallengerName} to ${originalChallengedName} in this chat has expired due to no response.`, challengeOriginThread);
+                                 } catch (e) { console.warn("Failed to inform original thread about PvP timeout", e.message)}
+                            }
+                            currentChallengerState.pendingPvpChallenge = null;
+                            await saveGameStateForUser(userID, currentChallengerState);
+                        }
+                    }, PVP_ACCEPT_TIMEOUT_MS);
 
                     userState.pendingPvpChallenge = {
                         challengerID: userID,
                         challengedUserID: challengedIDPvP,
                         threadID: threadID, 
-                        challengerPokemonDetails: playerPokemonForBattle 
+                        challengerPokemonDetails: playerPokemonForBattle,
+                        challengeSentTime: Date.now(),
+                        acceptTimeoutID: pvpAcceptTimeoutID.toString()
                     };
                     await saveGameStateForUser(userID, userState);
 
-                    const cMsgPvP = `🔔 ${userName} has challenged you (${challengedNamePvP}) to a Pokémon battle! Reply to this message with "accept" or "decline".`;
+                    const cMsgPvP = `🔔 ${userName} has challenged you (${challengedNamePvP}) to a Pokémon battle! Reply to this message with "accept" or "decline". This challenge expires in ~${Math.ceil(PVP_ACCEPT_TIMEOUT_MS / 60000)} min.`;
                     try {
                         const sMPvP = await api.sendMessage(cMsgPvP, challengedIDPvP); 
                         global.GoatBot.onReply.set(sMPvP.messageID, { commandName: this.config.name, senderID: challengedIDPvP, type: "pvp_challenge_response", challengerID: userID, originalMID: sMPvP.messageID });
-                        api.sendMessage(`✅ Challenge sent to ${challengedNamePvP}. Waiting for their response...`, threadID);
+                        api.sendMessage(`✅ Challenge sent to ${challengedNamePvP}. Waiting for their response... (Expires in ~${Math.ceil(PVP_ACCEPT_TIMEOUT_MS / 60000)} min)`, threadID);
                     } catch (e) {
                         console.error("PvP Challenge DM send failed:", e.message);
-                        const fMPvP = await api.sendMessage(`🔔 @${challengedNamePvP}, ${userName} challenges you to a Pokémon battle! Reply to this message with "accept" or "decline".`, threadID, { mentions: [{ tag: `@${challengedNamePvP}`, id: challengedIDPvP }] });
-                        global.GoatBot.onReply.set(fMPvP.messageID, { commandName: this.config.name, senderID: challengedIDPvP, type: "pvp_challenge_response", challengerID: userID, originalMID: fMPvP.messageID });
-                        api.sendMessage(`Challenge sent to ${challengedNamePvP} in this thread as DM failed.`, threadID);
+                        clearTimeout(pvpAcceptTimeoutID); 
+                        userState.pendingPvpChallenge = null; 
+                        await saveGameStateForUser(userID, userState);
+                        api.sendMessage(`❌ Failed to send challenge to ${challengedNamePvP}. Please try again.`, threadID);
                     }
                 } else {
                     api.sendMessage(`Invalid battle subcommand. Use "ai" or "pvp".`, threadID);
@@ -440,63 +528,81 @@ const cmdModule = {
                 break;
             
             case "status":
-                let sMsgStatus = `🌟 ${userName}'s Status 🌟\n\n💰 Coins: ${userState.coins}\n`;
+                let sMsgStatus = `🌟 ${userName}'s Pokémon Game Status 🌟\n\n💰 Coins: ${userState.coins}\n`;
                 if(userState.lastChallengeTime){
                     const tsStatus=Date.now()-userState.lastChallengeTime;
-                    if(tsStatus < ONE_HOUR_MS){ sMsgStatus+=`⏳ Next Challenge: ~${Math.ceil((ONE_HOUR_MS-tsStatus)/60000)} min\n`;}
-                    else{ sMsgStatus+=`✅ Daily Challenge: Available!\n`;}
-                } else { sMsgStatus+=`✅ Daily Challenge: Available!\n`;}
+                    if(tsStatus < ONE_HOUR_MS){ sMsgStatus+=`⏳ Next Name Challenge: ~${Math.ceil((ONE_HOUR_MS-tsStatus)/60000)} min\n`;}
+                    else{ sMsgStatus+=`✅ Daily Name Challenge: Available!\n`;}
+                } else { sMsgStatus+=`✅ Daily Name Challenge: Available!\n`;}
 
                 if(userState.currentChallenge){
-                    sMsgStatus+=`❓ Active Challenge: Identifying ${userState.currentChallenge.name} (Reply to image or use "${currentPrefix}${this.config.name} cancel challenge")\n`;
+                    sMsgStatus+=`❓ Active Name Challenge: Identifying ${userState.currentChallenge.name} (Reply to image or use "${currentPrefix}${this.config.name} cancel challenge")\n`;
                 }
 
                 if(userState.currentBattle){
                     const battle = userState.currentBattle;
-                    let playerPokemonName, playerPokemonHP, playerPokemonMaxHP, playerPokemonStatusString = "";
-                    let opponentNameDisplay, opponentPokemonHP, opponentPokemonMaxHP, opponentPokemonStatusString = "";
-
+                    let playerPokemonName, playerPokemonHP, playerPokemonMaxHP, playerPokemonType, playerPokemonStatusString = "";
+                    let opponentNameDisplay, opponentPokemonName, opponentPokemonHP, opponentPokemonMaxHP, opponentPokemonType, opponentPokemonStatusString = "";
+                    
                     if (battle.type === "ai") {
                         playerPokemonName = battle.playerActivePokemonName;
                         playerPokemonHP = battle.playerActivePokemonHP;
-                        playerPokemonMaxHP = battle.playerActivePokemonMaxHp;
+                        playerPokemonMaxHp = battle.playerActivePokemonMaxHp;
+                        playerPokemonType = battle.playerActivePokemonType;
                         if (battle.playerActivePokemonStatus) playerPokemonStatusString = ` [${battle.playerActivePokemonStatus.type.toUpperCase()}]`;
                         
-                        opponentNameDisplay = battle.opponentName;
+                        opponentNameDisplay = battle.opponentName; 
+                        opponentPokemonName = battle.opponentName; // For AI, display name is the pokemon name
                         opponentPokemonHP = battle.opponentHP;
-                        opponentPokemonMaxHP = battle.opponentMaxHp; 
+                        opponentPokemonMaxHp = battle.opponentMaxHp; 
+                        opponentPokemonType = battle.opponentType;
                         if (battle.opponentStatus) opponentPokemonStatusString = ` [${battle.opponentStatus.type.toUpperCase()}]`;
                     } else { // PvP
                         const isPlayer1 = battle.player1ID === userID;
+                        const currentOpponentPlayerID = isPlayer1 ? battle.player2ID : battle.player1ID;
+                        opponentNameDisplay = await usersData.getName(currentOpponentPlayerID); // Player's name
+
                         playerPokemonName = isPlayer1 ? battle.player1ActivePokemonName : battle.player2ActivePokemonName;
                         playerPokemonHP = isPlayer1 ? battle.player1ActivePokemonHP : battle.player2ActivePokemonHP;
-                        playerPokemonMaxHP = isPlayer1 ? battle.player1ActivePokemonMaxHp : battle.player2ActivePokemonMaxHp;
+                        playerPokemonMaxHp = isPlayer1 ? battle.player1ActivePokemonMaxHp : battle.player2ActivePokemonMaxHp;
+                        playerPokemonType = isPlayer1 ? battle.player1ActivePokemonType : battle.player2ActivePokemonType;
                         const playerStatus = isPlayer1 ? battle.player1Status : battle.player2Status;
                         if (playerStatus) playerPokemonStatusString = ` [${playerStatus.type.toUpperCase()}]`;
 
-                        opponentNameDisplay = await usersData.getName(isPlayer1 ? battle.player2ID : battle.player1ID);
+                        opponentPokemonName = isPlayer1 ? battle.player2ActivePokemonName : battle.player1ActivePokemonName; // Opponent's Pokemon name
                         opponentPokemonHP = isPlayer1 ? battle.player2ActivePokemonHP : battle.player1ActivePokemonHP;
-                        opponentPokemonMaxHP = isPlayer1 ? battle.player2ActivePokemonMaxHp : battle.player1ActivePokemonMaxHp;
+                        opponentPokemonMaxHp = isPlayer1 ? battle.player2ActivePokemonMaxHp : battle.player1ActivePokemonMaxHp;
+                        opponentPokemonType = isPlayer1 ? battle.player2ActivePokemonType : battle.player1ActivePokemonType;
                         const opponentStatus = isPlayer1 ? battle.player2Status : battle.player1Status;
                         if (opponentStatus) opponentPokemonStatusString = ` [${opponentStatus.type.toUpperCase()}]`;
                     }
                     sMsgStatus+=`⚔️ Active Battle (${battle.type.toUpperCase()}): Vs ${opponentNameDisplay}\n`;
-                    sMsgStatus+=`   Your ${playerPokemonName} (HP: ${playerPokemonHP}/${playerPokemonMaxHP})${playerPokemonStatusString}\n`;
-                    sMsgStatus+=`   Opponent's ${opponentNameDisplay} (HP: ${opponentPokemonHP}/${opponentPokemonMaxHP})${opponentPokemonStatusString}\n`; // Corrected opponent name display for PvP case.
+                    sMsgStatus+=`   Your ${playerPokemonName} (${playerPokemonType} - HP: ${playerPokemonHP}/${playerPokemonMaxHp})${playerPokemonStatusString}\n`;
+                    sMsgStatus+=`   Opponent's ${opponentPokemonName} (${opponentPokemonType} - HP: ${opponentPokemonHP}/${opponentPokemonMaxHp})${opponentPokemonStatusString}\n`; 
                     sMsgStatus+=`   Can use: "${currentPrefix}${this.config.name} cancel battle"\n`;
                 } else {
                     sMsgStatus+=`✅ No active battle.\n`;
                 }
 
                 if(userState.pendingPvpChallenge && userState.pendingPvpChallenge.challengerID === userID){
-                    sMsgStatus+=`⏳ Pending PvP Sent: To ${await usersData.getName(userState.pendingPvpChallenge.challengedUserID)}\n`;
+                     const timeSinceSentPvP = Date.now() - (userState.pendingPvpChallenge.challengeSentTime || 0);
+                     if (timeSinceSentPvP < PVP_ACCEPT_TIMEOUT_MS) {
+                        sMsgStatus+=`⏳ Pending PvP Sent: To ${await usersData.getName(userState.pendingPvpChallenge.challengedUserID)} (Expires in ~${Math.ceil((PVP_ACCEPT_TIMEOUT_MS - timeSinceSentPvP)/60000)} min)\n`;
+                     } else {
+                        sMsgStatus+=`ℹ️ Your previously sent PvP challenge has expired.\n`;
+                        userState.pendingPvpChallenge = null; 
+                        await saveGameStateForUser(userID, userState);
+                     }
                 } else { 
                     if (db) {
-                        const incomingStatus = await db.collection('pokemon_game_states').findOne({ "pendingPvpChallenge.challengedUserID": userID, "pendingPvpChallenge.challengerID": { $ne: userID} }); 
-                        if (incomingStatus && incomingStatus.pendingPvpChallenge) { 
-                            sMsgStatus+= `📩 Incoming PvP: From ${await usersData.getName(incomingStatus.pendingPvpChallenge.challengerID)}!\n`; 
-                        } else if (!(userState.pendingPvpChallenge && userState.pendingPvpChallenge.challengerID === userID)) {
-                            sMsgStatus+=`✅ No pending PvP.\n`;
+                        const incomingPvPStatus = await db.collection('pokemon_game_states').findOne({ "pendingPvpChallenge.challengedUserID": userID, "pendingPvpChallenge.challengerID": { $ne: userID} }); 
+                        if (incomingPvPStatus && incomingPvPStatus.pendingPvpChallenge) { 
+                             const timeSinceIncomingSent = Date.now() - (incomingPvPStatus.pendingPvpChallenge.challengeSentTime || 0);
+                             if (timeSinceIncomingSent < PVP_ACCEPT_TIMEOUT_MS) {
+                                sMsgStatus+= `📩 Incoming PvP: From ${await usersData.getName(incomingPvPStatus.pendingPvpChallenge.challengerID)}! (Expires in ~${Math.ceil((PVP_ACCEPT_TIMEOUT_MS - timeSinceIncomingSent)/60000)} min)\n`; 
+                             }
+                        } else if (!(userState.pendingPvpChallenge && userState.pendingPvpChallenge.challengerID === userID)) { 
+                            sMsgStatus+=`✅ No pending PvP challenges.\n`;
                         }
                     } else {
                          sMsgStatus+=`⚠️ Could not check for incoming PvP challenges (DB connection issue).\n`;
@@ -536,22 +642,22 @@ const cmdModule = {
 
     onReply: async function ({ api, event, Reply, usersData }) {
         if (!db) return api.sendMessage("⏳ Database is connecting... Please try again in a moment.", event.threadID);
-        const userID = event.senderID;
+        const userID = event.senderID; 
         const threadID = event.threadID;
-        const replySenderName = await usersData.getName(userID); // replySenderName is defined here
+        const replySenderName = await usersData.getName(userID); 
 
         if (Reply.senderID !== userID || Reply.commandName !== this.config.name) return;
 
-        let userState = await getGameStateForUser(userID);
+        let userState = await getGameStateForUser(userID); 
         if (!userState) return api.sendMessage("❌ Error: Could not load your game data.", threadID);
 
         if (Reply.type === "challenge_answer") {
             if (userState.currentChallenge && userState.currentChallenge.messageID === Reply.originalMID) {
-                api.unsendMessage(Reply.originalMID).catch(e => console.warn("Challenge_answer: Minor error un-sending original reply, possibly already handled by timeout:", e.message));
+                api.unsendMessage(Reply.originalMID).catch(e => console.warn("Challenge_answer: Minor error un-sending original reply:", e.message));
             }
 
             if (!userState.currentChallenge || !Reply.challengeData || Reply.challengeData.name !== userState.currentChallenge.name) {
-                return api.sendMessage("⚠️ This Pokémon challenge has expired, was already answered, or is invalid. Try starting a new one!", threadID);
+                return api.sendMessage("⚠️ This Pokémon name challenge has expired, was already answered, or is invalid. Try starting a new one!", threadID);
             }
 
             if (userState.currentChallenge.timeoutID) {
@@ -587,42 +693,53 @@ const cmdModule = {
             await saveGameStateForUser(userID, userState);
 
         } else if (Reply.type === "pvp_challenge_response") {
-            try { if (Reply.originalMID) await api.unsendMessage(Reply.originalMID); } catch (e) {} 
+            try { if (Reply.originalMID) await api.unsendMessage(Reply.originalMID); } catch (e) { console.warn("pvp_challenge_response: unsend original failed", e.message)} 
 
             const responsePvP = event.body.trim().toLowerCase();
-            const challengerIDPvP = Reply.challengerID; 
-            const challengedUserIDPvP = userID; 
+            const originalChallengerID = Reply.challengerID; 
+            const challengedUserID = userID; 
 
-            let challengerStatePvP = await getGameStateForUser(challengerIDPvP);
-            let challengedUserStatePvP = userState; 
+            let originalChallengerState = await getGameStateForUser(originalChallengerID);
+            let challengedPlayerState = userState; 
 
-            if (!challengerStatePvP || !challengerStatePvP.pendingPvpChallenge ||
-                challengerStatePvP.pendingPvpChallenge.challengedUserID !== challengedUserIDPvP) {
-                return api.sendMessage("This PvP challenge is no longer valid or has expired.", threadID);
+            console.log(`PvP Challenge Response Debug:`);
+            console.log(`  - Replier (Challenged): ${challengedUserID} (${replySenderName})`);
+            console.log(`  - Original Challenger: ${originalChallengerID}`);
+            console.log(`  - Original Challenger's Pending Challenge:`, originalChallengerState ? originalChallengerState.pendingPvpChallenge : "No challenger state or pendingPvpChallenge field");
+
+            if (!originalChallengerState || 
+                !originalChallengerState.pendingPvpChallenge || 
+                originalChallengerState.pendingPvpChallenge.challengedUserID !== challengedUserID ||
+                originalChallengerState.pendingPvpChallenge.challengerID !== originalChallengerID) { 
+                return api.sendMessage("This PvP challenge is no longer valid, has expired, was cancelled, or was not intended for you.", threadID);
             }
+            
+            const pendingChallengeDetails = { ...originalChallengerState.pendingPvpChallenge };
 
-            const pendingChallengeData = { ...challengerStatePvP.pendingPvpChallenge };
-            challengerStatePvP.pendingPvpChallenge = null; 
+            if (pendingChallengeDetails.acceptTimeoutID) {
+                clearTimeout(parseInt(pendingChallengeDetails.acceptTimeoutID));
+            }
+            originalChallengerState.pendingPvpChallenge = null; 
 
             if (responsePvP === "accept") {
-                const challengerName = await usersData.getName(challengerIDPvP);
-                const challengedName = replySenderName; 
+                const originalChallengerName = await usersData.getName(originalChallengerID);
+                const challengedPlayerName = replySenderName; 
 
-                api.sendMessage(`✅ ${challengedName} accepted the battle challenge from ${challengerName}! Setting up the battle...`, threadID);
-                try { api.sendMessage(`✅ Your challenge to ${challengedName} has been accepted! Setting up...`, challengerIDPvP); } catch(e){}
+                api.sendMessage(`✅ ${challengedPlayerName} accepted the battle challenge from ${originalChallengerName}! Setting up the battle...`, threadID); 
+                try { api.sendMessage(`✅ Your challenge to ${challengedPlayerName} has been accepted! Setting up...`, originalChallengerID); } catch(e){ console.warn("Failed to DM original challenger about acceptance", e.message)}
 
-                const challengerPokemonDetails = pendingChallengeData.challengerPokemonDetails; 
-                if (!challengerPokemonDetails || !challengerPokemonDetails.attacks) {
-                    api.sendMessage("❌ Error: Challenger's Pokémon data is missing. Battle cancelled.", threadID);
-                    await saveGameStateForUser(challengerIDPvP, challengerStatePvP); 
+                const challengerPokemonForBattle = pendingChallengeDetails.challengerPokemonDetails; 
+                if (!challengerPokemonForBattle || !challengerPokemonForBattle.attacks) {
+                    api.sendMessage("❌ Error: Original challenger's Pokémon data is missing. Battle cancelled.", threadID);
+                    await saveGameStateForUser(originalChallengerID, originalChallengerState); 
                     return;
                 }
 
-                let p2Collection = await getUserPokemonCollectionList(challengedUserIDPvP);
+                let p2Collection = await getUserPokemonCollectionList(challengedUserID); 
                 if (p2Collection.length === 0) {
-                    api.sendMessage(`❌ ${challengedName}, you have no Pokémon to battle with! Battle cancelled.`, threadID);
-                    try { api.sendMessage(`❌ ${challengedName} has no Pokémon. Battle cancelled.`, challengerIDPvP); } catch(e){}
-                    await saveGameStateForUser(challengerIDPvP, challengerStatePvP);
+                    api.sendMessage(`❌ ${challengedPlayerName}, you have no Pokémon to battle with! Battle cancelled.`, threadID);
+                    try { api.sendMessage(`❌ ${challengedPlayerName} has no Pokémon. Battle cancelled.`, originalChallengerID); } catch(e){ console.warn("Failed to DM original challenger about P2 no pokemon", e.message)}
+                    await saveGameStateForUser(originalChallengerID, originalChallengerState);
                     return;
                 }
                 const p2FirstPokemonName = p2Collection[0].name; 
@@ -632,82 +749,92 @@ const cmdModule = {
                     p2PokemonDetails = await this.getRandomPokemonForBattleSetup();
                     if (!p2PokemonDetails) {
                         api.sendMessage("❌ Error preparing Player 2's Pokémon. Battle cancelled.", threadID);
-                        await saveGameStateForUser(challengerIDPvP, challengerStatePvP); return;
+                        await saveGameStateForUser(originalChallengerID, originalChallengerState); return;
                     }
                 }
+                 const p2PokemonForBattle = { 
+                    name: p2PokemonDetails.name,
+                    hp: parseInt(p2PokemonDetails.hp),
+                    maxHp: parseInt(p2PokemonDetails.hp),
+                    type: p2PokemonDetails.type, 
+                    attacks: p2PokemonDetails.attacks,
+                    status: null
+                };
 
                 const battleData = {
                     type: "pvp",
-                    player1ID: challengerIDPvP, 
-                    player2ID: challengedUserIDPvP, 
+                    player1ID: originalChallengerID, 
+                    player2ID: challengedUserID, 
+                    challengeOriginThreadID: pendingChallengeDetails.threadID, 
                     
-                    player1ActivePokemonName: challengerPokemonDetails.name,
-                    player1ActivePokemonHP: challengerPokemonDetails.hp,
-                    player1ActivePokemonMaxHp: challengerPokemonDetails.maxHp,
-                    player1ActivePokemonType: challengerPokemonDetails.type,
-                    player1ActivePokemonMoves: challengerPokemonDetails.attacks,
+                    player1ActivePokemonName: challengerPokemonForBattle.name,
+                    player1ActivePokemonHP: challengerPokemonForBattle.hp,
+                    player1ActivePokemonMaxHp: challengerPokemonForBattle.maxHp,
+                    player1ActivePokemonType: challengerPokemonForBattle.type,
+                    player1ActivePokemonMoves: challengerPokemonForBattle.attacks,
                     player1Status: null,
-                    player1PokemonIndex: 0, 
-
-                    player2ActivePokemonName: p2PokemonDetails.name,
-                    player2ActivePokemonHP: p2PokemonDetails.hp,
-                    player2ActivePokemonMaxHp: p2PokemonDetails.maxHp,
-                    player2ActivePokemonType: p2PokemonDetails.type.split(',')[0].trim(), // Ensure primary type for P2 as well
-                    player2ActivePokemonMoves: p2PokemonDetails.attacks,
+                   
+                    player2ActivePokemonName: p2PokemonForBattle.name,
+                    player2ActivePokemonHP: p2PokemonForBattle.hp,
+                    player2ActivePokemonMaxHp: p2PokemonForBattle.maxHp,
+                    player2ActivePokemonType: p2PokemonForBattle.type, 
+                    player2ActivePokemonMoves: p2PokemonForBattle.attacks,
                     player2Status: null,
-                    player2PokemonIndex: 0, 
                     
-                    currentTurn: challengerIDPvP 
+                    currentTurn: originalChallengerID 
                 };
 
-                challengerStatePvP.currentBattle = battleData;
-                challengedUserStatePvP.currentBattle = battleData;
+                originalChallengerState.currentBattle = battleData;
+                challengedPlayerState.currentBattle = battleData;
                 
-                await saveGameStateForUser(challengerIDPvP, challengerStatePvP);
-                await saveGameStateForUser(challengedUserIDPvP, challengedUserStatePvP);
+                await saveGameStateForUser(originalChallengerID, originalChallengerState);
+                await saveGameStateForUser(challengedUserID, challengedPlayerState);
 
                 let pvpStartMsg = `⚔️ PvP Battle Starting! ⚔️\n\n`;
-                pvpStartMsg += `${challengerName} (P1) with ${battleData.player1ActivePokemonName} (HP: ${battleData.player1ActivePokemonHP}/${battleData.player1ActivePokemonMaxHp})\n`;
+                pvpStartMsg += `${originalChallengerName} (P1) with ${battleData.player1ActivePokemonName} (${battleData.player1ActivePokemonType} - HP: ${battleData.player1ActivePokemonHP}/${battleData.player1ActivePokemonMaxHp})\n`;
                 pvpStartMsg += `vs.\n`;
-                pvpStartMsg += `${challengedName} (P2) with ${battleData.player2ActivePokemonName} (HP: ${battleData.player2ActivePokemonHP}/${battleData.player2ActivePokemonMaxHp})\n\n`;
-                pvpStartMsg += `It's ${challengerName}'s turn! Choose a move:\n`;
+                pvpStartMsg += `${challengedPlayerName} (P2) with ${battleData.player2ActivePokemonName} (${battleData.player2ActivePokemonType} - HP: ${battleData.player2ActivePokemonHP}/${battleData.player2ActivePokemonMaxHp})\n\n`;
+                
+                api.sendMessage(pvpStartMsg, threadID); 
+                
+                let promptToChallengerForFirstMove = `--- Your Turn, ${originalChallengerName}! ---\nChoose a move for your ${battleData.player1ActivePokemonName} (${battleData.player1ActivePokemonType}):\n`;
                 (battleData.player1ActivePokemonMoves || []).forEach((move, index) => { 
-                    pvpStartMsg += `${index + 1}. ${move.name} (Dmg: ${move.damageString || '0'})${move.text ? ` - ${move.text.substring(0,30)}...` : ''}\n`; 
+                    promptToChallengerForFirstMove += `${index + 1}. ${move.name} (Dmg: ${move.damageString || '0'})${move.text ? ` - ${move.text.substring(0,30)}...` : ''}\n`; 
                 });
-                pvpStartMsg += `Reply with move number.`;
-                
-                const battleStartThreadMsg = await api.sendMessage(pvpStartMsg, threadID); 
-                
-                if (challengerIDPvP !== threadID) { // Check if the message was sent in the challenger's DM or a group chat
-                     try { 
-                        let promptToChallenger = `Your PvP battle with ${challengedName} has started!\nYour ${battleData.player1ActivePokemonName} vs ${battleData.player2ActivePokemonName}.\nIt's your turn! Choose a move:\n`;
-                        (battleData.player1ActivePokemonMoves || []).forEach((m,i) => { promptToChallenger += `${i+1}. ${m.name} (Dmg: ${m.damageString||'0'})\n`;});
-                        promptToChallenger += `Reply with move number.`;
-                        const ftMsgPvP = await api.sendMessage(promptToChallenger, challengerIDPvP); 
-                        global.GoatBot.onReply.set(ftMsgPvP.messageID,{commandName:this.config.name,senderID:challengerIDPvP,type:"battle_move",originalMID:ftMsgPvP.messageID}); 
-                    } catch(e){ 
-                        global.GoatBot.onReply.set(battleStartThreadMsg.messageID,{commandName:this.config.name,senderID:challengerIDPvP,type:"battle_move",originalMID:battleStartThreadMsg.messageID});
-                    }
-                } else { 
-                     global.GoatBot.onReply.set(battleStartThreadMsg.messageID,{commandName:this.config.name,senderID:challengerIDPvP,type:"battle_move",originalMID:battleStartThreadMsg.messageID});
+                promptToChallengerForFirstMove += `Reply with move number.`;
+
+                try { 
+                    const firstMovePromptMsg = await api.sendMessage(promptToChallengerForFirstMove, originalChallengerID); 
+                    global.GoatBot.onReply.set(firstMovePromptMsg.messageID,{commandName:this.config.name,senderID:originalChallengerID,type:"battle_move",originalMID:firstMovePromptMsg.messageID}); 
+                } catch(e){ 
+                    console.error(`PvP Challenge Response: Failed to DM original challenger ${originalChallengerID} for first move. Prompting in challenge origin thread ${pendingChallengeDetails.threadID}.`);
+                    const fallbackPromptMsg = await api.sendMessage(`@${originalChallengerName}, your DM for the battle prompt failed. ${promptToChallengerForFirstMove}`, pendingChallengeDetails.threadID, { mentions: [{ tag: `@${originalChallengerName}`, id: originalChallengerID }] });
+                    global.GoatBot.onReply.set(fallbackPromptMsg.messageID, {commandName:this.config.name,senderID:originalChallengerID,type:"battle_move",originalMID:fallbackPromptMsg.messageID});
                 }
 
             } else if (responsePvP === "decline") { 
                 api.sendMessage(`❌ You declined the battle challenge.`, threadID); 
-                try { api.sendMessage(`😔 ${replySenderName} declined your battle challenge.`, Reply.challengerID); } catch(e){} 
-                await saveGameStateForUser(challengerIDPvP, challengerStatePvP); 
+                try { api.sendMessage(`😔 ${replySenderName} declined your battle challenge.`, originalChallengerID); } catch(e){ console.warn("Failed to DM original challenger about decline", e.message) } 
+                await saveGameStateForUser(originalChallengerID, originalChallengerState); 
             } else { 
-                challengerStatePvP.pendingPvpChallenge = pendingChallengeData; 
-                await saveGameStateForUser(challengerIDPvP, challengerStatePvP); 
+                // Invalid response, restore pending challenge state for challenger (timeout was already cleared, so it won't re-timeout unless re-issued)
+                originalChallengerState.pendingPvpChallenge = pendingChallengeDetails; 
+                 // Re-set the timeout if invalid response. This is tricky because the original timeout object is gone.
+                 // A simpler approach might be to just inform the user and let the original timeout run its course if it wasn't cleared,
+                 // or require a new challenge. For now, we'll just restore the pending state.
+                 // The timeout was cleared above, so this challenge won't auto-expire anymore from the original timer.
+                await saveGameStateForUser(originalChallengerID, originalChallengerState); 
                 const rpMsgPvP = await api.sendMessage(`Invalid response. Reply "accept" or "decline" to the challenge.`, threadID); 
-                global.GoatBot.onReply.set(rpMsgPvP.messageID,{commandName:this.config.name,senderID:userID,type:"pvp_challenge_response",challengerID:Reply.challengerID,originalMID:rpMsgPvP.messageID});
+                global.GoatBot.onReply.set(rpMsgPvP.messageID,{commandName:this.config.name,senderID:userID,type:"pvp_challenge_response",challengerID:originalChallengerID,originalMID:rpMsgPvP.messageID});
             }
 
         } else if (Reply.type === "battle_move") {
             try { if (Reply.originalMID) await api.unsendMessage(Reply.originalMID); }
             catch (e) { console.warn("Battle_move: Error un-sending original prompt:", e.message); }
 
-            if (!userState.currentBattle) return api.sendMessage("❌ No active battle found for you.", threadID);
+            if (!userState.currentBattle) {
+                return api.sendMessage("❌ No active battle found for you, or it has already ended.", threadID);
+            }
 
             let battle = userState.currentBattle; 
             const currentPlayerID = userID; 
@@ -717,8 +844,7 @@ const cmdModule = {
             }
 
             let battleMessages = []; 
-            let attacker, defender, attackerName, defenderName, attackerProps, defenderProps;
-            let canPlayerAttack = true;
+            let attacker, defender, attackerName, defenderName, attackerProps, defenderProps, isP1AttackingGlobal = null;
 
             if (battle.type === "ai") {
                 attackerProps = {
@@ -729,18 +855,18 @@ const cmdModule = {
                     nameKey: 'opponentName', hpKey: 'opponentHP', maxHpKey: 'opponentMaxHp',
                     typeKey: 'opponentType', movesKey: 'opponentMoves', statusKey: 'opponentStatus'
                 };
-                attackerName = replySenderName; // Corrected: Use replySenderName
+                attackerName = replySenderName; 
                 defenderName = `AI ${battle[defenderProps.nameKey]}`;
             } else { // PvP
-                const isP1Attacking = battle.player1ID === currentPlayerID;
-                attackerProps = isP1Attacking ? {
+                isP1AttackingGlobal = battle.player1ID === currentPlayerID;
+                attackerProps = isP1AttackingGlobal ? {
                     nameKey: 'player1ActivePokemonName', hpKey: 'player1ActivePokemonHP', maxHpKey: 'player1ActivePokemonMaxHp',
                     typeKey: 'player1ActivePokemonType', movesKey: 'player1ActivePokemonMoves', statusKey: 'player1Status'
                 } : {
                     nameKey: 'player2ActivePokemonName', hpKey: 'player2ActivePokemonHP', maxHpKey: 'player2ActivePokemonMaxHp',
                     typeKey: 'player2ActivePokemonType', movesKey: 'player2ActivePokemonMoves', statusKey: 'player2Status'
                 };
-                defenderProps = isP1Attacking ? {
+                defenderProps = isP1AttackingGlobal ? {
                     nameKey: 'player2ActivePokemonName', hpKey: 'player2ActivePokemonHP', maxHpKey: 'player2ActivePokemonMaxHp',
                     typeKey: 'player2ActivePokemonType', movesKey: 'player2ActivePokemonMoves', statusKey: 'player2Status'
                 } : {
@@ -748,14 +874,16 @@ const cmdModule = {
                     typeKey: 'player1ActivePokemonType', movesKey: 'player1ActivePokemonMoves', statusKey: 'player1Status'
                 };
                 attackerName = await usersData.getName(currentPlayerID);
-                defenderName = await usersData.getName(isP1Attacking ? battle.player2ID : battle.player1ID);
+                defenderName = await usersData.getName(isP1AttackingGlobal ? battle.player2ID : battle.player1ID);
             }
 
             attacker = { name: battle[attackerProps.nameKey], hp: battle[attackerProps.hpKey], type: battle[attackerProps.typeKey], moves: battle[attackerProps.movesKey] || [], status: battle[attackerProps.statusKey] };
             defender = { name: battle[defenderProps.nameKey], hp: battle[defenderProps.hpKey], type: battle[defenderProps.typeKey], moves: battle[defenderProps.movesKey] || [], status: battle[defenderProps.statusKey] };
 
+            battleMessages.push(`\n--- ${attackerName}'s Turn (${attacker.type}) ---`);
+            let canPlayerAttack = true; // Renamed from canPlayerAttack to avoid conflict if it was global
+
             if (attacker.status) {
-                battleMessages.push(`--- ${attackerName}'s turn start ---`);
                 switch (attacker.status.type) {
                     case STATUS_CONDITIONS.ASLEEP:
                         if (Math.random() < 0.5) { 
@@ -775,7 +903,7 @@ const cmdModule = {
                         battleMessages.push(`❓ ${attacker.name} is confused!`);
                         if (Math.random() < 0.5) { 
                             battle[attackerProps.hpKey] = Math.max(0, battle[attackerProps.hpKey] - CONFUSION_SELF_DAMAGE);
-                            battleMessages.push(`💥 It hurt itself in its confusion for ${CONFUSION_SELF_DAMAGE} damage! ${attacker.name} HP: ${battle[attackerProps.hpKey]}`);
+                            battleMessages.push(`💥 It hurt itself in its confusion for ${CONFUSION_SELF_DAMAGE} damage! ${attacker.name} HP: ${battle[attackerProps.hpKey]}/${battle[attackerProps.maxHpKey]}`);
                             canPlayerAttack = false;
                             if (battle[attackerProps.hpKey] <= 0) { 
                                 battleMessages.push(`☠️ ${attacker.name} fainted from confusion!`);
@@ -788,7 +916,7 @@ const cmdModule = {
             }
 
             let selectedMove;
-            if (canPlayerAttack) {
+            if (canPlayerAttack && battle[attackerProps.hpKey] > 0) { 
                 const chosenMoveIndex = parseInt(event.body.trim()) - 1;
                 if (isNaN(chosenMoveIndex) || chosenMoveIndex < 0 || chosenMoveIndex >= attacker.moves.length) {
                     battleMessages.push("⚠️ Invalid move selection. Turn skipped.");
@@ -796,6 +924,8 @@ const cmdModule = {
                 } else {
                     selectedMove = attacker.moves[chosenMoveIndex];
                 }
+            } else if (battle[attackerProps.hpKey] <= 0) { 
+                 canPlayerAttack = false; 
             }
 
             if (canPlayerAttack && selectedMove) {
@@ -803,10 +933,14 @@ const cmdModule = {
                 if (selectedMove.text) battleMessages.push(`   ${selectedMove.text}`);
 
                 const moveBaseDamage = selectedMove.damage; 
-                const damageDealt = Math.max(0, Math.floor(moveBaseDamage * this.getTypeAdvantage(attacker.type, defender.type)));
+                const advantageMultiplier = this.getTypeAdvantage(attacker.type, defender.type);
+                const damageDealt = Math.max(0, Math.floor(moveBaseDamage * advantageMultiplier));
                 
                 battle[defenderProps.hpKey] = Math.max(0, battle[defenderProps.hpKey] - damageDealt);
                 battleMessages.push(`⚔️ It dealt ${damageDealt} damage to ${defender.name}.`);
+                if (advantageMultiplier === 2) battleMessages.push("It's super effective!");
+                if (advantageMultiplier === 0.5) battleMessages.push("It's not very effective...");
+
 
                 if (selectedMove.effect && (!defender.status || selectedMove.effect.type !== defender.status.type) ) { 
                      if (Math.random() < (selectedMove.effect.chance || 1.0)) { 
@@ -814,17 +948,33 @@ const cmdModule = {
                         battleMessages.push(`✨ ${defender.name} is now ${selectedMove.effect.type.toUpperCase()}!`);
                     }
                 }
-                battleMessages.push(`${defender.name} HP: ${battle[defenderProps.hpKey]}/${battle[defenderProps.maxHpKey]}`);
+                battleMessages.push(`${defender.name} (${defender.type}) HP: ${battle[defenderProps.hpKey]}/${battle[defenderProps.maxHpKey]}`);
             }
-
-            if (battle[defenderProps.hpKey] <= 0 && canPlayerAttack && selectedMove) { // Check if defender fainted only if player attacked
+            
+            let battleEnded = false;
+            if (battle[defenderProps.hpKey] <= 0) { 
                 battleMessages.push(`☠️ ${defender.name} fainted!`);
                 battleMessages.push(`🎉 ${attackerName} wins the battle!`);
                 userState.coins = (userState.coins || 0) + (battle.type === "ai" ? 75 : 150);
-                battleMessages.push(`💰 You earned ${battle.type === "ai" ? 75 : 150} coins! Total: ${userState.coins}`);
-                
+                battleMessages.push(`💰 ${attackerName} earned ${battle.type === "ai" ? 75 : 150} coins! Total: ${userState.coins}`);
+                battleEnded = true;
+            } else if (battle[attackerProps.hpKey] <= 0 && !canPlayerAttack) { // Attacker fainted from pre-turn status/confusion
+                 battleMessages.push(`🎉 ${defenderName} wins the battle!`);
+                 if (battle.type === "pvp") {
+                    const winnerID = isP1AttackingGlobal ? battle.player2ID : battle.player1ID;
+                    let winnerState = await getGameStateForUser(winnerID);
+                    if(winnerState){ 
+                        winnerState.coins = (winnerState.coins || 0) + 150; 
+                        await saveGameStateForUser(winnerID, winnerState); 
+                        try { api.sendMessage(`💰 You earned 150 coins as ${attackerName} fainted!`, winnerID); } catch(e){}
+                    }
+                 }
+                 battleEnded = true;
+            }
+
+            if (battleEnded) {
                 userState.currentBattle = null;
-                await saveGameStateForUser(userID, userState);
+                await saveGameStateForUser(userID, userState); 
                 if (battle.type === "pvp") {
                     const opponentID = battle.player1ID === userID ? battle.player2ID : battle.player1ID;
                     let opponentState = await getGameStateForUser(opponentID);
@@ -833,17 +983,17 @@ const cmdModule = {
                 return api.sendMessage(battleMessages.join('\n'), threadID);
             }
 
-            if (attacker.status && canPlayerAttack) { 
+            if (attacker.status && canPlayerAttack && battle[attackerProps.hpKey] > 0) { 
                 switch(attacker.status.type) {
                     case STATUS_CONDITIONS.POISONED:
                         battle[attackerProps.hpKey] = Math.max(0, battle[attackerProps.hpKey] - POISON_DAMAGE);
-                        battleMessages.push(`🤢 ${attacker.name} took ${POISON_DAMAGE} damage from poison! HP: ${battle[attackerProps.hpKey]}`);
+                        battleMessages.push(`🤢 ${attacker.name} took ${POISON_DAMAGE} damage from poison! HP: ${battle[attackerProps.hpKey]}/${battle[attackerProps.maxHpKey]}`);
                         break;
                     case STATUS_CONDITIONS.BURNED:
                         battleMessages.push(`🔥 ${attacker.name} is burned! Flipping a coin...`);
                         if (Math.random() < 0.5) { 
                             battle[attackerProps.hpKey] = Math.max(0, battle[attackerProps.hpKey] - BURN_DAMAGE);
-                            battleMessages.push(`💥 Coin was TAILS! Took ${BURN_DAMAGE} damage from burn! HP: ${battle[attackerProps.hpKey]}`);
+                            battleMessages.push(`💥 Coin was TAILS! Took ${BURN_DAMAGE} damage from burn! HP: ${battle[attackerProps.hpKey]}/${battle[attackerProps.maxHpKey]}`);
                         } else {
                             battleMessages.push(`👍 Coin was HEADS! No damage from burn this turn.`);
                         }
@@ -852,121 +1002,175 @@ const cmdModule = {
                 if (battle[attackerProps.hpKey] <= 0) { 
                      battleMessages.push(`☠️ ${attacker.name} fainted from its status condition!`);
                      battleMessages.push(`🎉 ${defenderName} wins the battle!`);
-                     userState.currentBattle = null;
-                     await saveGameStateForUser(userID, userState);
+                     battleEnded = true; 
                      if (battle.type === "pvp") {
-                        const winnerID = battle.player1ID === userID ? battle.player2ID : battle.player1ID;
+                        const winnerID = isP1AttackingGlobal ? battle.player2ID : battle.player1ID;
                         let winnerState = await getGameStateForUser(winnerID);
-                        if(winnerState){ winnerState.coins = (winnerState.coins || 0) + 150; winnerState.currentBattle = null; await saveGameStateForUser(winnerID, winnerState); }
-                        try { api.sendMessage(`💰 ${defenderName} earned 150 coins!`, winnerID); } catch(e){}
+                        if(winnerState){ 
+                            winnerState.coins = (winnerState.coins || 0) + 150; 
+                            await saveGameStateForUser(winnerID, winnerState); 
+                            try { api.sendMessage(`💰 You earned 150 coins as ${attackerName} fainted from status!`, winnerID); } catch(e){}
+                        }
                      }
-                     return api.sendMessage(battleMessages.join('\n'), threadID);
                 }
+            }
+            
+            if (battleEnded) { 
+                userState.currentBattle = null;
+                await saveGameStateForUser(userID, userState); 
+                if (battle.type === "pvp") {
+                    const opponentID = battle.player1ID === userID ? battle.player2ID : battle.player1ID;
+                    let opponentState = await getGameStateForUser(opponentID);
+                    if (opponentState) { opponentState.currentBattle = null; await saveGameStateForUser(opponentID, opponentState); }
+                }
+                return api.sendMessage(battleMessages.join('\n'), threadID);
             }
 
             let nextTurnPlayerID = null;
-            let nextTurnPrompt = "";
-
             if (battle.type === "ai") {
-                if (battle[attackerProps.hpKey] > 0 && battle[defenderProps.hpKey] > 0) { 
-                    battleMessages.push(`\n--- AI ${battle[defenderProps.nameKey]}'s Turn ---`);
-                    let aiCanAttack = true;
-                    if (battle[defenderProps.statusKey]) {
-                        const aiStatus = battle[defenderProps.statusKey];
-                        switch(aiStatus.type) {
-                            case STATUS_CONDITIONS.ASLEEP: if (Math.random() < 0.5) { battleMessages.push(`☀️ AI ${defender.name} woke up!`); battle[defenderProps.statusKey] = null; } else { battleMessages.push(`😴 AI ${defender.name} is asleep.`); aiCanAttack = false; } break;
-                            case STATUS_CONDITIONS.PARALYZED: battleMessages.push(`⚡ AI ${defender.name} is paralyzed!`); battle[defenderProps.statusKey] = null; aiCanAttack = false; break;
-                            case STATUS_CONDITIONS.CONFUSED: battleMessages.push(`❓ AI ${defender.name} is confused!`); if (Math.random() < 0.5) { battle[defenderProps.hpKey] = Math.max(0, battle[defenderProps.hpKey] - CONFUSION_SELF_DAMAGE); battleMessages.push(`💥 AI hurt itself for ${CONFUSION_SELF_DAMAGE}! HP: ${battle[defenderProps.hpKey]}`); aiCanAttack = false; if(battle[defenderProps.hpKey] <=0) {battleMessages.push(`☠️ AI ${defender.name} fainted from confusion!`);} } else { battleMessages.push(`👍 AI overcame confusion!`);} break;
-                        }
+                battleMessages.push(`\n--- AI ${battle[defenderProps.nameKey]}'s Turn (${battle[defenderProps.typeKey]}) ---`);
+                let aiCanAttack = true; // AI's ability to attack this turn
+                if (battle[defenderProps.statusKey]) { 
+                    const aiStatus = battle[defenderProps.statusKey];
+                    switch(aiStatus.type) {
+                        case STATUS_CONDITIONS.ASLEEP: if (Math.random() < 0.5) { battleMessages.push(`☀️ AI ${defender.name} woke up!`); battle[defenderProps.statusKey] = null; } else { battleMessages.push(`😴 AI ${defender.name} is asleep.`); aiCanAttack = false; } break;
+                        case STATUS_CONDITIONS.PARALYZED: battleMessages.push(`⚡ AI ${defender.name} is paralyzed!`); battle[defenderProps.statusKey] = null; aiCanAttack = false; break;
+                        case STATUS_CONDITIONS.CONFUSED: battleMessages.push(`❓ AI ${defender.name} is confused!`); if (Math.random() < 0.5) { battle[defenderProps.hpKey] = Math.max(0, battle[defenderProps.hpKey] - CONFUSION_SELF_DAMAGE); battleMessages.push(`💥 AI hurt itself for ${CONFUSION_SELF_DAMAGE}! HP: ${battle[defenderProps.hpKey]}/${battle[defenderProps.maxHpKey]}`); aiCanAttack = false; if(battle[defenderProps.hpKey] <=0) {battleMessages.push(`☠️ AI ${defender.name} fainted from confusion!`); battleEnded = true;} } else { battleMessages.push(`👍 AI overcame confusion!`);} break;
                     }
-
-                    if (aiCanAttack && battle[defenderProps.hpKey] > 0) {
-                        const aiMoves = battle[defenderProps.movesKey] || [];
-                        if (aiMoves.length > 0) {
-                            const aiSelectedMove = aiMoves[Math.floor(Math.random() * aiMoves.length)];
-                            const aiMoveDamage = aiSelectedMove.damage;
-                            const aiDamageDealt = Math.max(0, Math.floor(aiMoveDamage * this.getTypeAdvantage(battle[defenderProps.typeKey], battle[attackerProps.typeKey])));
-                            battle[attackerProps.hpKey] = Math.max(0, battle[attackerProps.hpKey] - aiDamageDealt);
-                            battleMessages.push(`💢 AI ${defender.name} used ${aiSelectedMove.name} on your ${attacker.name} for ${aiDamageDealt} damage!`);
-                            if (aiSelectedMove.text) battleMessages.push(`   Effect: ${aiSelectedMove.text}`);
-                            if (aiSelectedMove.effect && (!battle[attackerProps.statusKey] || aiSelectedMove.effect.type !== battle[attackerProps.statusKey].type) ) {
-                                if (Math.random() < (aiSelectedMove.effect.chance || 1.0)) {
-                                    battle[attackerProps.statusKey] = { type: aiSelectedMove.effect.type, turns: (aiSelectedMove.effect.type === STATUS_CONDITIONS.PARALYZED ? 1 : undefined) };
-                                    battleMessages.push(`✨ Your ${attacker.name} is now ${aiSelectedMove.effect.type.toUpperCase()}!`);
-                                }
-                            }
-                            battleMessages.push(`Your ${attacker.name} HP: ${battle[attackerProps.hpKey]}/${battle[attackerProps.maxHpKey]}`);
-                        } else { battleMessages.push(`AI ${defender.name} has no moves!`);}
-                    }
-
-                    if (battle[attackerProps.hpKey] <= 0) { 
-                        battleMessages.push(`☠️ Your ${attacker.name} fainted!`);
-                        battleMessages.push(`👎 AI ${defender.name} wins the battle!`);
-                        userState.currentBattle = null; await saveGameStateForUser(userID, userState);
-                        return api.sendMessage(battleMessages.join('\n'), threadID);
-                    }
-                    
-                    if (battle[defenderProps.statusKey] && aiCanAttack && battle[defenderProps.hpKey] > 0) { 
-                        const aiStatus = battle[defenderProps.statusKey];
-                        if (aiStatus.type === STATUS_CONDITIONS.POISONED) { battle[defenderProps.hpKey] = Math.max(0, battle[defenderProps.hpKey] - POISON_DAMAGE); battleMessages.push(`🤢 AI ${defender.name} took ${POISON_DAMAGE} from poison! HP: ${battle[defenderProps.hpKey]}`);}
-                        else if (aiStatus.type === STATUS_CONDITIONS.BURNED) { if(Math.random() < 0.5) { battle[defenderProps.hpKey] = Math.max(0, battle[defenderProps.hpKey] - BURN_DAMAGE); battleMessages.push(`💥 AI ${defender.name} took ${BURN_DAMAGE} from burn! HP: ${battle[defenderProps.hpKey]}`);}}
-                         if (battle[defenderProps.hpKey] <= 0) { battleMessages.push(`☠️ AI ${defender.name} fainted from status! You win!`); userState.currentBattle = null; userState.coins = (userState.coins||0)+75; await saveGameStateForUser(userID, userState); return api.sendMessage(battleMessages.join('\n'), threadID);}
-                    }
-
-                    battle.currentTurn = userID; 
-                    nextTurnPlayerID = userID;
                 }
+
+                if (!battleEnded && aiCanAttack && battle[defenderProps.hpKey] > 0) { 
+                    const aiMoves = battle[defenderProps.movesKey] || [];
+                    let aiSelectedMove;
+                    if (aiMoves.length > 0) {
+                        const playerPokemonTypeForAI = battle[attackerProps.typeKey]; 
+                        const aiPokemonTypeForAI = battle[defenderProps.typeKey];
+                        
+                        const superEffectiveMoves = aiMoves.filter(move => move.damage > 0 && this.getTypeAdvantage(aiPokemonTypeForAI, playerPokemonTypeForAI) === 2);
+                        const normalEffectiveMoves = aiMoves.filter(move => move.damage > 0 && this.getTypeAdvantage(aiPokemonTypeForAI, playerPokemonTypeForAI) === 1);
+
+                        if (superEffectiveMoves.length > 0 && Math.random() < 0.75) { 
+                            aiSelectedMove = superEffectiveMoves[Math.floor(Math.random() * superEffectiveMoves.length)];
+                            battleMessages.push(`🤖 AI ${defender.name} is looking for a strategic advantage...`);
+                        } else if (normalEffectiveMoves.length > 0 && Math.random() < 0.6) { 
+                            aiSelectedMove = normalEffectiveMoves[Math.floor(Math.random() * normalEffectiveMoves.length)];
+                        } else { 
+                            aiSelectedMove = aiMoves[Math.floor(Math.random() * aiMoves.length)];
+                        }
+                        
+                        const aiMoveBaseDamage = aiSelectedMove.damage;
+                        const aiAdvantageMultiplier = this.getTypeAdvantage(aiPokemonTypeForAI, playerPokemonTypeForAI);
+                        const aiDamageDealt = Math.max(0, Math.floor(aiMoveBaseDamage * aiAdvantageMultiplier));
+
+                        battle[attackerProps.hpKey] = Math.max(0, battle[attackerProps.hpKey] - aiDamageDealt);
+                        battleMessages.push(`💢 AI ${defender.name} used ${aiSelectedMove.name} on your ${attacker.name} for ${aiDamageDealt} damage!`);
+                        if (aiAdvantageMultiplier === 2) battleMessages.push("It's super effective against your Pokémon!");
+                        if (aiAdvantageMultiplier === 0.5) battleMessages.push("It's not very effective against your Pokémon...");
+
+                        if (aiSelectedMove.text) battleMessages.push(`   Effect: ${aiSelectedMove.text}`);
+                        if (aiSelectedMove.effect && (!battle[attackerProps.statusKey] || aiSelectedMove.effect.type !== battle[attackerProps.statusKey].type) ) {
+                            if (Math.random() < (aiSelectedMove.effect.chance || 1.0)) {
+                                battle[attackerProps.statusKey] = { type: aiSelectedMove.effect.type, turns: (aiSelectedMove.effect.type === STATUS_CONDITIONS.PARALYZED ? 1 : undefined) };
+                                battleMessages.push(`✨ Your ${attacker.name} is now ${aiSelectedMove.effect.type.toUpperCase()}!`);
+                            }
+                        }
+                        battleMessages.push(`Your ${attacker.name} (${attacker.type}) HP: ${battle[attackerProps.hpKey]}/${battle[attackerProps.maxHpKey]}`);
+                        if (battle[attackerProps.hpKey] <= 0) { 
+                            battleMessages.push(`☠️ Your ${attacker.name} fainted!`);
+                            battleMessages.push(`👎 AI ${defender.name} wins the battle!`);
+                            battleEnded = true;
+                        }
+                    } else { battleMessages.push(`AI ${defender.name} has no moves!`);}
+                }
+                
+                if (!battleEnded && battle[defenderProps.statusKey] && aiCanAttack && battle[defenderProps.hpKey] > 0) { 
+                    const aiStatus = battle[defenderProps.statusKey];
+                    if (aiStatus.type === STATUS_CONDITIONS.POISONED) { battle[defenderProps.hpKey] = Math.max(0, battle[defenderProps.hpKey] - POISON_DAMAGE); battleMessages.push(`🤢 AI ${defender.name} took ${POISON_DAMAGE} from poison! HP: ${battle[defenderProps.hpKey]}/${battle[defenderProps.maxHpKey]}`);}
+                    else if (aiStatus.type === STATUS_CONDITIONS.BURNED) { if(Math.random() < 0.5) { battle[defenderProps.hpKey] = Math.max(0, battle[defenderProps.hpKey] - BURN_DAMAGE); battleMessages.push(`💥 AI ${defender.name} took ${BURN_DAMAGE} from burn! HP: ${battle[defenderProps.hpKey]}/${battle[defenderProps.maxHpKey]}`);}}
+                     if (battle[defenderProps.hpKey] <= 0) { 
+                         battleMessages.push(`☠️ AI ${defender.name} fainted from status!`);
+                         battleMessages.push(`🎉 You (${attackerName}) win the battle!`);
+                         userState.coins = (userState.coins||0)+75; 
+                         battleEnded = true;
+                    }
+                }
+
+                if (battleEnded) {
+                    userState.currentBattle = null; 
+                    await saveGameStateForUser(userID, userState); 
+                    return api.sendMessage(battleMessages.join('\n'), threadID);
+                }
+                battle.currentTurn = userID; 
+                nextTurnPlayerID = userID;
+
             } else { // PvP
                 if (battle[attackerProps.hpKey] > 0 && battle[defenderProps.hpKey] > 0) { 
                     battle.currentTurn = (battle.player1ID === currentPlayerID ? battle.player2ID : battle.player1ID);
                     nextTurnPlayerID = battle.currentTurn;
+                } else { 
+                    if (!battleEnded) { 
+                        battleMessages.push("The battle has concluded."); 
+                        battleEnded = true; 
+                    }
+                    userState.currentBattle = null;
+                    await saveGameStateForUser(userID, userState);
+                    const opponentID = battle.player1ID === userID ? battle.player2ID : battle.player1ID;
+                    let opponentState = await getGameStateForUser(opponentID);
+                    if (opponentState) { opponentState.currentBattle = null; await saveGameStateForUser(opponentID, opponentState); }
+                    return api.sendMessage(battleMessages.join('\n'), threadID);
                 }
             }
 
             userState.currentBattle = battle; 
             await saveGameStateForUser(userID, userState);
+
             if (battle.type === "pvp" && nextTurnPlayerID && nextTurnPlayerID !== userID) { 
                 let opponentState = await getGameStateForUser(nextTurnPlayerID);
-                if(opponentState) { opponentState.currentBattle = battle; await saveGameStateForUser(nextTurnPlayerID, opponentState); }
+                if(opponentState) { 
+                    opponentState.currentBattle = battle; 
+                    await saveGameStateForUser(nextTurnPlayerID, opponentState); 
+                }
             }
-
-            if (battle.currentTurn === userID && battle[attackerProps.hpKey] > 0 && battle[defenderProps.hpKey] > 0) { 
-                const currentAttacker = { name: battle[attackerProps.nameKey], hp: battle[attackerProps.hpKey], maxHp: battle[attackerProps.maxHpKey], status: battle[attackerProps.statusKey], moves: battle[attackerProps.movesKey] || [] };
-                const currentDefender = { name: battle[defenderProps.nameKey], hp: battle[defenderProps.hpKey], maxHp: battle[defenderProps.maxHpKey], status: battle[defenderProps.statusKey] };
-                nextTurnPrompt = `\n--- Your Turn! ---\n`;
-                nextTurnPrompt += `Your ${currentAttacker.name} (HP: ${currentAttacker.hp}/${currentAttacker.maxHp})${currentAttacker.status ? ` [${currentAttacker.status.type.toUpperCase()}]` : ''}\n`;
-                nextTurnPrompt += `Opponent's ${currentDefender.name} (HP: ${currentDefender.hp}/${currentDefender.maxHp})${currentDefender.status ? ` [${currentDefender.status.type.toUpperCase()}]` : ''}\n`;
-                nextTurnPrompt += `Choose a move:\n`;
-                currentAttacker.moves.forEach((m,i) => { nextTurnPrompt += `${i+1}. ${m.name} (Dmg: ${m.damageString||'0'})\n`;});
-                nextTurnPrompt += `Reply with move number.`;
-                const rMsg = await api.sendMessage(battleMessages.join('\n') + nextTurnPrompt, threadID);
+            
+            if (battle.currentTurn === userID && battle.type === "ai") { 
+                const currentAttacker = { name: battle[attackerProps.nameKey], hp: battle[attackerProps.hpKey], maxHp: battle[attackerProps.maxHpKey], type: battle[attackerProps.typeKey], status: battle[attackerProps.statusKey], moves: battle[attackerProps.movesKey] || [] };
+                const currentDefender = { name: battle[defenderProps.nameKey], hp: battle[defenderProps.hpKey], maxHp: battle[defenderProps.maxHpKey], type: battle[defenderProps.typeKey], status: battle[defenderProps.statusKey] };
+                let nextPrompt = `\n\n--- Your Turn, ${attackerName}! ---\n`;
+                nextPrompt += `Your ${currentAttacker.name} (${currentAttacker.type} - HP: ${currentAttacker.hp}/${currentAttacker.maxHp})${currentAttacker.status ? ` [${currentAttacker.status.type.toUpperCase()}]` : ''}\n`;
+                nextPrompt += `Opponent's ${currentDefender.name} (${currentDefender.type} - HP: ${currentDefender.hp}/${currentDefender.maxHp})${currentDefender.status ? ` [${currentDefender.status.type.toUpperCase()}]` : ''}\n`;
+                nextPrompt += `Choose a move:\n`;
+                currentAttacker.moves.forEach((m,i) => { nextPrompt += `${i+1}. ${m.name} (Dmg: ${m.damageString||'0'})\n`;});
+                nextPrompt += `Reply with move number.`;
+                const rMsg = await api.sendMessage(battleMessages.join('\n') + nextPrompt, threadID);
                 global.GoatBot.onReply.set(rMsg.messageID, { commandName: this.config.name, senderID: userID, type: "battle_move", originalMID: rMsg.messageID });
-            } else if (battle.type === "pvp" && nextTurnPlayerID && battle[attackerProps.hpKey] > 0 && battle[defenderProps.hpKey] > 0) {
-                api.sendMessage(battleMessages.join('\n') + `\n➡️ Turn passes to ${await usersData.getName(nextTurnPlayerID)}.`, threadID);
+            } else if (battle.type === "pvp" && nextTurnPlayerID && nextTurnPlayerID !== userID ) { 
+                api.sendMessage(battleMessages.join('\n') + `\n\n➡️ Turn passes to ${await usersData.getName(nextTurnPlayerID)}.`, threadID); 
 
                 const nextPlayerIsP1 = battle.player1ID === nextTurnPlayerID;
-                const nextPlayerActive = nextPlayerIsP1 ? 
-                    { name: battle.player1ActivePokemonName, hp: battle.player1ActivePokemonHP, maxHp: battle.player1ActivePokemonMaxHp, status: battle.player1Status, moves: battle.player1ActivePokemonMoves } :
-                    { name: battle.player2ActivePokemonName, hp: battle.player2ActivePokemonHP, maxHp: battle.player2ActivePokemonMaxHp, status: battle.player2Status, moves: battle.player2ActivePokemonMoves };
-                const opponentForNext = nextPlayerIsP1 ?
-                    { name: battle.player2ActivePokemonName, hp: battle.player2ActivePokemonHP, maxHp: battle.player2ActivePokemonMaxHp, status: battle.player2Status } :
-                    { name: battle.player1ActivePokemonName, hp: battle.player1ActivePokemonHP, maxHp: battle.player1ActivePokemonMaxHp, status: battle.player1Status };
-                const opponentNameForNext = await usersData.getName(nextPlayerIsP1 ? battle.player2ID : battle.player1ID);
+                const nextPlayerAttackerPropsHandle = nextPlayerIsP1 ? { nameKey: 'player1ActivePokemonName', hpKey: 'player1ActivePokemonHP', maxHpKey: 'player1ActivePokemonMaxHp', typeKey: 'player1ActivePokemonType', movesKey: 'player1ActivePokemonMoves', statusKey: 'player1Status'} : { nameKey: 'player2ActivePokemonName', hpKey: 'player2ActivePokemonHP', maxHpKey: 'player2ActivePokemonMaxHp', typeKey: 'player2ActivePokemonType', movesKey: 'player2ActivePokemonMoves', statusKey: 'player2Status'};
+                const nextPlayerDefenderPropsHandle = nextPlayerIsP1 ? { nameKey: 'player2ActivePokemonName', hpKey: 'player2ActivePokemonHP', maxHpKey: 'player2ActivePokemonMaxHp', typeKey: 'player2ActivePokemonType', statusKey: 'player2Status'} : { nameKey: 'player1ActivePokemonName', hpKey: 'player1ActivePokemonHP', maxHpKey: 'player1ActivePokemonMaxHp', typeKey: 'player1ActivePokemonType', statusKey: 'player1Status'};
+                
+                const nextPlayerActive = { name: battle[nextPlayerAttackerPropsHandle.nameKey], hp: battle[nextPlayerAttackerPropsHandle.hpKey], maxHp: battle[nextPlayerAttackerPropsHandle.maxHpKey], type: battle[nextPlayerAttackerPropsHandle.typeKey], status: battle[nextPlayerAttackerPropsHandle.statusKey], moves: battle[nextPlayerAttackerPropsHandle.movesKey] || [] };
+                const opponentForNext = { name: battle[nextPlayerDefenderPropsHandle.nameKey], hp: battle[nextPlayerDefenderPropsHandle.hpKey], maxHp: battle[nextPlayerDefenderPropsHandle.maxHpKey], type: battle[nextPlayerDefenderPropsHandle.typeKey], status: battle[nextPlayerDefenderPropsHandle.statusKey] };
+                const opponentNameForNextDisplay = await usersData.getName(nextPlayerIsP1 ? battle.player2ID : battle.player1ID);
+                const nextPlayerName = await usersData.getName(nextTurnPlayerID);
 
-                let promptToNextPlayer = `--- Your Turn, ${await usersData.getName(nextTurnPlayerID)}! ---\n`;
-                promptToNextPlayer += `Your ${nextPlayerActive.name} (HP: ${nextPlayerActive.hp}/${nextPlayerActive.maxHp})${nextPlayerActive.status ? ` [${nextPlayerActive.status.type.toUpperCase()}]` : ''}\n`;
-                promptToNextPlayer += `Opponent ${opponentNameForNext}'s ${opponentForNext.name} (HP: ${opponentForNext.hp}/${opponentForNext.maxHp})${opponentForNext.status ? ` [${opponentForNext.status.type.toUpperCase()}]` : ''}\n`;
+                let promptToNextPlayer = `--- Your Turn, ${nextPlayerName}! ---\n`;
+                promptToNextPlayer += `Your ${nextPlayerActive.name} (${nextPlayerActive.type} - HP: ${nextPlayerActive.hp}/${nextPlayerActive.maxHp})${nextPlayerActive.status ? ` [${nextPlayerActive.status.type.toUpperCase()}]` : ''}\n`;
+                promptToNextPlayer += `Opponent ${opponentNameForNextDisplay}'s ${opponentForNext.name} (${opponentForNext.type} - HP: ${opponentForNext.hp}/${opponentForNext.maxHp})${opponentForNext.status ? ` [${opponentForNext.status.type.toUpperCase()}]` : ''}\n`;
                 promptToNextPlayer += `Choose a move:\n`;
                 (nextPlayerActive.moves || []).forEach((m,i) => { promptToNextPlayer += `${i+1}. ${m.name} (Dmg: ${m.damageString||'0'})\n`;});
                 promptToNextPlayer += `Reply with move number.`;
                 try {
-                    const nextMsgToOpponent = await api.sendMessage(promptToNextPlayer, nextTurnPlayerID);
+                    const nextMsgToOpponent = await api.sendMessage(promptToNextPlayer, nextTurnPlayerID); 
                     global.GoatBot.onReply.set(nextMsgToOpponent.messageID, { commandName: this.config.name, senderID: nextTurnPlayerID, type: "battle_move", originalMID: nextMsgToOpponent.messageID });
                 } catch (e) { 
-                    const fallbackMsg = await api.sendMessage(`@${await usersData.getName(nextTurnPlayerID)}, ${promptToNextPlayer}`, threadID, {mentions: [{tag: `@${await usersData.getName(nextTurnPlayerID)}`, id: nextTurnPlayerID}]});
+                    const fallbackThreadForNextPlayer = battle.challengeOriginThreadID || threadID; 
+                    console.error(`PvP Battle Move: Failed to DM next player ${nextTurnPlayerID}. Prompting in thread ${fallbackThreadForNextPlayer}.`);
+                    const fallbackMsg = await api.sendMessage(`@${nextPlayerName}, your DM for the battle prompt failed. ${promptToNextPlayer}`, fallbackThreadForNextPlayer, {mentions: [{tag: `@${nextPlayerName}`, id: nextTurnPlayerID}]});
                     global.GoatBot.onReply.set(fallbackMsg.messageID, { commandName: this.config.name, senderID: nextTurnPlayerID, type: "battle_move", originalMID: fallbackMsg.messageID });
                 }
-            } else if (battleMessages.length > 0) { 
+            } else if (battleMessages.length > 0 && userState.currentBattle) { 
                 api.sendMessage(battleMessages.join('\n'), threadID);
             }
         }
