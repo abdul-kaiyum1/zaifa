@@ -8,7 +8,7 @@ const { createCanvas, loadImage } = require('canvas');
 const { MongoClient } = require('mongodb');
 
 // --- MongoDB Setup ---
-const mongoURI = "mongodb+srv://abdulkaiyum:abdulkaiyum5426@octa.elx1m1f.mongodb.net/GoatBotV2?retryWrites=true&w=majority&appName=octa"; // Ensure this URI is correct and working
+const mongoURI = "mongodb+srv://abdulkaiyum:abdulkaiyum5426@octa.elx1m1f.mongodb.net/GoatBotV2?retryWrites=true&w=majority&appName=octa";
 const dbName = 'GoatBotV2';
 let db;
 
@@ -23,9 +23,9 @@ MongoClient.connect(mongoURI, { useNewUrlParser: true, useUnifiedTopology: true 
 
 // --- Constants ---
 const ONE_HOUR_MS = 60 * 60 * 1000;
-const CHALLENGE_TIMEOUT_MS = 60 * 1000; // 1 minute for name challenge
-const PVP_ACCEPT_TIMEOUT_MS = CHALLENGE_TIMEOUT_MS * 2; // 2 minutes for PvP acceptance
-const POKEMON_TCG_API_KEY = 'YOUR_POKEMON_TCG_API_KEY'; // <<<< REPLACE THIS!
+const CHALLENGE_TIMEOUT_MS = 60 * 1000;
+const PVP_ACCEPT_TIMEOUT_MS = CHALLENGE_TIMEOUT_MS * 2;
+const POKEMON_TCG_API_KEY = '4b2b15c7-27f0-4c3e-aa24-8474d551500c'; // <<<< REPLACE THIS!
 const NAME_OBSCURE_AREA = { x: 0.1, y: 0.04, width: 0.8, height: 0.08, color: 'black' };
 const CACHE_FOLDER_PATH = path.join(__dirname, 'cache');
 fs.ensureDirSync(CACHE_FOLDER_PATH);
@@ -41,9 +41,9 @@ const BASE_ENERGY = 100;
 const ENERGY_RECOVERY_PER_TURN = 15;
 const REST_ENERGY_RECOVERY = 25;
 
-const CRIT_CHANCE = 0.0625; // 1/16
+const CRIT_CHANCE = 0.0625; 
 const CRIT_MULTIPLIER = 1.5;
-const MISS_CHANCE = 0.05; // 5%
+const MISS_CHANCE = 0.05; 
 
 // Training Constants
 const HP_TRAIN_COST = 50;
@@ -52,7 +52,7 @@ const HP_TRAIN_MAX_BONUS = 50;
 
 const ATTACK_TRAIN_COST = 100;
 const ATTACK_TRAIN_AMOUNT = 5;
-const ATTACK_TRAIN_MAX_BONUS = 15; // Max bonus damage per attack
+const ATTACK_TRAIN_MAX_BONUS = 15; 
 
 const ENERGY_TRAIN_COST = 75;
 const ENERGY_TRAIN_AMOUNT = 10;
@@ -74,7 +74,7 @@ async function obscurePokemonName(imageUrl, obscureAreaConfig) {
 }
 
 function parseAttacksFromAPI(apiAttacks) {
-    if (!apiAttacks || apiAttacks.length === 0) return [];
+    if (!apiAttacks || !Array.isArray(apiAttacks) || apiAttacks.length === 0) return [];
     return apiAttacks.map(attack => {
         let effect = null; const effectText = (attack.text || "").toLowerCase(); const nameText = (attack.name || "").toLowerCase();
         if (effectText.includes("poisoned") || nameText.includes("poison")) effect = { type: STATUS_CONDITIONS.POISONED, chance: 1.0 };
@@ -85,18 +85,18 @@ function parseAttacksFromAPI(apiAttacks) {
 
         let damageString = String(attack.damage || "0");
         let baseDamage = parseInt(damageString.replace(/[^0-9].*$/, "")) || 0;
-        const energyCost = Math.max(5, Math.floor(baseDamage / 4) + 5); // Adjusted energy cost formula
+        const energyCost = Math.max(5, Math.floor(baseDamage / 4) + 5); 
 
         return {
             name: attack.name || "Unknown Attack",
-            damage: baseDamage, // This is the base damage from API
-            currentDamage: baseDamage, // For battle, will be overridden by collection's trained damage
-            baseDamage: baseDamage, // Store original base for training reference
+            damage: baseDamage, 
+            currentDamage: baseDamage, 
+            baseDamage: baseDamage, 
             damageString: attack.damage || "0",
             text: attack.text || "",
             cost: attack.cost || [],
             effect: effect,
-            energyCost: energyCost
+            energyCost: energyCost || 10 
         };
     }).slice(0, 4);
 }
@@ -140,13 +140,13 @@ const cmdModule = {
     config: {
         name: "pokemon",
         aliases: ["pkmn", "game"],
-        version: "1.3.5", // Incremented version
+        version: "1.3.11", // Incremented version
         author: "Abdul Kaiyum",
         countDown: 5, role: 0,
         shortDescription: { en: "Pokémon game with training, energy, crits, and more!" },
-        longDescription: { en: "Full Pokémon TCG style game with name challenges, AI/PvP battles, Pokémon training, energy system, critical hits, and status effects. All data stored in MongoDB." },
+        longDescription: { en: "Full Pokémon game with name challenges, AI/PvP battles, Pokémon training, energy system, critical hits, and status effects.." },
         category: "pokemon",
-        guide: { en: `Usage:\n• {pn} challenge\n• {pn} battle ai\n• {pn} battle pvp <@user>\n• {pn} train (lists your Pokémon for training)\n• {pn} train <index> (shows training options for that Pokémon)\n• {pn} train <index> hp\n• {pn} train <index> attack <1-4>\n• {pn} train <index> energy\n• {pn} cancel challenge\n• {pn} cancel battle\n• {pn} cancel pvp\n• {pn} status\n• {pn} leaderboard\n• {pn} collection (view your Pokémon)` }
+        guide: { en: `Usage:\n• {pn} challenge\n• {pn} battle ai\n• {pn} battle pvp <@user>\n• {pn} train (lists your Pokémon for training)\n• {pn} train <index> (shows training options for that Pokémon)\n• {pn} train <index> hp\n• {pn} train <index> attack <1-4>\n• {pn} train <index> energy\n• {pn} cancel challenge\n• {pn} cancel battle\n• {pn} cancel pvp\n• {pn} status\n• {pn} leaderboard` }
     },
 
     async getPokemonDetailsFromAPI(pokemonName) {
@@ -154,23 +154,25 @@ const cmdModule = {
             const response = await axios.get(`https://api.pokemontcg.io/v2/cards?q=name:"${encodeURIComponent(pokemonName)}"`, { headers: { 'X-Api-Key': POKEMON_TCG_API_KEY } });
             const card = response.data.data.find(c => c.name.toLowerCase() === pokemonName.toLowerCase()) || response.data.data[0];
             if (card) {
+                const baseHp = parseInt(card.hp) || 50;
                 return {
                     id: card.id, name: card.name, type: card.types ? card.types[0] : "N/A", 
-                    hp: parseInt(card.hp) || 50, // Default HP if not specified
-                    maxHp: parseInt(card.hp) || 50,
-                    baseHp: parseInt(card.hp) || 50, // Store original base HP
+                    hp: baseHp, 
+                    currentHp: baseHp, 
+                    maxHp: baseHp,
+                    baseHp: baseHp, 
                     attacks: parseAttacksFromAPI(card.attacks),
                     abilities: card.abilities ? card.abilities.map(a => `${a.name}: ${a.text}`).join('\\n') : "N/A",
                     imageUrl: card.images?.large,
                     energy: BASE_ENERGY,
                     maxEnergy: BASE_ENERGY,
-                    baseMaxEnergy: BASE_ENERGY // Store original base Max Energy
+                    baseMaxEnergy: BASE_ENERGY 
                 };
             } return null;
         } catch (error) { console.error(`Error fetching Pokémon details for ${pokemonName}:`, error.message); return null; }
     },
 
-    async getRandomPokemonForBattleSetup() { // Used for AI and potentially for player if their collection is empty/invalid
+    async getRandomPokemonForBattleSetup() { 
         try {
             const types = ["fire", "water", "grass", "lightning", "fighting", "psychic", "darkness", "metal", "fairy", "dragon", "colorless"];
             const randomType = types[Math.floor(Math.random() * types.length)];
@@ -179,11 +181,12 @@ const cmdModule = {
             if (playableCards.length > 0) {
                 const randomCard = playableCards[Math.floor(Math.random() * playableCards.length)];
                 const parsedAttacks = parseAttacksFromAPI(randomCard.attacks);
+                const baseHp = parseInt(randomCard.hp);
                 return {
                     name: randomCard.name, imageUrl: randomCard.images.large,
-                    hp: parseInt(randomCard.hp), maxHp: parseInt(randomCard.hp), baseHp: parseInt(randomCard.hp),
+                    hp: baseHp, currentHp: baseHp, maxHp: baseHp, baseHp: baseHp,
                     type: randomCard.types && randomCard.types.length > 0 ? randomCard.types[0] : "Colorless",
-                    attacks: parsedAttacks.map(a => ({...a, currentDamage: a.damage})), // Ensure currentDamage is set
+                    attacks: parsedAttacks.map(a => ({...a, currentDamage: a.damage})), 
                     status: null,
                     energy: BASE_ENERGY, maxEnergy: BASE_ENERGY, baseMaxEnergy: BASE_ENERGY
                 };
@@ -193,13 +196,12 @@ const cmdModule = {
     },
 
     async getRandomPokemonForChallengeDisplay() {
-        const pokemonData = await this.getRandomPokemonForBattleSetup(); // Gets full battle setup data
+        const pokemonData = await this.getRandomPokemonForBattleSetup(); 
         if (!pokemonData) return null;
         let imageBuffer = null;
         if (pokemonData.imageUrl) {
             imageBuffer = await obscurePokemonName(pokemonData.imageUrl, NAME_OBSCURE_AREA);
         }
-        // Return only necessary data for challenge, but include all for potential saving to collection
         return { ...pokemonData, imageBuffer };
     },
 
@@ -218,7 +220,6 @@ const cmdModule = {
     },
 
     onStart: async function ({ api, event, args, usersData }) {
-        // ... (DB connection and prefix logic - unchanged)
         if (!db) {
             try {
                 let attempts = 0;
@@ -254,9 +255,7 @@ const cmdModule = {
             currentPrefix = api.PREFIX;
         }
 
-
         if (command === "cancel") {
-            // ... (cancel logic - largely unchanged, ensures notifications go to correct threads)
             const cancelType = args[1]?.toLowerCase(); 
             if (cancelType === "challenge") { 
                 if (userState.currentChallenge) {
@@ -294,7 +293,8 @@ const cmdModule = {
                                 opponentState.currentBattle = null;
                                 await saveGameStateForUser(opponentID, opponentState);
                                 try { 
-                                    api.sendMessage(`ℹ️ ${userName} has cancelled your PvP battle.`, battleOriginThread, null, opponentID); 
+                                    const opponentName = await usersData.getName(opponentID);
+                                    api.sendMessage({body: `ℹ️ ${userName} has cancelled the PvP battle against @${opponentName}.`, mentions: [{ tag: `@${opponentName}`, id: opponentID }]}, battleOriginThread); 
                                 } 
                                 catch(e) { console.warn("Failed to notify opponent of battle cancellation in origin thread", e.message); }
                             }
@@ -311,11 +311,12 @@ const cmdModule = {
                     if (userState.pendingPvpChallenge.acceptTimeoutID) { 
                         clearTimeout(parseInt(userState.pendingPvpChallenge.acceptTimeoutID));
                     }
+                    const challengedPlayerIDForCancel = userState.pendingPvpChallenge.challengedUserID; 
                     userState.pendingPvpChallenge = null;
                     await saveGameStateForUser(userID, userState);
                     api.sendMessage(`Your sent PvP challenge to ${challengedUserName} has been cancelled.`, threadID); 
                     try {
-                        api.sendMessage(`ℹ️ The PvP challenge from ${userName} to @${challengedUserName} has been cancelled.`, challengeOriginThreadForCancel, {mentions: [{tag: `@${challengedUserName}`, id: userState.pendingPvpChallenge.challengedUserID}]}); 
+                        api.sendMessage({body: `ℹ️ The PvP challenge from ${userName} to @${challengedUserName} has been cancelled.`, mentions: [{tag: `@${challengedUserName}`, id: challengedPlayerIDForCancel}]}, challengeOriginThreadForCancel); 
                     } catch (e) { console.warn("Failed to notify origin thread of PvP challenge cancellation", e.message); }
                     return;
                 } else {
@@ -326,7 +327,6 @@ const cmdModule = {
             }
         }
 
-        // ... (status checks for currentChallenge, currentBattle, pendingPvpChallenge - largely unchanged)
         if (userState.currentChallenge) { return api.sendMessage(`You have an active Pokémon identification challenge! Reply to its image or use "${currentPrefix}${this.config.name} cancel challenge".`, threadID); }
         if (userState.currentBattle) {
             let battleMsg = `⚔️ You are currently in an ongoing battle! ⚔️\n\n`;
@@ -370,7 +370,6 @@ const cmdModule = {
 
         switch (command) {
             case "challenge":
-                // ... (name challenge logic - unchanged)
                 if (userState.lastChallengeTime && (Date.now() - userState.lastChallengeTime < ONE_HOUR_MS)) {
                     const timeLeftMs = ONE_HOUR_MS - (Date.now() - userState.lastChallengeTime);
                     return api.sendMessage(`⏳ New name challenge available in ~${Math.ceil(timeLeftMs / 60000)} min.`, threadID);
@@ -383,7 +382,6 @@ const cmdModule = {
                         attacks: challengePokemon.attacks, 
                         originalImageUrl: challengePokemon.imageUrl,
                         messageID: null, timeoutID: null,
-                        // Add energy details for collection saving if guessed correctly
                         energy: challengePokemon.energy,
                         maxEnergy: challengePokemon.maxEnergy,
                         baseHp: challengePokemon.baseHp,
@@ -451,33 +449,49 @@ const cmdModule = {
                 break;
 
             case "battle":
-                // ... (battle setup logic, ensuring playerPokemonForBattle includes energy stats from collection or defaults)
                 let userPokemonsForBattle = await getUserPokemonCollectionList(userID);
                 if (userPokemonsForBattle.length === 0) return api.sendMessage(`You have no Pokémon to battle! Complete challenges first.`, threadID);
 
-                const firstOwnedPokemonData = userPokemonsForBattle[0]; // This is from collection, should have trained stats
+                let firstOwnedPokemonData = userPokemonsForBattle[0]; 
                 
-                // Prepare player's Pokémon using collection data
+                if (!firstOwnedPokemonData.attacks || !Array.isArray(firstOwnedPokemonData.attacks) || firstOwnedPokemonData.attacks.length === 0) {
+                    console.warn(`Player ${userID}'s Pokémon ${firstOwnedPokemonData.name} has no attacks in collection. Refetching...`);
+                    const refetchedDetails = await this.getPokemonDetailsFromAPI(firstOwnedPokemonData.name);
+                    if (refetchedDetails && refetchedDetails.attacks && refetchedDetails.attacks.length > 0) {
+                        firstOwnedPokemonData.attacks = refetchedDetails.attacks.map(a => ({...a, currentDamage: a.damage, baseDamage: a.damage})); 
+                        firstOwnedPokemonData.type = refetchedDetails.type; 
+                        firstOwnedPokemonData.maxHp = firstOwnedPokemonData.maxHp || refetchedDetails.maxHp;
+                        firstOwnedPokemonData.currentHp = firstOwnedPokemonData.currentHp || refetchedDetails.currentHp; 
+                        firstOwnedPokemonData.baseHp = firstOwnedPokemonData.baseHp || refetchedDetails.baseHp;
+                        firstOwnedPokemonData.maxEnergy = firstOwnedPokemonData.maxEnergy || refetchedDetails.maxEnergy;
+                        firstOwnedPokemonData.energy = firstOwnedPokemonData.energy || refetchedDetails.energy; 
+                        firstOwnedPokemonData.baseMaxEnergy = firstOwnedPokemonData.baseMaxEnergy || refetchedDetails.baseMaxEnergy;
+                        userPokemonsForBattle[0] = firstOwnedPokemonData; 
+                        await saveUserPokemonCollectionList(userID, userPokemonsForBattle); 
+                    } else {
+                        return api.sendMessage(`❌ Your Pokémon ${firstOwnedPokemonData.name} has corrupted attack data and cannot be used for battle. Please try training it or contact support.`, threadID);
+                    }
+                }
+                
                 const playerPokemonForBattle = {
                     name: firstOwnedPokemonData.name,
-                    hp: firstOwnedPokemonData.currentHp, // Use currentHp from collection
-                    maxHp: firstOwnedPokemonData.maxHp,   // Use maxHp from collection
-                    baseHp: firstOwnedPokemonData.baseHp,
+                    hp: firstOwnedPokemonData.currentHp || firstOwnedPokemonData.maxHp || BASE_ENERGY, 
+                    maxHp: firstOwnedPokemonData.maxHp || BASE_ENERGY,  
+                    baseHp: firstOwnedPokemonData.baseHp || firstOwnedPokemonData.maxHp || BASE_ENERGY,
                     type: firstOwnedPokemonData.type,
-                    attacks: firstOwnedPokemonData.attacks.map(a => ({...a, damage: a.currentDamage })), // Use currentDamage for battle 'damage'
+                    attacks: (firstOwnedPokemonData.attacks || []).map(a => ({...a, damage: a.currentDamage || a.baseDamage || a.damage})), 
                     status: null,
-                    energy: firstOwnedPokemonData.energy,
-                    maxEnergy: firstOwnedPokemonData.maxEnergy,
-                    baseMaxEnergy: firstOwnedPokemonData.baseMaxEnergy
+                    energy: firstOwnedPokemonData.energy || BASE_ENERGY,
+                    maxEnergy: firstOwnedPokemonData.maxEnergy || BASE_ENERGY,
+                    baseMaxEnergy: firstOwnedPokemonData.baseMaxEnergy || BASE_ENERGY
                 };
 
 
                 if (!subCommand) return api.sendMessage(`Specify battle type: "${currentPrefix}${this.config.name} battle ai" or "${currentPrefix}${this.config.name} battle pvp @user".`, threadID);
 
                 if (subCommand === "ai") {
-                    // ... (AI battle setup - unchanged, opponentAI gets default energy from getRandomPokemonForBattleSetup)
                     api.sendMessage("⏳ Setting up AI battle...", threadID);
-                    const opponentAI = await this.getRandomPokemonForBattleSetup(); // AI gets fresh stats
+                    const opponentAI = await this.getRandomPokemonForBattleSetup(); 
                     if (!opponentAI) return api.sendMessage("❌ Failed to set up AI opponent. Please try again.", threadID);
 
                     userState.currentBattle = {
@@ -501,7 +515,7 @@ const cmdModule = {
                         opponentEnergy: opponentAI.energy,
                         opponentMaxEnergy: opponentAI.maxEnergy,
                         currentTurn: userID,
-                        challengeOriginThreadID: threadID // For AI battles, origin is current thread
+                        challengeOriginThreadID: threadID 
                     };
                     await saveGameStateForUser(userID, userState);
 
@@ -510,7 +524,7 @@ const cmdModule = {
                     msgAI += `AI's ${opponentAI.name} (${opponentAI.type} - HP ${opponentAI.hp}/${opponentAI.maxHp} - Energy ${opponentAI.energy}/${opponentAI.maxEnergy})\n\n`;
                     msgAI += `--- Your Turn, ${userName}! ---\nChoose a move:\n`;
                     (playerPokemonForBattle.attacks || []).forEach((move, index) => {
-                        msgAI += `${index + 1}. ${move.name} (Dmg: ${move.damageString || '0'}, Cost: ${move.energyCost}⚡)${move.text ? ` - ${move.text.substring(0,30)}...` : ''}\n`;
+                        msgAI += `${index + 1}. ${move.name} (Dmg: ${move.damage}, Cost: ${move.energyCost}⚡)\n`; 
                     });
                     msgAI += `Reply with move number.`;
 
@@ -519,7 +533,6 @@ const cmdModule = {
 
 
                 } else if (subCommand === "pvp") {
-                    // ... (PvP challenge logic - all messages go to threadID)
                     const mentionsPvP = Object.keys(event.mentions);
                     if (mentionsPvP.length === 0) return api.sendMessage(`Tag a player to challenge for PvP! e.g., "${currentPrefix}${this.config.name} battle pvp @user"`, threadID);
                     const challengedIDPvP = mentionsPvP[0];
@@ -546,10 +559,10 @@ const cmdModule = {
                             
                             const originalChallengedName = await usersData.getName(challengedIDPvP); 
                             const originalChallengerName = await usersData.getName(userID);
-                            const challengeOriginThreadForTimeout = currentChallengerState.pendingPvpChallenge.threadID; // This is 'threadID' from onStart
+                            const challengeOriginThreadForTimeout = currentChallengerState.pendingPvpChallenge.threadID; 
 
                             console.log(`PvP Challenge from ${originalChallengerName} to ${originalChallengedName} timed out.`);
-                            api.sendMessage(`Your PvP challenge to ${originalChallengedName} has expired as they did not respond in time.`, challengeOriginThreadForTimeout); 
+                            api.sendMessage({body: `The PvP challenge from ${originalChallengerName} to @${originalChallengedName} has expired due to no response.`, mentions: [{ tag: `@${originalChallengedName}`, id: challengedIDPvP }]}, challengeOriginThreadForTimeout); 
                             
                             currentChallengerState.pendingPvpChallenge = null;
                             await saveGameStateForUser(userID, currentChallengerState);
@@ -559,17 +572,17 @@ const cmdModule = {
                     userState.pendingPvpChallenge = {
                         challengerID: userID,
                         challengedUserID: challengedIDPvP,
-                        threadID: threadID, // This is the thread where the challenge was issued
-                        challengerPokemonDetails: playerPokemonForBattle, // Challenger's chosen pokemon with its current (possibly trained) stats
+                        threadID: threadID, 
+                        challengerPokemonDetails: playerPokemonForBattle, 
                         challengeSentTime: Date.now(),
                         acceptTimeoutID: pvpAcceptTimeoutID.toString()
                     };
                     await saveGameStateForUser(userID, userState);
                     
                     const cMsgPvP = `🔔 @${challengedNamePvP}, ${userName} has challenged you to a Pokémon battle! Reply to this message with "accept" or "decline". This challenge expires in ~${Math.ceil(PVP_ACCEPT_TIMEOUT_MS / 60000)} min.`;
-                    const challengeMsgInfo = await api.sendMessage(cMsgPvP, threadID, { mentions: [{ tag: `@${challengedNamePvP}`, id: challengedIDPvP }] });
+                    const challengeMsgInfo = await api.sendMessage({body: cMsgPvP, mentions: [{ tag: `@${challengedNamePvP}`, id: challengedIDPvP }]}, threadID);
                     global.GoatBot.onReply.set(challengeMsgInfo.messageID, { commandName: this.config.name, senderID: challengedIDPvP, type: "pvp_challenge_response", challengerID: userID, originalMID: challengeMsgInfo.messageID });
-                    // Confirmation to challenger is implicit by the command succeeding.
+                    
                 } else {
                     api.sendMessage(`Invalid battle subcommand. Use "ai" or "pvp".`, threadID);
                 }
@@ -581,33 +594,55 @@ const cmdModule = {
                     return api.sendMessage("You have no Pokémon in your collection to train!", threadID);
                 }
 
-                const trainPokemonIndex = parseInt(args[1]); // e.g., {pn} train 1
-                const trainStatType = args[2]?.toLowerCase(); // e.g., hp, attack, energy
-                const trainAttackIndex = parseInt(args[3]); // e.g., for {pn} train 1 attack 1
+                const trainPokemonIndexArg = args[1];
+                const trainPokemonIndex = parseInt(trainPokemonIndexArg) -1; 
+                const trainStatType = args[2]?.toLowerCase(); 
+                const trainAttackIndexArg = args[3];
+                const trainAttackIndex = parseInt(trainAttackIndexArg) -1; 
 
-                if (isNaN(trainPokemonIndex) || trainPokemonIndex < 1 || trainPokemonIndex > userPokemonsToTrain.length) {
+                if (isNaN(trainPokemonIndex) || trainPokemonIndex < 0 || trainPokemonIndex >= userPokemonsToTrain.length) {
                     let listMsg = "Your Pokémon Collection for Training:\n";
                     userPokemonsToTrain.forEach((p, i) => {
-                        listMsg += `${i + 1}. ${p.name} (HP: ${p.maxHp}, Max Energy: ${p.maxEnergy})\n`;
-                        p.attacks.forEach((atk, idx) => {
-                            listMsg += `   - Attack ${idx + 1}: ${atk.name} (Dmg: ${atk.currentDamage}, Cost: ${atk.energyCost}⚡)\n`;
-                        });
+                        listMsg += `${i + 1}. ${p.name} (HP: ${p.maxHp}, Max Energy: ${p.maxEnergy || BASE_ENERGY})\n`; 
+                        if (p.attacks && Array.isArray(p.attacks)) {
+                            p.attacks.forEach((atk, idx) => {
+                                listMsg += `   - Attack ${idx + 1}: ${atk.name} (Dmg: ${atk.currentDamage || atk.baseDamage || 0}, Cost: ${atk.energyCost || 10}⚡)\n`;
+                            });
+                        } else {
+                            listMsg += `   (Attack data missing/corrupted for this Pokémon)\n`;
+                        }
                     });
                     listMsg += `\nUse: {pn} train <index> <hp|attack|energy> [attack_number_if_attack]`;
                     return api.sendMessage(listMsg.replace(/{pn}/g, `${currentPrefix}pokemon`), threadID);
                 }
                 
-                const selectedPokemon = userPokemonsToTrain[trainPokemonIndex - 1];
+                const selectedPokemon = userPokemonsToTrain[trainPokemonIndex];
+                selectedPokemon.baseHp = parseInt(selectedPokemon.baseHp || selectedPokemon.maxHp || BASE_ENERGY); 
+                selectedPokemon.maxHp = parseInt(selectedPokemon.maxHp || selectedPokemon.baseHp);
+                selectedPokemon.baseMaxEnergy = parseInt(selectedPokemon.baseMaxEnergy || BASE_ENERGY);
+                selectedPokemon.maxEnergy = parseInt(selectedPokemon.maxEnergy || selectedPokemon.baseMaxEnergy);
+                selectedPokemon.attacks = Array.isArray(selectedPokemon.attacks) ? selectedPokemon.attacks : [];
+                selectedPokemon.attacks.forEach(atk => {
+                    atk.baseDamage = parseInt(atk.baseDamage || atk.damage || 0);
+                    atk.currentDamage = parseInt(atk.currentDamage || atk.baseDamage);
+                    atk.energyCost = parseInt(atk.energyCost || Math.max(5, Math.floor(atk.baseDamage / 4) + 5));
+                });
+
+
                 let trainConfirmMsg = "";
 
                 if (!trainStatType) {
                     let detailMsg = `Training options for ${selectedPokemon.name}:\n`;
                     detailMsg += `1. HP (Current Max: ${selectedPokemon.maxHp}, Base: ${selectedPokemon.baseHp})\n   Cost: ${HP_TRAIN_COST} coins for +${HP_TRAIN_AMOUNT} HP (Max +${HP_TRAIN_MAX_BONUS} total bonus)\n`;
-                    selectedPokemon.attacks.forEach((atk, i) => {
-                        detailMsg += `${i + 2}. Attack ${i + 1}: ${atk.name} (Current Dmg: ${atk.currentDamage}, Base: ${atk.baseDamage})\n   Cost: ${ATTACK_TRAIN_COST} coins for +${ATTACK_TRAIN_AMOUNT} Dmg (Max +${ATTACK_TRAIN_MAX_BONUS} total bonus)\n`;
-                    });
-                    detailMsg += `${selectedPokemon.attacks.length + 2}. Max Energy (Current: ${selectedPokemon.maxEnergy}, Base: ${selectedPokemon.baseMaxEnergy})\n   Cost: ${ENERGY_TRAIN_COST} coins for +${ENERGY_TRAIN_AMOUNT} Max Energy (Max +${ENERGY_TRAIN_MAX_BONUS} total bonus)\n`;
-                    detailMsg += `\nUse: {pn} train ${trainPokemonIndex} <hp|attack|energy> [attack_number_if_attack]`;
+                    if (selectedPokemon.attacks && Array.isArray(selectedPokemon.attacks)) {
+                        selectedPokemon.attacks.forEach((atk, i) => {
+                            detailMsg += `${i + 2}. Attack ${i + 1}: ${atk.name} (Current Dmg: ${atk.currentDamage}, Base: ${atk.baseDamage})\n   Cost: ${ATTACK_TRAIN_COST} coins for +${ATTACK_TRAIN_AMOUNT} Dmg (Max +${ATTACK_TRAIN_MAX_BONUS} total bonus)\n`;
+                        });
+                    } else {
+                         detailMsg += `(Attack data for ${selectedPokemon.name} is unavailable for training.)\n`;
+                    }
+                    detailMsg += `${(selectedPokemon.attacks?.length || 0) + 2}. Max Energy (Current: ${selectedPokemon.maxEnergy}, Base: ${selectedPokemon.baseMaxEnergy})\n   Cost: ${ENERGY_TRAIN_COST} coins for +${ENERGY_TRAIN_AMOUNT} Max Energy (Max +${ENERGY_TRAIN_MAX_BONUS} total bonus)\n`;
+                    detailMsg += `\nUse: {pn} train ${trainPokemonIndexArg} <hp|attack|energy> [attack_number_if_attack]`;
                     return api.sendMessage(detailMsg.replace(/{pn}/g, `${currentPrefix}pokemon`), threadID);
                 }
 
@@ -617,13 +652,20 @@ const cmdModule = {
                     
                     userState.coins -= HP_TRAIN_COST;
                     selectedPokemon.maxHp += HP_TRAIN_AMOUNT;
-                    selectedPokemon.currentHp = selectedPokemon.maxHp; // Heal to new max
+                    selectedPokemon.currentHp = selectedPokemon.maxHp; 
                     trainConfirmMsg = `${selectedPokemon.name}'s Max HP increased by ${HP_TRAIN_AMOUNT} to ${selectedPokemon.maxHp}! You have ${userState.coins} coins left.`;
                 } else if (trainStatType === "attack") {
-                    if (isNaN(trainAttackIndex) || trainAttackIndex < 1 || trainAttackIndex > selectedPokemon.attacks.length) {
+                    if (!selectedPokemon.attacks || !Array.isArray(selectedPokemon.attacks) || selectedPokemon.attacks.length === 0) {
+                        return api.sendMessage(`${selectedPokemon.name} has no attacks or attack data is corrupted, cannot train attacks.`, threadID);
+                    }
+                    if (isNaN(trainAttackIndex) || trainAttackIndex < 0 || trainAttackIndex >= selectedPokemon.attacks.length) {
                         return api.sendMessage(`Invalid attack number. Choose between 1 and ${selectedPokemon.attacks.length}.`, threadID);
                     }
-                    const attackToTrain = selectedPokemon.attacks[trainAttackIndex - 1];
+                    const attackToTrain = selectedPokemon.attacks[trainAttackIndex];
+                     attackToTrain.baseDamage = parseInt(attackToTrain.baseDamage || attackToTrain.currentDamage || 0); 
+                     attackToTrain.currentDamage = parseInt(attackToTrain.currentDamage || attackToTrain.baseDamage);
+
+
                     if (userState.coins < ATTACK_TRAIN_COST) return api.sendMessage(`Not enough coins! Training attack damage costs ${ATTACK_TRAIN_COST} coins.`, threadID);
                     if (attackToTrain.currentDamage >= attackToTrain.baseDamage + ATTACK_TRAIN_MAX_BONUS) return api.sendMessage(`${selectedPokemon.name}'s ${attackToTrain.name} damage is already maxed out through training!`, threadID);
 
@@ -636,37 +678,18 @@ const cmdModule = {
 
                     userState.coins -= ENERGY_TRAIN_COST;
                     selectedPokemon.maxEnergy += ENERGY_TRAIN_AMOUNT;
-                    selectedPokemon.energy = selectedPokemon.maxEnergy; // Restore to new max
+                    selectedPokemon.energy = selectedPokemon.maxEnergy; 
                     trainConfirmMsg = `${selectedPokemon.name}'s Max Energy increased by ${ENERGY_TRAIN_AMOUNT} to ${selectedPokemon.maxEnergy}! You have ${userState.coins} coins left.`;
                 } else {
                     return api.sendMessage("Invalid training type. Choose 'hp', 'attack', or 'energy'.", threadID);
                 }
 
-                userPokemonsToTrain[trainPokemonIndex - 1] = selectedPokemon; // Update the pokemon in the list
+                userPokemonsToTrain[trainPokemonIndex] = selectedPokemon; 
                 await saveUserPokemonCollectionList(userID, userPokemonsToTrain);
-                await saveGameStateForUser(userID, userState); // Save coin changes
+                await saveGameStateForUser(userID, userState); 
                 return api.sendMessage(trainConfirmMsg, threadID);
 
-            case "collection": // New command to view collection
-                const userCollection = await getUserPokemonCollectionList(userID);
-                if (userCollection.length === 0) {
-                    return api.sendMessage("Your Pokémon collection is empty. Win challenges to get Pokémon!", threadID);
-                }
-                let collectionMsg = `🎒 ${userName}'s Pokémon Collection 🎒\n\n`;
-                userCollection.forEach((p, i) => {
-                    collectionMsg += `${i + 1}. ${p.name} (${p.type})\n`;
-                    collectionMsg += `   HP: ${p.currentHp}/${p.maxHp} (Base: ${p.baseHp})\n`;
-                    collectionMsg += `   Max Energy: ${p.maxEnergy} (Base: ${p.baseMaxEnergy})\n`;
-                    collectionMsg += "   Attacks:\n";
-                    p.attacks.forEach((atk, idx) => {
-                        collectionMsg += `     ${idx + 1}) ${atk.name} (Dmg: ${atk.currentDamage}, Base: ${atk.baseDamage}, Cost: ${atk.energyCost}⚡)\n`;
-                    });
-                    collectionMsg += "\n";
-                });
-                return api.sendMessage(collectionMsg, threadID);
-
             case "status":
-                 // ... (status logic - unchanged, but could show energy if in battle)
                 let sMsgStatus = `🌟 ${userName}'s Pokémon Game Status 🌟\n\n💰 Coins: ${userState.coins}\n`;
                 if(userState.lastChallengeTime){
                     const tsStatus=Date.now()-userState.lastChallengeTime;
@@ -759,7 +782,6 @@ const cmdModule = {
                 break;
 
             case "leaderboard":
-                 // ... (leaderboard logic - unchanged)
                 if (!db) return api.sendMessage("DB not connected.", threadID);
                 const playersLB = await db.collection('pokemon_game_states')
                     .find({ coins: { $exists: true, $type: "number" } }) 
@@ -789,7 +811,6 @@ const cmdModule = {
     },
 
     onReply: async function ({ api, event, Reply, usersData }) {
-        // ... (initial checks - unchanged)
         if (!db) return api.sendMessage("⏳ Database is connecting... Please try again in a moment.", event.threadID);
         const userID = event.senderID; 
         const threadID = event.threadID; 
@@ -802,7 +823,6 @@ const cmdModule = {
 
 
         if (Reply.type === "challenge_answer") {
-            // ... (name challenge reply logic - updated to save full pokemon data to collection)
             if (userState.currentChallenge && userState.currentChallenge.messageID === Reply.originalMID) {
                 api.unsendMessage(Reply.originalMID).catch(e => console.warn("Challenge_answer: Minor error un-sending original reply:", e.message));
             }
@@ -817,7 +837,7 @@ const cmdModule = {
 
             const userAnswer = event.body.trim().toLowerCase();
             const correctName = userState.currentChallenge.name.toLowerCase();
-            const challengeDataForCollection = Reply.challengeData; // Contains all details including base stats
+            const challengeDataForCollection = Reply.challengeData; 
 
             if (userAnswer === correctName) {
                 api.sendMessage(`🎉 Congratulations, ${replySenderName}! You correctly identified ${challengeDataForCollection.name}!`, threadID);
@@ -830,12 +850,12 @@ const cmdModule = {
                     type: challengeDataForCollection.type || "Unknown",
                     attacks: (challengeDataForCollection.attacks || []).map(a => ({ 
                         ...a, 
-                        currentDamage: a.damage, // Initial currentDamage is base API damage
-                        baseDamage: a.damage    // Store base API damage
+                        currentDamage: a.damage, 
+                        baseDamage: a.damage    
                     })), 
                     imageUrl: challengeDataForCollection.originalImageUrl, 
-                    id: `${userID}_${Date.now()}_${Math.random().toString(36).substring(2, 7)}`, // More unique ID
-                    energy: parseInt(challengeDataForCollection.maxEnergy || BASE_ENERGY), // Start with full energy
+                    id: `${userID}_${Date.now()}_${Math.random().toString(36).substring(2, 7)}`, 
+                    energy: parseInt(challengeDataForCollection.maxEnergy || BASE_ENERGY), 
                     maxEnergy: parseInt(challengeDataForCollection.maxEnergy || BASE_ENERGY),
                     baseMaxEnergy: parseInt(challengeDataForCollection.baseMaxEnergy || BASE_ENERGY)
                 };
@@ -854,7 +874,6 @@ const cmdModule = {
 
 
         } else if (Reply.type === "pvp_challenge_response") {
-            // ... (PvP challenge response logic - all comms to challengeOriginThread)
             try { if (Reply.originalMID) await api.unsendMessage(Reply.originalMID); } catch (e) { console.warn("pvp_challenge_response: unsend original failed", e.message)} 
 
             const responsePvP = event.body.trim().toLowerCase();
@@ -868,7 +887,7 @@ const cmdModule = {
                 !originalChallengerState.pendingPvpChallenge || 
                 originalChallengerState.pendingPvpChallenge.challengedUserID !== challengedUserID ||
                 originalChallengerState.pendingPvpChallenge.challengerID !== originalChallengerID) { 
-                return api.sendMessage("This PvP challenge is no longer valid, has expired, was cancelled, or was not intended for you.", threadID); // Reply in current thread
+                return api.sendMessage("This PvP challenge is no longer valid, has expired, was cancelled, or was not intended for you.", threadID); 
             }
             
             const pendingChallengeDetails = { ...originalChallengerState.pendingPvpChallenge };
@@ -885,39 +904,38 @@ const cmdModule = {
 
                 api.sendMessage(`✅ ${challengedPlayerName} accepted the battle challenge from ${originalChallengerName}! Setting up the battle...`, challengeOriginThread); 
                 
-                const challengerPokemonForBattleRaw = pendingChallengeDetails.challengerPokemonDetails; // This is from challenger's onStart, should be collection-derived
-                 const challengerPokemonForBattle = { // Ensure all fields for battle are present
+                const challengerPokemonForBattleRaw = pendingChallengeDetails.challengerPokemonDetails; 
+                 const challengerPokemonForBattle = { 
                     name: challengerPokemonForBattleRaw.name,
                     hp: challengerPokemonForBattleRaw.hp,
                     maxHp: challengerPokemonForBattleRaw.maxHp,
                     baseHp: challengerPokemonForBattleRaw.baseHp,
                     type: challengerPokemonForBattleRaw.type,
-                    attacks: challengerPokemonForBattleRaw.attacks.map(a => ({...a, damage: a.currentDamage || a.damage})),
+                    attacks: (challengerPokemonForBattleRaw.attacks || []).map(a => ({...a, damage: a.currentDamage || a.damage})),
                     status: null,
                     energy: challengerPokemonForBattleRaw.energy,
                     maxEnergy: challengerPokemonForBattleRaw.maxEnergy,
                     baseMaxEnergy: challengerPokemonForBattleRaw.baseMaxEnergy
                 };
 
-
                 let p2Collection = await getUserPokemonCollectionList(challengedUserID); 
-                if (p2Collection.length === 0) { // Should not happen due to onStart check, but safeguard
-                    api.sendMessage(`❌ @${originalChallengerName}, ${challengedPlayerName} has no Pokémon. Battle cancelled.`, challengeOriginThread, { mentions: [{ tag: `@${originalChallengerName}`, id: originalChallengerID }]});
+                if (p2Collection.length === 0) { 
+                    api.sendMessage({body: `❌ @${originalChallengerName}, ${challengedPlayerName} has no Pokémon. Battle cancelled.`, mentions: [{ tag: `@${originalChallengerName}`, id: originalChallengerID }]}, challengeOriginThread);
                     await saveGameStateForUser(originalChallengerID, originalChallengerState); 
                     return;
                 }
                 const p2FirstPokemonData = p2Collection[0]; 
                 const p2PokemonForBattle = {
                     name: p2FirstPokemonData.name,
-                    hp: p2FirstPokemonData.currentHp,
+                    hp: p2FirstPokemonData.currentHp || p2FirstPokemonData.maxHp,
                     maxHp: p2FirstPokemonData.maxHp,
-                    baseHp: p2FirstPokemonData.baseHp,
+                    baseHp: p2FirstPokemonData.baseHp || p2FirstPokemonData.maxHp,
                     type: p2FirstPokemonData.type,
-                    attacks: p2FirstPokemonData.attacks.map(a => ({...a, damage: a.currentDamage})),
+                    attacks: (p2FirstPokemonData.attacks || []).map(a => ({...a, damage: a.currentDamage || a.baseDamage || a.damage})),
                     status: null,
-                    energy: p2FirstPokemonData.energy,
-                    maxEnergy: p2FirstPokemonData.maxEnergy,
-                    baseMaxEnergy: p2FirstPokemonData.baseMaxEnergy
+                    energy: p2FirstPokemonData.energy || BASE_ENERGY,
+                    maxEnergy: p2FirstPokemonData.maxEnergy || BASE_ENERGY,
+                    baseMaxEnergy: p2FirstPokemonData.baseMaxEnergy || BASE_ENERGY
                 };
 
 
@@ -967,7 +985,7 @@ const cmdModule = {
                 });
                 promptToChallengerForFirstMove += `Reply with move number.`;
 
-                const firstMovePromptMsg = await api.sendMessage(promptToChallengerForFirstMove, challengeOriginThread, { mentions: [{ tag: `@${originalChallengerName}`, id: originalChallengerID }] });
+                const firstMovePromptMsg = await api.sendMessage({body: promptToChallengerForFirstMove, mentions: [{ tag: `@${originalChallengerName}`, id: originalChallengerID }]}, challengeOriginThread);
                 global.GoatBot.onReply.set(firstMovePromptMsg.messageID,{commandName:this.config.name,senderID:originalChallengerID,type:"battle_move",originalMID:firstMovePromptMsg.messageID}); 
                 
             } else if (responsePvP === "decline") { 
@@ -982,7 +1000,6 @@ const cmdModule = {
 
 
         } else if (Reply.type === "battle_move") {
-            // ... (battle_move logic with energy, crits, misses)
             try { if (Reply.originalMID) await api.unsendMessage(Reply.originalMID); }
             catch (e) { console.warn("Battle_move: Error un-sending original prompt:", e.message); }
 
@@ -995,14 +1012,12 @@ const cmdModule = {
             const battleCommThread = battle.challengeOriginThreadID || threadID; 
 
             if (battle.currentTurn !== currentPlayerID) {
-                return api.sendMessage(`⏳ It's not your turn! Please wait for ${await usersData.getName(battle.currentTurn)}.`, threadID); // This message is fine in current thread
+                return api.sendMessage(`⏳ It's not your turn! Please wait for ${await usersData.getName(battle.currentTurn)}.`, threadID); 
             }
 
             let battleMessages = []; 
             let attacker, defender, attackerName, defenderName, attackerProps, defenderProps, isP1AttackingGlobal = null;
-            let attackerEnergyProps, defenderEnergyProps;
-
-
+            
             if (battle.type === "ai") {
                 attackerProps = {
                     nameKey: 'playerActivePokemonName', hpKey: 'playerActivePokemonHP', maxHpKey: 'playerActivePokemonMaxHp',
@@ -1045,15 +1060,13 @@ const cmdModule = {
 
             battleMessages.push(`\n--- ${attackerName}'s Turn (${attacker.type} - Energy: ${attacker.energy}/${attacker.maxEnergy}) ---`);
             
-            // Start of turn energy recovery
             battle[attackerProps.energyKey] = Math.min(attacker.maxEnergy, attacker.energy + ENERGY_RECOVERY_PER_TURN);
-            attacker.energy = battle[attackerProps.energyKey]; // Update local copy
+            attacker.energy = battle[attackerProps.energyKey]; 
             battleMessages.push(`✨ ${attacker.name} recovered ${ENERGY_RECOVERY_PER_TURN} energy! (Now: ${attacker.energy}/${attacker.maxEnergy})`);
 
 
             let playerCanAttack = true; 
             if (attacker.status) {
-                // ... (status effect logic - unchanged)
                 switch (attacker.status.type) {
                     case STATUS_CONDITIONS.ASLEEP:
                         if (Math.random() < 0.5) { 
@@ -1092,7 +1105,6 @@ const cmdModule = {
                 if (isNaN(chosenMoveIndex) || chosenMoveIndex < 0 || chosenMoveIndex >= attacker.moves.length) {
                     battleMessages.push("⚠️ Invalid move selection. Turn skipped by resting.");
                     playerCanAttack = false; 
-                    // Instead of skipping, let's make it a "Rest" action if invalid move
                     battle[attackerProps.energyKey] = Math.min(attacker.maxEnergy, attacker.energy + REST_ENERGY_RECOVERY);
                     attacker.energy = battle[attackerProps.energyKey];
                     battleMessages.push(`🧘 ${attacker.name} rests and recovers ${REST_ENERGY_RECOVERY} energy due to invalid move! (Now: ${attacker.energy}/${attacker.maxEnergy})`);
@@ -1104,8 +1116,8 @@ const cmdModule = {
                         battle[attackerProps.energyKey] = Math.min(attacker.maxEnergy, attacker.energy + REST_ENERGY_RECOVERY);
                         attacker.energy = battle[attackerProps.energyKey];
                         battleMessages.push(`🧘 ${attacker.name} rests and recovers ${REST_ENERGY_RECOVERY} energy! (Now: ${attacker.energy}/${attacker.maxEnergy})`);
-                        playerCanAttack = false; // Cannot attack
-                        selectedMove = null; // Clear selected move
+                        playerCanAttack = false; 
+                        selectedMove = null; 
                         restedThisTurn = true;
                     }
                 }
@@ -1116,7 +1128,7 @@ const cmdModule = {
 
             if (playerCanAttack && selectedMove) {
                 battle[attackerProps.energyKey] -= selectedMove.energyCost;
-                attacker.energy = battle[attackerProps.energyKey]; // Update local copy after cost
+                attacker.energy = battle[attackerProps.energyKey]; 
                 battleMessages.push(`💥 ${attackerName}'s ${attacker.name} used ${selectedMove.name}! (Cost: ${selectedMove.energyCost}⚡, Remaining: ${attacker.energy}/${attacker.maxEnergy})`);
                 if (selectedMove.text) battleMessages.push(`   ${selectedMove.text}`);
 
@@ -1124,7 +1136,7 @@ const cmdModule = {
                 if (Math.random() < MISS_CHANCE) {
                     battleMessages.push(`💨 ${attacker.name}'s ${selectedMove.name} missed!`);
                 } else {
-                    const moveBaseDamage = selectedMove.damage; // This should be currentDamage from collection/setup
+                    const moveBaseDamage = selectedMove.damage; 
                     const advantageMultiplier = this.getTypeAdvantage(attacker.type, defender.type);
                     damageDealt = Math.max(0, Math.floor(moveBaseDamage * advantageMultiplier));
                     
@@ -1149,14 +1161,13 @@ const cmdModule = {
             }
             
             let battleEnded = false;
-            // ... (Win/loss checks, same as before, ensuring battleEnded is set)
             if (battle[defenderProps.hpKey] <= 0) { 
                 battleMessages.push(`☠️ ${defender.name} fainted!`);
                 battleMessages.push(`🎉 ${attackerName} wins the battle!`);
                 userState.coins = (userState.coins || 0) + (battle.type === "ai" ? 75 : 150);
                 battleMessages.push(`💰 ${attackerName} earned ${battle.type === "ai" ? 75 : 150} coins! Total: ${userState.coins}`);
                 battleEnded = true;
-            } else if (battle[attackerProps.hpKey] <= 0 && (!playerCanAttack || restedThisTurn) ) { // Attacker fainted from pre-turn status/confusion OR rested and was already at 0
+            } else if (battle[attackerProps.hpKey] <= 0 && (!playerCanAttack || restedThisTurn) ) { 
                  battleMessages.push(`🎉 ${defenderName} wins the battle!`);
                  if (battle.type === "pvp") {
                     const winnerID = isP1AttackingGlobal ? battle.player2ID : battle.player1ID;
@@ -1165,7 +1176,7 @@ const cmdModule = {
                         winnerState.coins = (winnerState.coins || 0) + 150; 
                         await saveGameStateForUser(winnerID, winnerState); 
                         try { 
-                            api.sendMessage(`💰 You earned 150 coins as ${attackerName} fainted!`, battleCommThread, null, winnerID);
+                            api.sendMessage({body: `💰 You earned 150 coins as ${attackerName} fainted!`, mentions:[]}, battleCommThread, null, winnerID); // Corrected sendMessage
                         } catch(e){}
                     }
                  }
@@ -1184,8 +1195,7 @@ const cmdModule = {
                 return api.sendMessage(battleMessages.join('\n'), battleCommThread); 
             }
 
-            if (attacker.status && (playerCanAttack || restedThisTurn) && battle[attackerProps.hpKey] > 0) { // Apply end of turn status if player took an action (attacked or rested)
-                // ... (end of turn status damage - unchanged)
+            if (attacker.status && (playerCanAttack || restedThisTurn) && battle[attackerProps.hpKey] > 0) { 
                 switch(attacker.status.type) {
                     case STATUS_CONDITIONS.POISONED:
                         battle[attackerProps.hpKey] = Math.max(0, battle[attackerProps.hpKey] - POISON_DAMAGE);
@@ -1212,7 +1222,7 @@ const cmdModule = {
                             winnerState.coins = (winnerState.coins || 0) + 150; 
                             await saveGameStateForUser(winnerID, winnerState); 
                             try { 
-                                api.sendMessage(`💰 You earned 150 coins as ${attackerName} fainted from status!`, battleCommThread, null, winnerID);
+                                api.sendMessage({body: `💰 You earned 150 coins as ${attackerName} fainted from status!`, mentions:[]}, battleCommThread, null, winnerID); // Corrected sendMessage
                             } catch(e){}
                         }
                      }
@@ -1232,14 +1242,12 @@ const cmdModule = {
 
             let nextTurnPlayerID = null;
             if (battle.type === "ai") {
-                // --- AI's Turn ---
                 battleMessages.push(`\n--- AI ${battle[defenderProps.nameKey]}'s Turn (${battle[defenderProps.typeKey]} - Energy: ${battle[defenderProps.energyKey]}/${battle[defenderProps.maxEnergyKey]}) ---`);
                 battle[defenderProps.energyKey] = Math.min(battle[defenderProps.maxEnergyKey], battle[defenderProps.energyKey] + ENERGY_RECOVERY_PER_TURN);
                 battleMessages.push(`✨ AI ${defender.name} recovered ${ENERGY_RECOVERY_PER_TURN} energy! (Now: ${battle[defenderProps.energyKey]}/${battle[defenderProps.maxEnergyKey]})`);
 
                 let aiCanAttack = true; 
                 if (battle[defenderProps.statusKey]) { 
-                    // ... (AI status checks, same as before, ensure aiCanAttack and battleEnded are updated)
                     const aiStatus = battle[defenderProps.statusKey];
                     switch(aiStatus.type) {
                         case STATUS_CONDITIONS.ASLEEP: if (Math.random() < 0.5) { battleMessages.push(`☀️ AI ${defender.name} woke up!`); battle[defenderProps.statusKey] = null; } else { battleMessages.push(`😴 AI ${defender.name} is asleep.`); aiCanAttack = false; } break;
@@ -1252,11 +1260,10 @@ const cmdModule = {
                     const aiMoves = battle[defenderProps.movesKey] || [];
                     let aiSelectedMove = null;
                     if (aiMoves.length > 0) {
-                        // AI Move Selection with Energy Check
                         const usableMoves = aiMoves.filter(m => battle[defenderProps.energyKey] >= m.energyCost);
                         if (usableMoves.length > 0) {
                             const playerPokemonTypeForAI = battle[attackerProps.typeKey]; 
-                            const aiPokemonTypeForAI = battle[defenderProps.typeKey];
+                            const aiPokemonTypeForAI = battle[defenderProps.typeKey]; 
                             
                             const superEffectiveUsableMoves = usableMoves.filter(move => move.damage > 0 && this.getTypeAdvantage(aiPokemonTypeForAI, playerPokemonTypeForAI) === 2);
                             const normalEffectiveUsableMoves = usableMoves.filter(move => move.damage > 0 && this.getTypeAdvantage(aiPokemonTypeForAI, playerPokemonTypeForAI) === 1);
@@ -1284,7 +1291,9 @@ const cmdModule = {
                                 battleMessages.push(`💨 AI ${defender.name}'s ${aiSelectedMove.name} missed!`);
                             } else {
                                 const aiMoveBaseDamage = aiSelectedMove.damage;
-                                const aiAdvantageMultiplier = this.getTypeAdvantage(aiPokemonTypeForAI, playerPokemonTypeForAI);
+                                const aiPokemonTypeForAI = battle[defenderProps.typeKey]; 
+                                const playerPokemonTypeForAI = battle[attackerProps.typeKey]; 
+                                const aiAdvantageMultiplier = this.getTypeAdvantage(aiPokemonTypeForAI, playerPokemonTypeForAI); 
                                 aiDamageDealt = Math.max(0, Math.floor(aiMoveBaseDamage * aiAdvantageMultiplier));
                                 if (Math.random() < CRIT_CHANCE) {
                                     aiDamageDealt = Math.floor(aiDamageDealt * CRIT_MULTIPLIER);
@@ -1314,8 +1323,7 @@ const cmdModule = {
                 }
                 
                 if (!battleEnded && battle[defenderProps.statusKey] && aiCanAttack && battle[defenderProps.hpKey] > 0) { 
-                    // ... (AI end-of-turn status damage, same as before, ensure battleEnded is updated)
-                    const aiStatus = battle[defenderProps.statusKey]; // Use local `aiCanAttack`
+                    const aiStatus = battle[defenderProps.statusKey]; 
                     if (aiStatus.type === STATUS_CONDITIONS.POISONED) { battle[defenderProps.hpKey] = Math.max(0, battle[defenderProps.hpKey] - POISON_DAMAGE); battleMessages.push(`🤢 AI ${defender.name} took ${POISON_DAMAGE} from poison! HP: ${battle[defenderProps.hpKey]}/${battle[defenderProps.maxHpKey]}`);}
                     else if (aiStatus.type === STATUS_CONDITIONS.BURNED) { if(Math.random() < 0.5) { battle[defenderProps.hpKey] = Math.max(0, battle[defenderProps.hpKey] - BURN_DAMAGE); battleMessages.push(`💥 AI ${defender.name} took ${BURN_DAMAGE} from burn! HP: ${battle[defenderProps.hpKey]}/${battle[defenderProps.maxHpKey]}`);}}
                      if (battle[defenderProps.hpKey] <= 0) { 
@@ -1335,7 +1343,6 @@ const cmdModule = {
                 nextTurnPlayerID = userID;
 
             } else { // PvP
-                // ... (PvP turn transition - unchanged, nextTurnPlayerID is set)
                 if (battle[attackerProps.hpKey] > 0 && battle[defenderProps.hpKey] > 0) { 
                     battle.currentTurn = (battle.player1ID === currentPlayerID ? battle.player2ID : battle.player1ID);
                     nextTurnPlayerID = battle.currentTurn;
@@ -1364,24 +1371,20 @@ const cmdModule = {
                 }
             }
             
-            // --- Send Next Turn Prompt ---
             if (battle.currentTurn === userID && battle.type === "ai") { 
-                // ... (AI battle next turn prompt for player - update to show energy costs)
                 const currentAttacker = { name: battle[attackerProps.nameKey], hp: battle[attackerProps.hpKey], maxHp: battle[attackerProps.maxHpKey], type: battle[attackerProps.typeKey], status: battle[attackerProps.statusKey], moves: battle[attackerProps.movesKey] || [], energy: battle[attackerProps.energyKey], maxEnergy: battle[attackerProps.maxEnergyKey] };
                 const currentDefender = { name: battle[defenderProps.nameKey], hp: battle[defenderProps.hpKey], maxHp: battle[defenderProps.maxHpKey], type: battle[defenderProps.typeKey], status: battle[defenderProps.statusKey], energy: battle[defenderProps.energyKey], maxEnergy: battle[defenderProps.maxEnergyKey] };
                 let nextPrompt = `\n\n--- Your Turn, ${attackerName}! ---\n`;
                 nextPrompt += `Your ${currentAttacker.name} (${currentAttacker.type} - HP: ${currentAttacker.hp}/${currentAttacker.maxHp} - Energy: ${currentAttacker.energy}/${currentAttacker.maxEnergy})${currentAttacker.status ? ` [${currentAttacker.status.type.toUpperCase()}]` : ''}\n`;
                 nextPrompt += `Opponent's ${currentDefender.name} (${currentDefender.type} - HP: ${currentDefender.hp}/${currentDefender.maxHp} - Energy: ${currentDefender.energy}/${currentDefender.maxEnergy})${currentDefender.status ? ` [${currentDefender.status.type.toUpperCase()}]` : ''}\n`;
                 nextPrompt += `Choose a move:\n`;
-                currentAttacker.moves.forEach((m,i) => { nextPrompt += `${i+1}. ${m.name} (Dmg: ${m.damage}, Cost: ${m.energyCost}⚡)\n`;}); // Use m.damage (which is currentDamage)
+                currentAttacker.moves.forEach((m,i) => { nextPrompt += `${i+1}. ${m.name} (Dmg: ${m.damage}, Cost: ${m.energyCost}⚡)\n`;}); 
                 nextPrompt += `Reply with move number.`;
                 const rMsg = await api.sendMessage(battleMessages.join('\n') + nextPrompt, threadID);
                 global.GoatBot.onReply.set(rMsg.messageID, { commandName: this.config.name, senderID: userID, type: "battle_move", originalMID: rMsg.messageID });
 
             } else if (battle.type === "pvp" && nextTurnPlayerID && nextTurnPlayerID !== userID ) { 
-                // ... (PvP next turn prompt - all to battleCommThread, update to show energy costs)
-                // Summary of previous turn is already in battleMessages, send to battleCommThread
-                api.sendMessage(battleMessages.join('\n') + `\n\n➡️ Turn passes to @${await usersData.getName(nextTurnPlayerID)}.`, battleCommThread, {mentions: [{tag: `@${await usersData.getName(nextTurnPlayerID)}`, id: nextTurnPlayerID}]}); 
+                api.sendMessage({body: battleMessages.join('\n') + `\n\n➡️ Turn passes to @${await usersData.getName(nextTurnPlayerID)}.`, mentions: [{tag: `@${await usersData.getName(nextTurnPlayerID)}`, id: nextTurnPlayerID}]}, battleCommThread); 
 
                 const nextPlayerIsP1 = battle.player1ID === nextTurnPlayerID;
                 const nextPlayerAttackerPropsHandle = nextPlayerIsP1 ? { nameKey: 'player1ActivePokemonName', hpKey: 'player1ActivePokemonHP', maxHpKey: 'player1ActivePokemonMaxHp', typeKey: 'player1ActivePokemonType', movesKey: 'player1ActivePokemonMoves', statusKey: 'player1Status', energyKey: 'player1Energy', maxEnergyKey: 'player1MaxEnergy'} : { nameKey: 'player2ActivePokemonName', hpKey: 'player2ActivePokemonHP', maxHpKey: 'player2ActivePokemonMaxHp', typeKey: 'player2ActivePokemonType', movesKey: 'player2ActivePokemonMoves', statusKey: 'player2Status', energyKey: 'player2Energy', maxEnergyKey: 'player2MaxEnergy'};
@@ -1396,10 +1399,10 @@ const cmdModule = {
                 promptToNextPlayer += `Your ${nextPlayerActive.name} (${nextPlayerActive.type} - HP: ${nextPlayerActive.hp}/${nextPlayerActive.maxHp} - Energy: ${nextPlayerActive.energy}/${nextPlayerActive.maxEnergy})${nextPlayerActive.status ? ` [${nextPlayerActive.status.type.toUpperCase()}]` : ''}\n`;
                 promptToNextPlayer += `Opponent ${opponentNameForNextDisplay}'s ${opponentForNext.name} (${opponentForNext.type} - HP: ${opponentForNext.hp}/${opponentForNext.maxHp} - Energy: ${opponentForNext.energy}/${opponentForNext.maxEnergy})${opponentForNext.status ? ` [${opponentForNext.status.type.toUpperCase()}]` : ''}\n`;
                 promptToNextPlayer += `Choose a move:\n`;
-                (nextPlayerActive.moves || []).forEach((m,i) => { promptToNextPlayer += `${i+1}. ${m.name} (Dmg: ${m.damage}, Cost: ${m.energyCost}⚡)\n`;}); // Use m.damage (which is currentDamage)
+                (nextPlayerActive.moves || []).forEach((m,i) => { promptToNextPlayer += `${i+1}. ${m.name} (Dmg: ${m.damage}, Cost: ${m.energyCost}⚡)\n`;}); 
                 promptToNextPlayer += `Reply with move number.`;
                 
-                const nextMovePromptMsg = await api.sendMessage(promptToNextPlayer, battleCommThread, {mentions: [{tag: `@${nextPlayerName}`, id: nextTurnPlayerID}]});
+                const nextMovePromptMsg = await api.sendMessage({body: promptToNextPlayer, mentions: [{tag: `@${nextPlayerName}`, id: nextTurnPlayerID}]}, battleCommThread);
                 global.GoatBot.onReply.set(nextMovePromptMsg.messageID, { commandName: this.config.name, senderID: nextTurnPlayerID, type: "battle_move", originalMID: nextMovePromptMsg.messageID });
                 
             } else if (battleMessages.length > 0 && userState.currentBattle) { 
@@ -1410,4 +1413,3 @@ const cmdModule = {
 };
 
 module.exports = cmdModule;
-
