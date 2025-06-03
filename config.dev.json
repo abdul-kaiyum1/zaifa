@@ -119,8 +119,8 @@
   "autoReloginWhenChangeAccount": false,
   "autoRestartWhenListenMqttError": false,
   "restartListenMqtt": {
-    "enable": false,
-    "timeRestart": 580000,
+    "enable": true,
+    "timeRestart": 480000,
     "delayAfterStopListening": 2000,
     "logNoti": true,
     "notes": "the value of timeRestart and delayAfterStopListening is milisecond, You shouldn't edit this if you don't know what it is"
