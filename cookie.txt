@@ -1,64 +1,145 @@
 [
   {
-    "name": "__Secure-3PAPISID",
-    "value": "NUYNvQ2kEwr3o2fV/ACRax215j8bNqlUR1",
-    "domain": ".youtube.com",
-    "path": "/",
-    "expires": 1773835589.705747,
-    "httpOnly": false,
-    "secure": true
-  },
-  {
-    "name": "__Secure-3PSID",
-    "value": "g.a000swh1Dd4qvNDPWDySbwqEfcFJqfghKAxcsMmiAroI9yrCw_P3sQn64P8i9_6HoT15Q4H3tAACgYKAXwSARESFQHGX2MiM4xxkhX76fUpzVNS9BxEFxoVAUF8yKpuHDQY_AaoOvR4xdkF6mfm0076",
-    "domain": ".youtube.com",
-    "path": "/",
-    "expires": 1773835589.705772,
-    "httpOnly": true,
-    "secure": true
-  },
-  {
-    "name": "LOGIN_INFO",
-    "value": "AFmmF2swRQIhAO26JpD8vwz9BN-EmUD3dtYcghzHoP97KRJgoxHpUOJIAiBMmm--UkXnsf3EGIbivMulX0KMIWurve5BadngPLh8Nw:QUQ3MjNmeFVoeWVYTkRVLTBVWmEyVkhqZlJBQ3Z2MmcxaE5lV0t5V2FUUjVNUlU2eEp0OElpaFVXNE9IM25VejVuNUowNUNNc2FCZ0ozNC04UFZhQnFYVHozRE9aVFl5YjhkSEI4UnF6ZmdBSlJqYUpYUmZWMzd1Yk1aMWFTQmdjNjl6bjBOeG4yMHUzQ0V5WFlmWGQ2djN0bUFvd3FWWGln",
-    "domain": ".youtube.com",
-    "path": "/",
-    "expires": 1773835593.342022,
-    "httpOnly": true,
-    "secure": true
-  },
-  {
     "name": "PREF",
-    "value": "f6=40000000&tz=Asia.Dhaka&f7=100",
+    "value": "tz=Asia.Dhaka",
     "domain": ".youtube.com",
     "path": "/",
-    "expires": 1777390480.752612,
+    "expires": 1785927439.58095,
     "httpOnly": false,
     "secure": true
   },
   {
     "name": "__Secure-1PSIDTS",
-    "value": "sidts-CjEB7pHptTyIYCRdRUqM7R_Q6dqpSF_XyKc5u4dTmM0x8jrfAuaTcUJVYll6cxdn2pE3EAA",
+    "value": "sidts-CjEB5H03Pw9CiWUn4LwJ6YYneddcSYPQMTzqBm2WL0iswCy64ok9iN4n1JKNoUj2XfFsEAA",
     "domain": ".youtube.com",
     "path": "/",
-    "expires": 1774366483.233797,
+    "expires": 1782901891.208378,
     "httpOnly": true,
     "secure": true
   },
   {
     "name": "__Secure-3PSIDTS",
-    "value": "sidts-CjEB7pHptTyIYCRdRUqM7R_Q6dqpSF_XyKc5u4dTmM0x8jrfAuaTcUJVYll6cxdn2pE3EAA",
+    "value": "sidts-CjEB5H03Pw9CiWUn4LwJ6YYneddcSYPQMTzqBm2WL0iswCy64ok9iN4n1JKNoUj2XfFsEAA",
     "domain": ".youtube.com",
     "path": "/",
-    "expires": 1774366483.23392,
+    "expires": 1782901891.208943,
+    "httpOnly": true,
+    "secure": true
+  },
+  {
+    "name": "HSID",
+    "value": "ACEV5hJ9Phul9bII3",
+    "domain": ".youtube.com",
+    "path": "/",
+    "expires": 1785925891.209237,
+    "httpOnly": true,
+    "secure": false
+  },
+  {
+    "name": "SSID",
+    "value": "AxLdyl2jNo12C1xkC",
+    "domain": ".youtube.com",
+    "path": "/",
+    "expires": 1785925891.209494,
+    "httpOnly": true,
+    "secure": true
+  },
+  {
+    "name": "APISID",
+    "value": "AVxbgOM4zijL-52-/AkotUNgGje0TLzStC",
+    "domain": ".youtube.com",
+    "path": "/",
+    "expires": 1785925891.209736,
+    "httpOnly": false,
+    "secure": false
+  },
+  {
+    "name": "SAPISID",
+    "value": "_CGL7hHjjcSSGAgb/AYAzHtDuTvqzSJGT3",
+    "domain": ".youtube.com",
+    "path": "/",
+    "expires": 1785925891.209979,
+    "httpOnly": false,
+    "secure": true
+  },
+  {
+    "name": "__Secure-1PAPISID",
+    "value": "_CGL7hHjjcSSGAgb/AYAzHtDuTvqzSJGT3",
+    "domain": ".youtube.com",
+    "path": "/",
+    "expires": 1785925891.210278,
+    "httpOnly": false,
+    "secure": true
+  },
+  {
+    "name": "__Secure-3PAPISID",
+    "value": "_CGL7hHjjcSSGAgb/AYAzHtDuTvqzSJGT3",
+    "domain": ".youtube.com",
+    "path": "/",
+    "expires": 1785925891.21067,
+    "httpOnly": false,
+    "secure": true
+  },
+  {
+    "name": "SID",
+    "value": "g.a000ygii69DzGlZ3UK6-xOyt0DO_X0IfA4ovFUyYAoVPyH7niCSqUMPqlOO60li3EP232xVRSAACgYKAeQSARMSFQHGX2Mi7dKPCTKbg2JfjFXEyts1JBoVAUF8yKpOm0_RkIErhYRNShYE9N-r0076",
+    "domain": ".youtube.com",
+    "path": "/",
+    "expires": 1785925891.210925,
+    "httpOnly": false,
+    "secure": false
+  },
+  {
+    "name": "__Secure-1PSID",
+    "value": "g.a000ygii69DzGlZ3UK6-xOyt0DO_X0IfA4ovFUyYAoVPyH7niCSqwillDY_TwsKPTT53u2ZY1gACgYKASUSARMSFQHGX2Mi4vVE4sQoa-IgEubMehOGChoVAUF8yKofXoOg3aReuLD65bs4Z-0D0076",
+    "domain": ".youtube.com",
+    "path": "/",
+    "expires": 1785925891.211188,
+    "httpOnly": true,
+    "secure": true
+  },
+  {
+    "name": "__Secure-3PSID",
+    "value": "g.a000ygii69DzGlZ3UK6-xOyt0DO_X0IfA4ovFUyYAoVPyH7niCSqKrbjYkfJu01ZW5x0mbi5FgACgYKAa0SARMSFQHGX2Mi0vJPtShyb9imbM-fTRv7kRoVAUF8yKquXkEx0x9-u4li-g8wTNSS0076",
+    "domain": ".youtube.com",
+    "path": "/",
+    "expires": 1785925891.211479,
+    "httpOnly": true,
+    "secure": true
+  },
+  {
+    "name": "LOGIN_INFO",
+    "value": "AFmmF2swRAIgIVzTl4fSioYeD5PF9eYkW373KSZsMKRM5eojybvuq60CIA7cV9sGzhtXGpKkUdfmnoZfODWqF8PwVorN9aGns86R:QUQ3MjNmeXNIVDl4MWVIZzlOSzFDdUdCeU1VQWhrcldYMVVQajMydHBjTVh2a0tKNVg4TWoxOHpsUFRyOFRTM2NkVS1keTF0QVJETnNTRFNyZ2tVN2NHUXh6RzZoYkhHaGEza2xZcDVEVGlTbVJmSDJpUVNobWd6N2I0dnM2Vm5ia3lEc2R1T2NGU3FaVVBTbGRfUUFnM3d0Wlg1X0ExSUpn",
+    "domain": ".youtube.com",
+    "path": "/",
+    "expires": 1785925892.426267,
+    "httpOnly": true,
+    "secure": true
+  },
+  {
+    "name": "SIDCC",
+    "value": "AKEyXzWNzPVP_wOUDDsmVqNsqGI5R6UiNO8NM8JTukIvRkIlLzSdgVLqryb4MLD-Jz09FKIhtA",
+    "domain": ".youtube.com",
+    "path": "/",
+    "expires": 1782903441.628727,
+    "httpOnly": false,
+    "secure": false
+  },
+  {
+    "name": "__Secure-1PSIDCC",
+    "value": "AKEyXzXaTZSLGxWfIy3ofxml7hgEuv21tVBEJwH60JDVpUYnh5qPSgH5Sqq7119NEhVvmBkQow",
+    "domain": ".youtube.com",
+    "path": "/",
+    "expires": 1782903441.628869,
     "httpOnly": true,
     "secure": true
   },
   {
     "name": "__Secure-3PSIDCC",
-    "value": "AKEyXzX05WVppAr4upK-bSbNg6uebas0jJv7D_IeVM1mGp-gKWE-HPrGXEpy8dq1s4pklFHk",
+    "value": "AKEyXzVB9JBZMV58ehQMcTYPyk-y53hbc6KHejwynIVM1Rnh3vzCTmDsCWE9EnVJrTZPlIe9_w",
     "domain": ".youtube.com",
     "path": "/",
-    "expires": 1774366485.657699,
+    "expires": 1782903441.628946,
     "httpOnly": true,
     "secure": true
   }
