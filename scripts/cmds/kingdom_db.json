@@ -1,0 +1,25 @@
+{
+  "kingdoms": {
+    "k_100057399829870_4294": {
+      "id": "k_100057399829870_4294",
+      "name": "Bangladesh",
+      "owner": "100057399829870",
+      "resources": {
+        "gold": 1000,
+        "food": 200,
+        "metal": 10
+      },
+      "troops": {
+        "soldier": 10,
+        "archer": 5,
+        "cavalry": 0
+      },
+      "units": [],
+      "items": {},
+      "createdAt": 1755000595548,
+      "lastActive": 1755000595548
+    }
+  },
+  "players": {},
+  "challenges": {}
+}

@@ -1,15 +1,10 @@
 module.exports = {
   "config": {
     "name": "pair",
-    "version": "1.1",
+    "version": "3.1",
     "author": "NZ R",
-    "shortDescription": {
-      "en": "Pair with a random member of the opposite gender 😗",
-      "vi": ""
-    },
     "category": "fun",
-    "guide": "{prefix}pair",
-    "countDown": 100
+    "countDown": 60
   },
-  "location": "/home/container/process/octa/scripts/cmds/pair.js"
+  "location": "/home/abdulkaiyum/zaifa/scripts/cmds/pair.js"
 };

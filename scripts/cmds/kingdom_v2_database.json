@@ -1,0 +1,123 @@
+{
+  "players": {
+    "61575979031698": {
+      "id": "61575979031698",
+      "name": "Sahadat H.",
+      "money": 1000,
+      "kingdomId": "k_61575979031698",
+      "cooldowns": {},
+      "stats": {
+        "wins": 0,
+        "losses": 0,
+        "pveWins": 0,
+        "pveLosses": 0
+      }
+    },
+    "100057399829870": {
+      "id": "100057399829870",
+      "name": "Abdul Kaiyum",
+      "money": 1000,
+      "kingdomId": "k_100057399829870",
+      "cooldowns": {
+        "pve": 1755002610008
+      },
+      "stats": {
+        "wins": 0,
+        "losses": 0,
+        "pveWins": 0,
+        "pveLosses": 0
+      }
+    }
+  },
+  "kingdoms": {
+    "k_61575979031698": {
+      "id": "k_61575979031698",
+      "name": "devilkingabdulkaiyum",
+      "owner": "61575979031698",
+      "level": 1,
+      "xp": 0,
+      "resources": {
+        "gold": 500,
+        "food": 300,
+        "metal": 50
+      },
+      "troops": {
+        "soldier": 10,
+        "archer": 5,
+        "cavalry": 0
+      },
+      "items": {},
+      "buildings": {
+        "farm": 0,
+        "mine": 0,
+        "market": 0,
+        "barracks": 0,
+        "wall": 0
+      },
+      "lastCollected": 1755001584759,
+      "createdAt": 1755001584759
+    },
+    "k_100057399829870": {
+      "id": "k_100057399829870",
+      "name": "sahadat er putki",
+      "owner": "100057399829870",
+      "level": 1,
+      "xp": 0,
+      "resources": {
+        "gold": 500,
+        "food": 300,
+        "metal": 50
+      },
+      "troops": {
+        "soldier": 10,
+        "archer": 5,
+        "cavalry": 0
+      },
+      "items": {},
+      "buildings": {
+        "farm": 0,
+        "mine": 0,
+        "market": 0,
+        "barracks": 0,
+        "wall": 0
+      },
+      "lastCollected": 1755001600480,
+      "createdAt": 1755001600480
+    }
+  },
+  "challenges": {},
+  "battles": {
+    "b_1755001710008": {
+      "id": "b_1755001710008",
+      "attacker": {
+        "id": "100057399829870",
+        "hp": 144
+      },
+      "defender": {
+        "id": "AI",
+        "kingdom": {
+          "id": "ai_1755001710008",
+          "name": "Bandit Camp",
+          "owner": "AI",
+          "level": 1,
+          "resources": {
+            "gold": 50,
+            "food": 30,
+            "metal": 10
+          },
+          "troops": {
+            "soldier": 8,
+            "archer": 4,
+            "cavalry": 0
+          },
+          "items": {},
+          "buildings": {
+            "wall": 1
+          }
+        },
+        "hp": 115
+      },
+      "turn": "attacker"
+    }
+  }
+}

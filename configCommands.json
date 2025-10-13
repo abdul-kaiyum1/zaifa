@@ -34,6 +34,9 @@
     },
     "doremon": {
       "reward": 100
+    },
+    "unsendAlert": {
+      "deltaNext": 5
     }
   },
   "envEvents": {
@@ -57,6 +60,8 @@
   ],
   "commandEventUnload": [
     "autoClear.js",
-    "autoleave.js"
+    "autoleave.js",
+    "leave.js",
+    "approval.js"
   ]
 }

@@ -4,20 +4,20 @@ module.exports = {
     "aliases": [
       "song"
     ],
-    "version": "2.0",
+    "version": "2.2.0",
     "author": "Abdul Kaiyum",
-    "countDown": 40,
+    "countDown": 220,
     "role": 0,
     "shortDescription": {
-      "en": "Play songs, get lyrics, and manage a playlist."
+      "en": "Play songs and manage your playlist."
     },
     "longDescription": {
-      "en": "Play songs by name, fetch lyrics, or manage a playlist."
+      "en": "Search and play songs from YouTube with an interactive selection. Manage your personal playlist (add, play, or remove songs)."
     },
     "category": "music",
     "guide": {
-      "en": "{pn} <song name>\n{pn} playlist -a <song name>\n{pn} playlist -p <index>\n{pn} lyrics <song name>\n\nTo play a song from your playlist, use 'sing playlist play [number]'."
+      "en": "Usage:\n• {pn} <song name | YouTube URL>\n• {pn} playlist -a <song name>    ➜ Add song to playlist\n• {pn} playlist -p <index>        ➜ Play song from playlist\n• {pn} playlist list              ➜ View your playlist\n• {pn} playlist -r <index>        ➜ Remove song from playlist"
     }
   },
-  "location": "/home/abdulkaiyum/octa/scripts/cmds/sing.js"
+  "location": "/home/abdulkaiyum/zaifa/scripts/cmds/sing.js"
 };

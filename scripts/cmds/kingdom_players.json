@@ -1,0 +1,92 @@
+{
+  "100057399829870": {
+    "id": "100057399829870",
+    "name": "Abdul Kaiyum",
+    "money": 500,
+    "kingdomId": "k_100057399829870_4294",
+    "cooldownUntil": 0,
+    "stats": {
+      "wins": 0,
+      "losses": 0,
+      "pveWins": 0,
+      "pveLosses": 0
+    }
+  },
+  "_activeBattles": {
+    "battle_577864": {
+      "type": "pve",
+      "owner": "100057399829870"
+    },
+    "battle_370075": {
+      "battleId": "battle_370075",
+      "attacker": {
+        "kingdom": {
+          "id": "k_100057399829870_4294",
+          "name": "Bangladesh",
+          "owner": "100057399829870",
+          "resources": {
+            "gold": 1000,
+            "food": 200,
+            "metal": 10
+          },
+          "troops": {
+            "soldier": 10,
+            "archer": 5,
+            "cavalry": 0
+          },
+          "units": [],
+          "items": {},
+          "createdAt": 1755000595548,
+          "lastActive": 1755000595548
+        },
+        "hp": 100
+      },
+      "defender": {
+        "kingdom": {
+          "id": "ai_8340",
+          "name": "AI Warlord",
+          "owner": "AI",
+          "resources": {
+            "gold": 1000,
+            "food": 500,
+            "metal": 20
+          },
+          "troops": {
+            "soldier": 13,
+            "archer": 6,
+            "cavalry": 2
+          },
+          "units": [],
+          "items": {
+            "water": 1,
+            "bread": 2
+          },
+          "createdAt": 1755001400212,
+          "lastActive": 1755001400212
+        },
+        "hp": 100
+      },
+      "turn": "attacker",
+      "createdAt": 1755001400212,
+      "maxRounds": 30,
+      "round": 0
+    },
+    "k_100057399829870_4294": {
+      "type": "pve",
+      "owner": "100057399829870"
+    }
+  },
+  "61575979031698": {
+    "id": "61575979031698",
+    "name": "Sahadat H.",
+    "money": 500,
+    "kingdomId": null,
+    "cooldownUntil": 0,
+    "stats": {
+      "wins": 0,
+      "losses": 0,
+      "pveWins": 0,
+      "pveLosses": 0
+    }
+  }
+}
