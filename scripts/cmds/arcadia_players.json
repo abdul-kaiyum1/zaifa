@@ -1,0 +1,34 @@
+{
+  "100057399829870": {
+    "id": "100057399829870",
+    "name": "Abdul Kaiyum",
+    "gold": 500,
+    "resources": {
+      "wood": 8,
+      "metal": 3,
+      "food": 20,
+      "herb": 1,
+      "leather": 0
+    },
+    "inventory": {},
+    "equipped": {
+      "weapon": null,
+      "armor": null
+    },
+    "troops": {
+      "soldier": 5,
+      "archer": 2,
+      "cavalry": 0
+    },
+    "kingdomId": "k_100057399829870_3105",
+    "lastDaily": 0,
+    "pvpEnabled": false,
+    "stats": {
+      "wins": 0,
+      "losses": 0,
+      "pveWins": 0,
+      "pveLosses": 0
+    },
+    "cooldownUntil": 1761287047988
+  }
+}
