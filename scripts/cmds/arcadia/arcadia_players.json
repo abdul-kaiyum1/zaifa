@@ -1,0 +1,24 @@
+{
+  "100057399829870": {
+    "id": "100057399829870",
+    "name": "Tommy Shelby",
+    "kingdom": "London",
+    "level": 1,
+    "xp": 0,
+    "gold": 172,
+    "hp": 100,
+    "maxhp": 100,
+    "atk": 5,
+    "def": 2,
+    "inventory": [],
+    "weight": 0,
+    "carryLimit": 50,
+    "skills": {
+      "sword": 1
+    },
+    "pet": null,
+    "quests": [],
+    "pvp": true,
+    "lastDaily": 1765535690322
+  }
+}

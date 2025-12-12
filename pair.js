@@ -4,7 +4,7 @@ module.exports = {
     "version": "3.1",
     "author": "NZ R",
     "category": "fun",
-    "countDown": 80
+    "countDown": 60
   },
   "location": "/home/abdulkaiyum/zaifa/scripts/cmds/pair.js"
 };
