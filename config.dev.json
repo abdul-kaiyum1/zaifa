@@ -1,4 +1,3 @@
-
 {
   "facebookAccount": {
     "email": "",
@@ -10,59 +9,64 @@
     "intervalGetNewCookie": 1440,
     "notes": "time the system automatically retrieves new cookies from email/password, unit is minute, if you set null, the system will not automatically retrieve new cookies, it saves you from having to manually change your cookie every time it expires. recommended set to 1440 (1day) or 4320 (3day).TO BE ABLE TO USE THIS FEATURE YOU NEED TO ENTER THE ACCOUNT PASSWORD ABOVE"
   },
-  "antiInbox": true,
+  "antiInbox": false,
   "language": "en",
   "notesLanguage": "change to your language with ISO 639-1 code, available languages: vi (Vietnamese), en (English)",
   "adminOnly": {
     "enable": false,
-    "ignoreCommand": [
-      "alldl"
-    ],
-    "hideNotiMessage": false
+    "ignoreCommand": [],
+    "hideNotiMessage": true
   },
   "adminBot": [
     "100057399829870",
     "100084568197142",
-    "100041931226770",
-    "61557519455411",
-    "61550213144666",
     "100091084029785",
-    "100093969447880",
-    "61553107032978",
-    "100080099546468",
-    "61566384778155"
+    "100065128364401",
+    "61550213144666",
+    "61582436391419"
   ],
   "whiteListMode": {
     "enable": false,
     "whiteListIds": [
-      "100057399829870",
-      "100041931226770",
       "100080099546468",
-      "100057414155805",
-      "100090944270176",
-      "100089174281287",
       "61554347765626",
-      "100067573626881",
-      "100089629150657",
-      "61553107032978",
-      "100091481018390",
-      "100093969447880",
-      "61565873292718",
-      "61572272227669",
-      "100080195076753"
+      "100041931226770",
+      "100057399829870",
+      "100091084029785",
+      "100042061672382",
+      "61557519455411",
+      "8173402569418120"
     ],
     "notes": "if you enable this feature, only the ids in the whiteListIds section can use the bot"
   },
   "whiteListModeThread": {
     "enable": false,
     "whiteListThreadIds": [
+      "7388254684526242",
       "4631206170332575",
-      "7388254684526242"
+      "7782146785137842",
+      "24331621359818083",
+      "24573771252237853",
+      "6635864189876172",
+      "6159021194163975",
+      "6384036358275831",
+      "7324752147544257",
+      "8173402569418120",
+      "9637425182994884",
+      "7155847394517785",
+      "8130742843609223",
+      "8610903108977940",
+      "8996761240392809",
+      "100091084029785",
+      "9175809365797596",
+      "9594392423906599",
+      "23894881320112859",
+      "9528831027242348"
     ],
-    "notes": "if you enable this feature,👙 only the thread in the whiteListThreadIds list can use the bot",
-    "how_it_work": "if you enable both whiteListMode and whiteListModeThread, the system will check if the user is in whiteListIds, then check if the thread is in whiteListThreadIds, if one of the conditions is true, the user can use the bot👙"
+    "notes": "if you enable this feature, only the thread in the whiteListThreadIds list can use the bot",
+    "how_it_work": "if you enable both whiteListMode and whiteListModeThread, the system will check if the user is in whiteListIds, then check if the thread is in whiteListThreadIds, if one of the conditions is true, the user can use the bot"
   },
-  "nickNameBot": "AiKo",
+  "nickNameBot": "Ai Koh",
   "prefix": "*",
   "database": {
     "type": "mongodb",
@@ -74,25 +78,25 @@
   "timeZone": "Asia/Dhaka",
   "credentials": {
     "gmailAccount": {
-      "email": "akoh22812@gmail.com",
-      "clientId": "133535667667-d27c0qr9jlrks4p3min6r49o1h23bndp.apps.googleusercontent.com",
-      "clientSecret": "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",
-      "refreshToken": "1//04XeOdpVM6Dw9CgYIARAAGAQSNwF-L9IryU29lefs-eOglnby6_Id8C8vo_mcqMuRF4JDkhLyZN9mdH_iPYKuM5q0ftbqByhMVkI",
+      "email": "nehalzaman21@gmail.com",
+      "clientId": "627546382844-duu8rv2dofas4nodlkemipp4um071rce.apps.googleusercontent.com",
+      "clientSecret": "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",
+      "refreshToken": "1//04MzINHAIwH9nCgYIARAAGAQSNwF-L9IrDjtjxtfu76kuFMooW8yOGHzvOIdLHl_2OfYVMiDYb465pbpoIK4AY5t028mmUWKOTCU",
       "apiKey": ""
     },
     "gRecaptcha": {
-      "siteKey": "6LfusJcqAAAAAGidWQQj7ge_hGSS3iZ7replHyiN",
-      "secretKey": "6LfusJcqAAAAAKbMWghAgYOvYfyg_3QBSswJHwkU"
+      "siteKey": "6LcI5sInAAAAAEOatXHG7f_gnN5c8uA9k7zM9dOi",
+      "secretKey": "6LcI5sInAAAAAC53JRqnztHGBhRA2tqFiByI_2e0"
     }
   },
   "dashBoard": {
     "enable": true,
     "expireVerifyCode": 300000,
-    "port": 3001
+    "port": 8000
   },
   "serverUptime": {
     "enable": false,
-    "port": 3001,
+    "port": 8000,
     "socket": {
       "enable": true,
       "channelName": "uptime",
@@ -100,7 +104,7 @@
     }
   },
   "autoRestart": {
-    "time": 43200000,
+    "time": null,
     "notes": "you can set time is interval with milisecond or cron time, example: 1000, 10000, 60000, 3600000, 86400000, 0 0 * * *,... docs: https://www.npmjs.com/package/node-cron. If you set time is 0 or false or null, the bot will not auto restart"
   },
   "autoUptime": {
@@ -120,7 +124,7 @@
   "autoRestartWhenListenMqttError": false,
   "restartListenMqtt": {
     "enable": true,
-    "timeRestart": 480000,
+    "timeRestart": 1800000,
     "delayAfterStopListening": 2000,
     "logNoti": true,
     "notes": "the value of timeRestart and delayAfterStopListening is milisecond, You shouldn't edit this if you don't know what it is"
@@ -129,7 +133,7 @@
     "notes": "This is the message when the bot is listening to the mqtt server and the mqtt server stops working due to account problems such as: locked acc, blocked due to spam,... bot will automatically send notifications to parts of your settings. You must change enable to true to use this feature. See bot/login/handlerWhenListenHasError.js file for details on how it works",
     "gmail": {
       "enable": true,
-      "emailGetNoti": "kaiyumabdul376@gmail.com",
+      "emailGetNoti": "sh70804050@gmail.com",
       "note": "Bot will use gmailAccount to send email to emailGetNoti, can send notifications to many email, separate by comma or space, example: \"example1@gmail.com example2@gmail.com\" (without backslash)"
     },
     "telegram": {
@@ -146,7 +150,7 @@
   },
   "hideNotiMessage": {
     "commandNotFound": false,
-    "adminOnly": true,
+    "adminOnly": false,
     "threadBanned": false,
     "userBanned": false,
     "needRoleToUseCmd": false,
