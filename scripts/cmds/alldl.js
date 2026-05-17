@@ -1,82 +1,401 @@
 const axios = require("axios");
 const fs = require("fs-extra");
-const tinyurl = require("tinyurl");
-
-async function shortenURL(url) {
-  try {
-    return await tinyurl.shorten(url);
-  } catch (error) {
-    console.error(error);
-    return url; // If shortening fails, return original URL
-  }
-}
-
-// Fetch the latest API base URL dynamically
-const baseApiUrl = async () => {
-  const base = await axios.get(
-    `https://raw.githubusercontent.com/Mostakim0978/D1PT0/refs/heads/main/baseApiUrl.json`
-  );
-  return base.data.api;
-};
+const path = require("path");
 
 module.exports = {
-  config: {
-    name: "alldl",
-    version: "5.2",
-    author: "Abdul Kaiyum",
-    countDown: 5,
-    role: 0,
-    shortDescription: "Download videos from various platforms using one API",
-    longDescription: "Supports TikTok, Facebook, Instagram, YouTube, and more.",
-    category: "media",
-    guide: {
-      en: "{p}{n} [reply to a message containing a link] or {p}{n} [video link]",
-    },
-  },
+	config: {
+		name: "alldownloader",
 
-  onStart: async function ({ api, args, event }) {
-    const userInput = event.messageReply?.body || args[0];
+		version: "8.0",
 
-    if (!userInput) {
-      return api.sendMessage("❌ | Please provide a valid video link.", event.threadID, event.messageID);
-    }
+		author: "Abdul Kaiyum",
 
-    try {
-      api.setMessageReaction("⏳", event.messageID, (err) => {}, true);
+		countDown: 5,
 
-      // Fetch API URL dynamically
-      const apiUrl = `${await baseApiUrl()}/alldl?url=${encodeURIComponent(userInput)}`;
-      const { data } = await axios.get(apiUrl);
-      
-      if (!data.result) {
-        return api.sendMessage("❌ | Unable to retrieve video data.", event.threadID, event.messageID);
-      }
+		role: 0,
 
-      const filePath = __dirname + `/cache/video.mp4`;
-      if (!fs.existsSync(__dirname + "/cache")) fs.mkdirSync(__dirname + "/cache");
+		shortDescription:
+			"Download media from all platforms",
 
-      // Download the video
-      const videoData = (await axios.get(data.result, { responseType: "arraybuffer" })).data;
-      fs.writeFileSync(filePath, Buffer.from(videoData, "utf-8"));
+		longDescription:
+			"TikTok, Facebook, Instagram, Spotify, YouTube, CapCut, Terabox downloader",
 
-      // Shorten URL
-      const shortUrl = await shortenURL(data.result);
+		category: "media",
 
-      api.setMessageReaction("✅", event.messageID, (err) => {}, true);
-      api.sendMessage(
-        {
-          body: `🎬 **Video Title:** ${data.Title || "Unknown"}\n🔗 **Download URL:** ${shortUrl}`,
-          attachment: fs.createReadStream(filePath),
-        },
-        event.threadID,
-        () => fs.unlinkSync(filePath),
-        event.messageID
-      );
+		guide: {
+			en:
+`╭─ ALLDOWNLOADER GUIDE ─╮
 
-    } catch (error) {
-      console.error(error);
-      api.setMessageReaction("❎", event.messageID, (err) => {}, true);
-      api.sendMessage("❌ | Failed to download the video. Please try again later.", event.threadID, event.messageID);
-    }
-  },
+📥 Command:
+• alldownloader link
+
+━━━━━━━━━━━━━━━
+
+📌 Example:
+
+alldownloader https://vt.tiktok.com/xxxxx
+
+━━━━━━━━━━━━━━━
+
+✅ Supported:
+
+• TikTok
+• Facebook
+• Instagram
+• Spotify
+• YouTube
+• CapCut
+• Terabox
+
+╰──────────────────────╯`
+		}
+	},
+
+	onStart: async function ({
+		message,
+		event,
+		args,
+		api
+	}) {
+
+		try {
+
+			// URL
+
+			const input =
+
+				event.messageReply
+					?.body ||
+
+				args[0];
+
+			if (!input) {
+
+				return message.reply(
+					"❌ Please provide a valid URL."
+				);
+			}
+
+			// REACTION
+
+			api.setMessageReaction(
+				"⏳",
+				event.messageID,
+				() => {},
+				true
+			);
+
+			// DETECT PLATFORM
+
+			let endpoint;
+
+			if (
+				input.includes(
+					"tiktok"
+				)
+			) {
+
+				endpoint =
+					"tiktok";
+			}
+
+			else if (
+				input.includes(
+					"facebook"
+				) ||
+
+				input.includes(
+					"fb.watch"
+				)
+			) {
+
+				endpoint =
+					"facebook";
+			}
+
+			else if (
+				input.includes(
+					"instagram"
+				)
+			) {
+
+				endpoint =
+					"instagram";
+			}
+
+			else if (
+				input.includes(
+					"spotify"
+				)
+			) {
+
+				endpoint =
+					"spotify";
+			}
+
+			else if (
+				input.includes(
+					"youtube"
+				) ||
+
+				input.includes(
+					"youtu.be"
+				)
+			) {
+
+				endpoint =
+					"youtube/v2";
+			}
+
+			else if (
+				input.includes(
+					"capcut"
+				)
+			) {
+
+				endpoint =
+					"capcut";
+			}
+
+			else if (
+				input.includes(
+					"terabox"
+				)
+			) {
+
+				endpoint =
+					"terabox";
+			}
+
+			else {
+
+				return message.reply(
+					"❌ Unsupported platform."
+				);
+			}
+
+			// API URL
+
+			const apiUrl =
+`https://fgsi.dpdns.org/api/downloader/${endpoint}`;
+
+			// PARAMS
+
+			const params = {
+
+				apikey:
+					"fgsiapi-ce555ea-6d",
+
+				url: input
+			};
+
+			// YOUTUBE TYPE
+
+			if (
+				endpoint ===
+				"youtube/v2"
+			) {
+
+				params.type =
+					"mp4";
+			}
+
+			// API REQUEST
+
+			const res =
+				await axios.get(
+					apiUrl,
+					{
+						params,
+
+						headers: {
+							accept:
+								"application/json"
+						}
+					}
+				);
+
+			const data =
+				res.data;
+
+			// CHECK
+
+			if (
+				!data
+			) {
+
+				return message.reply(
+					"❌ No data returned."
+				);
+			}
+
+			// GET DOWNLOAD URL
+
+			let downloadUrl =
+
+				data.result
+					?.downloadUrl ||
+
+				data.result?.dl ||
+
+				data.result?.url ||
+
+				data.result
+					?.video ||
+
+				data.result
+					?.music ||
+
+				data.result
+					?.play ||
+
+				data.result
+					?.media ||
+
+				data.result
+					?.hdplay ||
+
+				data.result
+					?.nowm ||
+
+				data.result
+					?.links?.[0]
+					?.url;
+
+			// FAIL
+
+			if (
+				!downloadUrl
+			) {
+
+				console.log(data);
+
+				return message.reply(
+					"❌ Download URL not found."
+				);
+			}
+
+			// CACHE
+
+			const cache =
+				path.join(
+					__dirname,
+					"cache"
+				);
+
+			if (
+				!fs.existsSync(
+					cache
+				)
+			) {
+
+				fs.mkdirSync(
+					cache
+				);
+			}
+
+			// EXTENSION
+
+			let ext = "mp4";
+
+			if (
+				endpoint ===
+				"spotify"
+			) {
+
+				ext = "mp3";
+			}
+
+			// FILE
+
+			const filePath =
+				path.join(
+					cache,
+
+`${Date.now()}.${ext}`
+				);
+
+			// DOWNLOAD
+
+			const media =
+				await axios({
+					method: "GET",
+
+					url: downloadUrl,
+
+					responseType:
+						"arraybuffer"
+				});
+
+			fs.writeFileSync(
+				filePath,
+
+				Buffer.from(
+					media.data,
+					"utf-8"
+				)
+			);
+
+			// SUCCESS REACTION
+
+			api.setMessageReaction(
+				"✅",
+
+				event.messageID,
+
+				() => {},
+
+				true
+			);
+
+			// SEND
+
+			message.reply({
+				body:
+`📥 DOWNLOAD SUCCESS
+
+━━━━━━━━━━━━━━━
+
+🎬 Title:
+${data.result?.title || data.title || "Unknown"}
+
+🌐 Platform:
+${endpoint}
+
+━━━━━━━━━━━━━━━
+
+🔥 Media downloaded successfully!`,
+
+				attachment:
+					fs.createReadStream(
+						filePath
+					)
+			},
+
+			() => {
+
+				fs.unlinkSync(
+					filePath
+				);
+			});
+
+		} catch (e) {
+
+			console.log(e);
+
+			api.setMessageReaction(
+				"❌",
+
+				event.messageID,
+
+				() => {},
+
+				true
+			);
+
+			message.reply(
+				"❌ Failed to download media."
+			);
+		}
+	}
 };
