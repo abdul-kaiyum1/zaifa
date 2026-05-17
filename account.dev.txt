@@ -1,1 +1,62 @@
-vpd=v1%3B660x392x2.75; pas=100046234122528%3A3BtcPyFUSf; fr=00M0ICsnSZO8TelqP.AWcdCBlYgXFBmZfOh70ZbeQuPV-WTOTJvwI_SwzJTS5p12ERZKY.BpmcRn..AAA.0.0.BqBETE.AWdm7sGczoG2CYKQvOjxmleAA2U; m_pixel_ratio=2.75; locale=en_GB; fbl_st=100618048%3BT%3A29644410; xs=29%3Ax78rLleBxGFMUg%3A2%3A1778664632%3A-1%3A-1; wl_cbv=v2%3Bclient_version%3A3158%3Btimestamp%3A1778664644; c_user=100046234122528; sb=Z8SZaQNgbKPtNSpendjWyEdt; wd=393x873; datr=Z8SZaTXbNf1HoldcB4dbuYvu
+[
+  {
+    "key": "xs",
+    "value": "34%3Ak1gYJFjFknvLHQ%3A2%3A1778996313%3A-1%3A-1",
+    "domain": "facebook.com",
+    "path": "/",
+    "hostOnly": false,
+    "creation": "2026-05-17T15:37:12.639Z",
+    "lastAccessed": "2026-05-17T15:37:18.189Z",
+    "secure": false,
+    "httpOnly": false,
+    "expires": "Infinity"
+  },
+  {
+    "key": "fr",
+    "value": "00M0ICsnSZO8TelqP.AWcxf6Zsw036RffrIA77w9Xk_YuQpcQwyQcfzKmZbxXSS9pcD2g.BpmcRn..AAA.0.0.BqCeCo.AWeeugtT-tTDOtF4qW4scy3vOwI",
+    "domain": "facebook.com",
+    "path": "/",
+    "hostOnly": false,
+    "creation": "2026-05-17T15:37:12.647Z",
+    "lastAccessed": "2026-05-17T15:37:18.189Z",
+    "secure": true,
+    "httpOnly": true,
+    "expires": "2026-08-15T15:37:12.000Z"
+  },
+  {
+    "key": "c_user",
+    "value": "100046234122528",
+    "domain": "facebook.com",
+    "path": "/",
+    "hostOnly": false,
+    "creation": "2026-05-17T15:37:12.647Z",
+    "lastAccessed": "2026-05-17T15:37:18.189Z",
+    "secure": false,
+    "httpOnly": false,
+    "expires": "Infinity"
+  },
+  {
+    "key": "sb",
+    "value": "Z8SZaQNgbKPtNSpendjWyEdt",
+    "domain": "facebook.com",
+    "path": "/",
+    "hostOnly": false,
+    "creation": "2026-05-17T15:37:12.648Z",
+    "lastAccessed": "2026-05-17T15:37:18.189Z",
+    "secure": false,
+    "httpOnly": false,
+    "expires": "Infinity"
+  },
+  {
+    "key": "datr",
+    "value": "Z8SZaTXbNf1HoldcB4dbuYvu",
+    "domain": "facebook.com",
+    "path": "/",
+    "hostOnly": false,
+    "creation": "2026-05-17T15:37:12.648Z",
+    "lastAccessed": "2026-05-17T15:37:18.189Z",
+    "secure": false,
+    "httpOnly": false,
+    "expires": "Infinity"
+  }
+]
