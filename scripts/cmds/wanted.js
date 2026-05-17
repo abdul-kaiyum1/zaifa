@@ -2,12 +2,12 @@ const axios = require("axios");
 
 module.exports = {
 	config: {
-		name: "blur",
+		name: "wanted",
 		version: "1.0",
-		author: "Kaiyum",
+		author: "Abdul Kaiyum",
 		countDown: 5,
 		role: 0,
-		shortDescription: "Blur image",
+		shortDescription: "Wanted poster",
 		category: "image",
 		guide: "{pn} reply image"
 	},
@@ -19,14 +19,14 @@ module.exports = {
 			const reply = event.messageReply;
 
 			if (!reply?.attachments?.[0]?.url)
-				return message.reply("Reply to an image.");
+				return message.reply("Reply to image.");
 
 			const img = encodeURIComponent(
 				reply.attachments[0].url
 			);
 
 			const url =
-				`https://api.popcat.xyz/blur?image=${img}`;
+				`https://api.popcat.xyz/wanted?image=${img}`;
 
 			message.reply({
 				attachment: await global.utils.getStreamFromURL(url)

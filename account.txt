@@ -5,23 +5,23 @@
     "domain": "facebook.com",
     "path": "/",
     "hostOnly": false,
-    "creation": "2026-05-17T06:34:24.434Z",
-    "lastAccessed": "2026-05-17T06:34:29.137Z",
+    "creation": "2026-05-17T09:10:19.771Z",
+    "lastAccessed": "2026-05-17T09:10:24.254Z",
     "secure": false,
     "httpOnly": false,
     "expires": "Infinity"
   },
   {
     "key": "fr",
-    "value": "00M0ICsnSZO8TelqP.AWet5WRGMu2wa8UyIDMu7B9CtLqTOoeI3WG1kGFam7g29hLGPDI.BpmcRn..AAA.0.0.BqCWFw.AWegke6qPLY9Fdu_eAd3GMdl22I",
+    "value": "00M0ICsnSZO8TelqP.AWfNMqI4LQ2azPSpu-TaXZOcXTTH8-pwkjGSOPyndGlhwmEtins.BpmcRn..AAA.0.0.BqCYX8.AWdKdmb9EVxl1jx4A9uC91R1HNs",
     "domain": "facebook.com",
     "path": "/",
     "hostOnly": false,
-    "creation": "2026-05-17T06:34:24.457Z",
-    "lastAccessed": "2026-05-17T06:34:29.137Z",
+    "creation": "2026-05-17T09:10:19.778Z",
+    "lastAccessed": "2026-05-17T09:10:24.254Z",
     "secure": true,
     "httpOnly": true,
-    "expires": "2026-08-15T06:34:24.000Z"
+    "expires": "2026-08-15T09:10:20.000Z"
   },
   {
     "key": "c_user",
@@ -29,8 +29,8 @@
     "domain": "facebook.com",
     "path": "/",
     "hostOnly": false,
-    "creation": "2026-05-17T06:34:24.459Z",
-    "lastAccessed": "2026-05-17T06:34:29.137Z",
+    "creation": "2026-05-17T09:10:19.779Z",
+    "lastAccessed": "2026-05-17T09:10:24.254Z",
     "secure": false,
     "httpOnly": false,
     "expires": "Infinity"
@@ -41,8 +41,8 @@
     "domain": "facebook.com",
     "path": "/",
     "hostOnly": false,
-    "creation": "2026-05-17T06:34:24.459Z",
-    "lastAccessed": "2026-05-17T06:34:29.137Z",
+    "creation": "2026-05-17T09:10:19.780Z",
+    "lastAccessed": "2026-05-17T09:10:24.254Z",
     "secure": false,
     "httpOnly": false,
     "expires": "Infinity"
@@ -53,8 +53,8 @@
     "domain": "facebook.com",
     "path": "/",
     "hostOnly": false,
-    "creation": "2026-05-17T06:34:24.460Z",
-    "lastAccessed": "2026-05-17T06:34:29.137Z",
+    "creation": "2026-05-17T09:10:19.780Z",
+    "lastAccessed": "2026-05-17T09:10:24.254Z",
     "secure": false,
     "httpOnly": false,
     "expires": "Infinity"

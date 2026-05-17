@@ -1,50 +1,136 @@
-const axios = require('axios');
-const jimp = require("jimp");
-const fs = require("fs")
-
+const { Jimp, loadFont } = require("jimp");
+const fs = require("fs");
 
 module.exports = {
- config: {
- name: "propose",
- aliases: ["proposal"],
- version: "1.1",
- author: "Kivv × AceGun",
- countDown: 5,
- role: 0,
- shortDescription: "@mention someone to propose",
- longDescription: "",
- category: "fun",
- guide: "{pn} mention/tag"
- },
+	config: {
+		name: "propose",
+		aliases: ["proposal"],
+		version: "3.0",
+		author: "Abdul Kaiyum",
+		countDown: 5,
+		role: 0,
+		shortDescription: "Propose someone ❤️",
+		longDescription: "Create proposal image with names",
+		category: "fun",
+		guide: "{pn} @mention"
+	},
 
+	onStart: async function ({ api, event, usersData, message }) {
 
+		try {
 
- onStart: async function ({ message, event, args }) {
- const mention = Object.keys(event.mentions);
- if (mention.length == 0) return message.reply("Please mention someone");
- else if (mention.length == 1) {
- const one = event.senderID, two = mention[0];
- bal(one, two).then(ptth => { message.reply({ body: "「 Please be mine😍❤️ 」", attachment: fs.createReadStream(ptth) }) })
- } else {
- const one = mention[1], two = mention[0];
- bal(one, two).then(ptth => { message.reply({ body: "", attachment: fs.createReadStream(ptth) }) })
- }
- }
+			const mentions = Object.keys(event.mentions);
 
+			if (!mentions.length)
+				return message.reply("❌ | Please mention someone.");
 
+			const senderID = event.senderID;
+			const targetID = mentions[0];
+
+			const senderName =
+				await usersData.getName(senderID);
+
+			const targetName =
+				await usersData.getName(targetID);
+
+			const path = await createImage(
+				senderID,
+				targetID,
+				senderName,
+				targetName
+			);
+
+			await message.reply({
+				body: `💍 | ${senderName} loves ${targetName} ❤️`,
+				attachment: fs.createReadStream(path)
+			});
+
+			fs.unlinkSync(path);
+
+		} catch (e) {
+			console.log(e);
+			message.reply("❌ | Failed to create image.");
+		}
+	}
 };
 
-async function bal(one, two) {
+async function createImage(
+	one,
+	two,
+	name1,
+	name2
+) {
 
- let avone = await jimp.read(`https://graph.facebook.com/${one}/picture?width=512&height=512&access_token=6628568379%7Cc1e620fa708a1d5696fb991c1bde5662`)
- avone.circle()
- let avtwo = await jimp.read(`https://graph.facebook.com/${two}/picture?width=512&height=512&access_token=6628568379%7Cc1e620fa708a1d5696fb991c1bde5662`)
- avtwo.circle()
- let pth = "propose.png"
- let img = await jimp.read("https://i.ibb.co/RNBjSJk/image.jpg")
+	const avatar1 = await Jimp.read(
+		`https://graph.facebook.com/${one}/picture?width=512&height=512`
+	);
 
- img.resize(760, 506).composite(avone.resize(90, 90), 210, 65).composite(avtwo.resize(90, 90), 458, 105);
+	const avatar2 = await Jimp.read(
+		`https://graph.facebook.com/${two}/picture?width=512&height=512`
+	);
 
- await img.writeAsync(pth)
- return pth
+	avatar1.circle();
+	avatar2.circle();
+
+	// YOUR TEMPLATE IMAGE
+	const bg = await Jimp.read(
+		"https://ibb.co.com/jPpyvmb8"
+	);
+
+	bg.resize({
+		width: 1365,
+		height: 768
+	});
+
+	bg.composite(
+		avatar1.resize({
+			width: 280,
+			height: 280
+		}),
+		90,
+		220
+	);
+
+	bg.composite(
+		avatar2.resize({
+			width: 280,
+			height: 280
+		}),
+		995,
+		220
+	);
+
+	// FONT
+	const font = await loadFont(
+		"https://raw.githubusercontent.com/naptha/tessdata/gh-pages/4.0.0/eng.traineddata"
+	);
+
+	// NAME TEXT
+	bg.print(
+		font,
+		120,
+		530,
+		{
+			text: name1,
+			alignmentX: 1
+		},
+		250
+	);
+
+	bg.print(
+		font,
+		1020,
+		530,
+		{
+			text: name2,
+			alignmentX: 1
+		},
+		250
+	);
+
+	const path = `./tmp/propose_${Date.now()}.png`;
+
+	await bg.write(path);
+
+	return path;
 }

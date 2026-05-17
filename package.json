@@ -4,11 +4,12 @@
   "description": "A simple Bot chat messenger using personal account. Made by NTKhang.",
   "main": "index.js",
   "engines": {
-    "node": "18.x",
+    "node": "20.x",
     "npm": ">=7.0.0"
   },
   "dependencies": {
     "@distube/ytdl-core": "^4.13.3",
+    "@dongdev/fca-unofficial": "^4.0.3",
     "@google-cloud/text-to-speech": "^5.7.0",
     "@google-cloud/vision": "^4.3.2",
     "@iamtraction/google-translate": "^2.0.1",
@@ -26,7 +27,6 @@
     "crypto": "^1.0.1",
     "deasync": "^0.1.30",
     "discord-image-generation": "^1.4.25",
-    "@dongdev/fca-unofficial": "^4.0.3",
     "eta": "^1.12.3",
     "express": "^4.18.1",
     "express-fileupload": "^1.4.0",
@@ -42,7 +42,7 @@
     "graphql-query-to-json": "^2.0.1",
     "https": "^1.0.0",
     "is-hexcolor": "^1.0.0",
-    "jimp": "^1.6.0",
+    "jimp": "^0.16.1",
     "jsonlint-mod": "^1.7.6",
     "mal-scraper": "^2.13.2",
     "moment-timezone": "^0.5.34",
