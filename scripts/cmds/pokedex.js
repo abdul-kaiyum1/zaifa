@@ -1,17 +1,10 @@
-const {
-	getPokemonData
-} = require("./pokemonUtils");
+const axios = require("axios");
 
 module.exports = {
 	config: {
 		name: "pokedex",
 
-		aliases: [
-			"pdex",
-			"dex"
-		],
-
-		version: "4.0",
+		version: "8.0",
 
 		author: "Abdul Kaiyum",
 
@@ -20,10 +13,10 @@ module.exports = {
 		role: 0,
 
 		shortDescription:
-			"View your Pokédex",
+			"Search Pokémon info",
 
 		longDescription:
-			"See your Pokémon collection stats",
+			"Get detailed Pokédex info about any Pokémon",
 
 		category: "pokemon",
 
@@ -31,28 +24,34 @@ module.exports = {
 			en: `
 ╭─ POKEDEX GUIDE ─╮
 
-📘 Commands:
-• pokedex
-• pdex
-• dex
+📘 Command:
+• pokedex pokemonName
+
+━━━━━━━━━━━━━━━
+
+📌 Example:
+
+• pokedex pikachu
+• pokedex charizard
+• pokedex mewtwo
 
 ━━━━━━━━━━━━━━━
 
 📊 Shows:
-• Total Pokémon
-• Shiny Count
-• Legendary Count
-• Win/Loss Stats
-• Coins
-• Strongest Pokémon
+
+• Pokémon Info
+• Stats
+• Abilities
+• Types
+• Height
+• Weight
 
 ━━━━━━━━━━━━━━━
 
 💡 Tips:
-• Catch more Pokémon
-• Hunt shiny Pokémon
-• Level up Pokémon
-• Battle more 😹
+
+• Battle er age stats dekho 😹
+• Legendary Pokémon search koro
 
 ╰────────────────╯`
 		}
@@ -60,225 +59,148 @@ module.exports = {
 
 	onStart: async function ({
 		message,
-		event,
-		usersData
+		args
 	}) {
 
 		try {
 
-			// GET USER DATA
+			// NO NAME
 
-			const userData =
-				await getPokemonData(
-					usersData,
-					event.senderID
-				);
-
-			const pokeData =
-				userData.pokemonData;
-
-			const pokemons =
-				pokeData.pokemons || [];
-
-			// NO POKEMON
-
-			if (!pokemons.length) {
+			if (!args[0]) {
 
 				return message.reply(
-`❌ You don't have any Pokémon yet.
+`❌ Please enter Pokémon name.
 
-🎯 Use:
-pokehunt
-
-to catch Pokémon!`
+📌 Example:
+pokedex pikachu`
 				);
 			}
+
+			// NAME
+
+			const name =
+				args
+					.join(" ")
+					.toLowerCase();
+
+			// API
+
+			const res =
+				await axios.get(
+					`https://pokeapi.co/api/v2/pokemon/${name}`
+				);
+
+			const data =
+				res.data;
 
 			// STATS
 
-			const shinyCount =
-				pokemons.filter(
-					p => p.shiny
-				).length;
+			const hp =
+				data.stats[0]
+					.base_stat;
 
-			const legendaryCount =
-				pokemons.filter(
-					p =>
-						p.rarity ===
-						"legendary"
-				).length;
+			const attack =
+				data.stats[1]
+					.base_stat;
 
-			const mythicalCount =
-				pokemons.filter(
-					p =>
-						p.rarity ===
-						"mythical"
-				).length;
+			const defense =
+				data.stats[2]
+					.base_stat;
 
-			const epicCount =
-				pokemons.filter(
-					p =>
-						p.rarity ===
-						"epic"
-				).length;
+			const speed =
+				data.stats[5]
+					.base_stat;
 
-			const rareCount =
-				pokemons.filter(
-					p =>
-						p.rarity ===
-						"rare"
-				).length;
+			// TYPES
 
-			const commonCount =
-				pokemons.filter(
-					p =>
-						p.rarity ===
-						"common"
-				).length;
-
-			// STRONGEST POKEMON
-
-			const strongest =
-				[...pokemons].sort(
-					(a, b) =>
-						b.level -
-						a.level
-				)[0];
-
-			// TOTAL LEVEL
-
-			const totalLevel =
-				pokemons.reduce(
-					(a, b) =>
-						a +
-						(b.level || 1),
-					0
-				);
-
-			const avgLevel =
-				(
-					totalLevel /
-					pokemons.length
-				).toFixed(1);
-
-			// HIGHEST RARITY
-
-			let rarest =
-				pokemons.find(
-					p =>
-						p.rarity ===
-						"mythical"
-				);
-
-			if (!rarest) {
-
-				rarest =
-					pokemons.find(
-						p =>
-							p.rarity ===
-							"legendary"
-					);
-			}
-
-			if (!rarest) {
-
-				rarest =
-					pokemons.find(
-						p =>
-							p.rarity ===
-							"epic"
-					);
-			}
-
-			// UNIQUE POKEDEX
-
-			const uniqueDex =
-				[
-					...new Set(
-						pokeData.pokedex
+			const types =
+				data.types
+					.map(
+						t =>
+							t.type.name
 					)
-				];
+					.join(", ");
+
+			// ABILITIES
+
+			const abilities =
+				data.abilities
+					.map(
+						a =>
+							a.ability.name
+					)
+					.join(", ");
+
+			// IMAGE
+
+			const image =
+				data.sprites
+					.other[
+					"official-artwork"
+				]
+					.front_default ||
+
+				data.sprites
+					.front_default;
 
 			// MESSAGE
 
-			message.reply(
-`📘 YOUR POKÉDEX
+			message.reply({
+				body:
+`📘 POKÉDEX ENTRY
 
 ━━━━━━━━━━━━━━━
 
-👤 Trainer:
-${await usersData.getName(
-	event.senderID
-)}
+🧬 Name:
+${data.name}
 
-🧬 Total Pokémon:
-${pokemons.length}
+🆔 Pokédex ID:
+${data.id}
 
-📖 Unique Pokédex:
-${uniqueDex.length}
-
-✨ Shiny Pokémon:
-${shinyCount}
-
-💰 Coins:
-${pokeData.coins || 0}
-
-🏆 Wins:
-${pokeData.wins || 0}
-
-💀 Losses:
-${pokeData.losses || 0}
+🌿 Types:
+${types}
 
 ━━━━━━━━━━━━━━━
 
-⭐ Average Level:
-${avgLevel}
+❤️ HP:
+${hp}
 
-🔥 Strongest Pokémon:
-${strongest.name}
-Lv.${strongest.level}
+⚔️ Attack:
+${attack}
 
-━━━━━━━━━━━━━━━
+🛡️ Defense:
+${defense}
 
-👑 Rarest Pokémon:
-${
-	rarest
-		? `${rarest.name}
-(${rarest.rarity.toUpperCase()})`
-		: "None"
-}
+🏃 Speed:
+${speed}
 
 ━━━━━━━━━━━━━━━
 
-📊 RARITY STATS
+📏 Height:
+${data.height}
 
-🟢 Common:
-${commonCount}
+⚖️ Weight:
+${data.weight}
 
-🔵 Rare:
-${rareCount}
-
-🟣 Epic:
-${epicCount}
-
-🟡 Legendary:
-${legendaryCount}
-
-🔴 Mythical:
-${mythicalCount}
+✨ Abilities:
+${abilities}
 
 ━━━━━━━━━━━━━━━
 
-🔥 Keep hunting Pokémon
-to become strongest trainer!`
-			);
+🔥 Pokémon data loaded!`,
+
+				attachment:
+					await global.utils.getStreamFromURL(
+						image
+					)
+			});
 
 		} catch (e) {
 
 			console.log(e);
 
 			message.reply(
-				"❌ Failed to load Pokédex."
+				"❌ Pokémon not found."
 			);
 		}
 	}

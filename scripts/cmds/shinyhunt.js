@@ -1,8 +1,9 @@
 const axios = require("axios");
 
 const {
-	getPokemonData
-} = require("./pokemonUtils");
+	getPokemonUser,
+	savePokemonUser
+} = require("./pokemonMongo");
 
 const {
 	getRarity,
@@ -29,16 +30,11 @@ module.exports = {
 	config: {
 		name: "shinyhunt",
 
-		aliases: [
-			"shunt",
-			"huntshiny"
-		],
-
-		version: "5.0",
+		version: "7.0",
 
 		author: "Abdul Kaiyum",
 
-		countDown: 30,
+		countDown: 20,
 
 		role: 0,
 
@@ -54,15 +50,24 @@ module.exports = {
 			en: `
 ╭─ SHINYHUNT GUIDE ─╮
 
-✨ Start Hunt:
+✨ Command:
 • shinyhunt
 
 ━━━━━━━━━━━━━━━
 
 🎮 How To Play:
 
-Bot shiny pokemon image dibe.
-Pokemon er naam reply dite hobe.
+Bot shiny Pokémon image dibe.
+60 second er moddhe
+Pokémon er naam reply dite hobe.
+
+━━━━━━━━━━━━━━━
+
+⚠️ Rules:
+
+• Wrong answer auto unsend
+• 60 second limit
+• First correct answer wins
 
 ━━━━━━━━━━━━━━━
 
@@ -70,25 +75,15 @@ Pokemon er naam reply dite hobe.
 
 • Shiny Pokémon
 • Huge Coins
-• XP
 • Rare Pokémon
-
-━━━━━━━━━━━━━━━
-
-✨ Features:
-
-• Ultra Rare Pokémon
-• MongoDB Save
-• Rarity System
-• Pokédex Save
 
 ━━━━━━━━━━━━━━━
 
 💡 Tips:
 
 • Fast answer dao 😹
-• Shiny Pokémon very rare
-• Legendary shiny ultra rare
+• Shiny Pokémon ultra rare
+• Legendary shiny insane rare
 
 ╰──────────────────╯`
 		}
@@ -96,7 +91,8 @@ Pokemon er naam reply dite hobe.
 
 	onStart: async function ({
 		message,
-		event
+		event,
+		api
 	}) {
 
 		try {
@@ -110,7 +106,7 @@ Pokemon er naam reply dite hobe.
 			) {
 
 				return message.reply(
-					"❌ | A shiny hunt is already running."
+					"❌ A shiny hunt is already running."
 				);
 			}
 
@@ -167,7 +163,7 @@ Pokemon er naam reply dite hobe.
 					rarity
 				);
 
-			// STORE HUNT
+			// SAVE HUNT
 
 			activeShinyHunts.set(
 				event.threadID,
@@ -175,6 +171,8 @@ Pokemon er naam reply dite hobe.
 					pokemonName,
 
 					reward,
+
+					timeout: null,
 
 					pokemonData: {
 
@@ -216,7 +214,7 @@ Pokemon er naam reply dite hobe.
 				}
 			);
 
-			// START MESSAGE
+			// SEND MESSAGE
 
 			const msg =
 				await message.reply({
@@ -231,19 +229,59 @@ ${rarity.toUpperCase()}
 💰 Reward:
 ${reward} coins
 
+⏰ Time Limit:
+60 seconds
+
 ⚡ ULTRA RARE EVENT ⚡
 
 ━━━━━━━━━━━━━━━
 
-🎯 Guess Pokémon name!
-
-Reply with Pokémon name!`,
+🎮 Reply with Pokémon name!`,
 
 					attachment:
 						await global.utils.getStreamFromURL(
 							image
 						)
 				});
+
+			// TIMEOUT
+
+			const timeout =
+				setTimeout(
+					async () => {
+
+						const stillActive =
+							activeShinyHunts.get(
+								event.threadID
+							);
+
+						if (
+							!stillActive
+						)
+							return;
+
+						activeShinyHunts.delete(
+							event.threadID
+						);
+
+						message.reply(
+`⏰ TIME OVER!
+
+❌ Nobody guessed the shiny Pokémon.
+
+🧬 Pokémon was:
+${pokemonName}`
+						);
+
+					},
+					60000
+				);
+
+			activeShinyHunts.get(
+				event.threadID
+			).timeout = timeout;
+
+			// REPLY
 
 			global.GoatBot.onReply.set(
 				msg.messageID,
@@ -270,6 +308,7 @@ Reply with Pokémon name!`,
 		message,
 		event,
 		Reply,
+		api,
 		usersData
 	}) {
 
@@ -293,8 +332,20 @@ Reply with Pokémon name!`,
 			if (
 				answer !==
 				hunt.pokemonName
-			)
+			) {
+
+				api.unsendMessage(
+					event.messageID
+				);
+
 				return;
+			}
+
+			// STOP TIMEOUT
+
+			clearTimeout(
+				hunt.timeout
+			);
 
 			// REMOVE HUNT
 
@@ -305,48 +356,64 @@ Reply with Pokémon name!`,
 			// USER DATA
 
 			const userData =
-				await getPokemonData(
-					usersData,
+				await getPokemonUser(
 					event.senderID
 				);
 
+			// FIX ARRAYS
+
+			if (
+				!Array.isArray(
+					userData.pokemons
+				)
+			) {
+
+				userData.pokemons =
+					[];
+			}
+
+			if (
+				!Array.isArray(
+					userData.pokedex
+				)
+			) {
+
+				userData.pokedex =
+					[];
+			}
+
 			// ADD COINS
 
-			userData.pokemonData.coins +=
+			userData.coins +=
 				hunt.reward;
 
 			// ADD POKEMON
 
-			userData.pokemonData.pokemons.push(
+			userData.pokemons.push(
 				hunt.pokemonData
 			);
 
-			// ADD POKEDEX
+			// ADD DEX
 
 			if (
-				!userData
-					.pokemonData
-					.pokedex.includes(
-						hunt.pokemonName
-					)
+				!userData.pokedex.includes(
+					hunt.pokemonName
+				)
 			) {
 
-				userData.pokemonData.pokedex.push(
+				userData.pokedex.push(
 					hunt.pokemonName
 				);
 			}
 
-			// SAVE MONGO
+			// SAVE
 
-			await usersData.set(
+			await savePokemonUser(
 				event.senderID,
-				{
-					pokemonData:
-						userData.pokemonData
-				}
+				userData
 			);
 
-			// SUCCESS MESSAGE
+			// SUCCESS
 
 			message.reply(
 `✨ SHINY POKÉMON CAUGHT!

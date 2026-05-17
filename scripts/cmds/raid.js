@@ -1,6 +1,7 @@
 const {
-	getPokemonData
-} = require("./pokemonUtils");
+	getPokemonUser,
+	savePokemonUser
+} = require("./pokemonMongo");
 
 const activeRaids =
 	global.activeRaids ||
@@ -24,7 +25,10 @@ const raidBosses = [
 
 		defense: 80,
 
-		reward: 5000
+		reward: 5000,
+
+		image:
+"https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/384.png"
 	},
 
 	{
@@ -38,7 +42,10 @@ const raidBosses = [
 
 		defense: 70,
 
-		reward: 5500
+		reward: 5500,
+
+		image:
+"https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/150.png"
 	},
 
 	{
@@ -52,7 +59,10 @@ const raidBosses = [
 
 		defense: 90,
 
-		reward: 5200
+		reward: 5200,
+
+		image:
+"https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/382.png"
 	},
 
 	{
@@ -66,7 +76,10 @@ const raidBosses = [
 
 		defense: 100,
 
-		reward: 7000
+		reward: 7000,
+
+		image:
+"https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/483.png"
 	}
 ];
 
@@ -82,12 +95,7 @@ module.exports = {
 	config: {
 		name: "raid",
 
-		aliases: [
-			"bossraid",
-			"pokemonraid"
-		],
-
-		version: "5.0",
+		version: "7.0",
 
 		author: "Abdul Kaiyum",
 
@@ -107,12 +115,12 @@ module.exports = {
 			en: `
 ╭─ RAID GUIDE ─╮
 
-⚔️ Start Raid:
+⚔️ Command:
 • raid
 
 ━━━━━━━━━━━━━━━
 
-🎮 Commands:
+🎮 Battle Commands:
 
 • attack
 • skill
@@ -127,14 +135,13 @@ module.exports = {
 • Huge Coins
 • XP
 • Rare Rewards
-• Pokémon XP
 
 ━━━━━━━━━━━━━━━
 
 💡 Tips:
 
 • Heal wisely 😹
-• Skill more damage dey
+• Skill = more damage
 • Legendary bosses very strong
 
 ╰────────────────╯`
@@ -143,13 +150,12 @@ module.exports = {
 
 	onStart: async function ({
 		message,
-		event,
-		usersData
+		event
 	}) {
 
 		try {
 
-			// ACTIVE RAID CHECK
+			// ACTIVE CHECK
 
 			if (
 				activeRaids.has(
@@ -158,43 +164,52 @@ module.exports = {
 			) {
 
 				return message.reply(
-					"❌ | You already have an active raid."
+					"❌ You already have an active raid."
 				);
 			}
 
 			// USER DATA
 
 			const userData =
-				await getPokemonData(
-					usersData,
+				await getPokemonUser(
 					event.senderID
 				);
 
 			const pokemons =
-				userData
-					.pokemonData
-					.pokemons;
+				userData.pokemons || [];
 
-			if (
-				!pokemons.length
-			) {
+			// NO POKEMON
+
+			if (!pokemons.length) {
 
 				return message.reply(
-					"❌ | You need Pokémon first."
+`❌ You need Pokémon first.
+
+🎯 Use:
+pokehunt`
 				);
 			}
 
-			// PLAYER POKEMON
+			// STRONGEST POKEMON
 
 			const myPokemon =
+				[...pokemons].sort(
+					(a, b) =>
+						b.level -
+						a.level
+				)[0];
+
+			// COPY
+
+			const playerPokemon =
 				JSON.parse(
 					JSON.stringify(
-						pokemons[0]
+						myPokemon
 					)
 				);
 
-			myPokemon.currentHP =
-				myPokemon.hp;
+			playerPokemon.currentHP =
+				playerPokemon.hp;
 
 			// RANDOM BOSS
 
@@ -223,16 +238,17 @@ module.exports = {
 						event.senderID,
 
 					pokemon:
-						myPokemon,
+						playerPokemon,
 
 					boss
 				}
 			);
 
-			// START MESSAGE
+			// MESSAGE
 
 			const msg =
-				await message.reply(
+				await message.reply({
+					body:
 `🐉 RAID BOSS APPEARED!
 
 ━━━━━━━━━━━━━━━
@@ -255,10 +271,10 @@ ${boss.defense}
 ━━━━━━━━━━━━━━━
 
 🧬 Your Pokémon:
-${myPokemon.name}
+${playerPokemon.name}
 
 ❤️ HP:
-${myPokemon.currentHP}/${myPokemon.hp}
+${playerPokemon.currentHP}/${playerPokemon.hp}
 
 ━━━━━━━━━━━━━━━
 
@@ -267,8 +283,13 @@ attack
 skill
 heal
 info
-surrender`
-				);
+surrender`,
+
+					attachment:
+						await global.utils.getStreamFromURL(
+							boss.image
+						)
+				});
 
 			global.GoatBot.onReply.set(
 				msg.messageID,
@@ -294,8 +315,7 @@ surrender`
 	onReply: async function ({
 		message,
 		event,
-		Reply,
-		usersData
+		Reply
 	}) {
 
 		try {
@@ -338,10 +358,6 @@ surrender`
 				action === "attack"
 			) {
 
-				const crit =
-					Math.random() <
-					0.15;
-
 				let damage =
 
 					random(
@@ -353,9 +369,6 @@ surrender`
 						boss.defense / 4
 					);
 
-				if (crit)
-					damage *= 2;
-
 				if (damage < 1)
 					damage = 1;
 
@@ -366,9 +379,7 @@ surrender`
 `${myPokemon.name} used ATTACK!
 
 💥 Damage:
-${damage}
-
-${crit ? "🔥 CRITICAL HIT!" : ""}`;
+${damage}`;
 			}
 
 			// SKILL
@@ -377,14 +388,10 @@ ${crit ? "🔥 CRITICAL HIT!" : ""}`;
 				action === "skill"
 			) {
 
-				const crit =
-					Math.random() <
-					0.25;
-
 				let damage =
 
 					random(
-						40,
+						35,
 						myPokemon.attack +
 							50
 					) -
@@ -392,9 +399,6 @@ ${crit ? "🔥 CRITICAL HIT!" : ""}`;
 					Math.floor(
 						boss.defense / 5
 					);
-
-				if (crit)
-					damage *= 2;
 
 				if (damage < 1)
 					damage = 1;
@@ -406,9 +410,7 @@ ${crit ? "🔥 CRITICAL HIT!" : ""}`;
 `${myPokemon.name} used SPECIAL SKILL!
 
 ⚡ Damage:
-${damage}
-
-${crit ? "🔥 SKILL CRITICAL!" : ""}`;
+${damage}`;
 			}
 
 			// HEAL
@@ -418,7 +420,7 @@ ${crit ? "🔥 SKILL CRITICAL!" : ""}`;
 			) {
 
 				const heal =
-					random(25, 50);
+					random(20, 50);
 
 				myPokemon.currentHP +=
 					heal;
@@ -450,8 +452,7 @@ ${heal} HP`;
 
 ━━━━━━━━━━━━━━━
 
-🧬 Your Pokémon:
-${myPokemon.name}
+🧬 ${myPokemon.name}
 
 ❤️ HP:
 ${myPokemon.currentHP}/${myPokemon.hp}
@@ -464,8 +465,7 @@ ${myPokemon.defense}
 
 ━━━━━━━━━━━━━━━
 
-🐉 Boss:
-${boss.name}
+🐉 ${boss.name}
 
 ❤️ HP:
 ${boss.currentHP}/${boss.hp}
@@ -510,7 +510,7 @@ ${boss.defense}`
 				let bossDamage =
 
 					random(
-						25,
+						20,
 						boss.attack
 					) -
 
@@ -564,72 +564,71 @@ defeated your Pokémon!`
 					event.senderID
 				);
 
-				// REWARDS
-
 				const reward =
 					boss.reward;
 
 				const xp =
 					random(
 						100,
-						300
+						250
 					);
 
+				// USER DATA
+
 				const userData =
-					await getPokemonData(
-						usersData,
+					await getPokemonUser(
 						event.senderID
 					);
 
-				const pokeData =
-					userData.pokemonData;
-
-				pokeData.coins +=
+				userData.coins +=
 					reward;
 
-				pokeData.wins++;
+				userData.wins++;
 
-				// REAL POKEMON
+				// FIND REAL POKEMON
 
 				const realPokemon =
-					pokeData
-						.pokemons[0];
+					userData.pokemons.find(
+						p =>
+							p.name ===
+							myPokemon.name
+					);
 
-				realPokemon.xp +=
-					xp;
+				if (realPokemon) {
 
-				// LEVEL UP
+					realPokemon.xp +=
+						xp;
 
-				if (
-					realPokemon.xp >=
-					100
-				) {
+					// LEVEL UP
 
-					realPokemon.level++;
+					if (
+						realPokemon.xp >=
+						100
+					) {
 
-					realPokemon.xp = 0;
+						realPokemon.level++;
 
-					realPokemon.hp +=
-						10;
+						realPokemon.xp = 0;
 
-					realPokemon.attack +=
-						5;
+						realPokemon.hp +=
+							10;
 
-					realPokemon.defense +=
-						5;
+						realPokemon.attack +=
+							5;
 
-					realPokemon.speed +=
-						3;
+						realPokemon.defense +=
+							5;
+
+						realPokemon.speed +=
+							3;
+					}
 				}
 
-				// SAVE MONGO
+				// SAVE
 
-				await usersData.set(
+				await savePokemonUser(
 					event.senderID,
-					{
-						pokemonData:
-							pokeData
-					}
+					userData
 				);
 
 				return message.reply(
@@ -646,7 +645,7 @@ ${reward}
 ✨ XP:
 ${xp}
 
-📈 ${realPokemon.name}
+📈 ${myPokemon.name}
 Lv.${realPokemon.level}
 
 ━━━━━━━━━━━━━━━
@@ -655,7 +654,7 @@ Lv.${realPokemon.level}
 				);
 			}
 
-			// CONTINUE MESSAGE
+			// CONTINUE
 
 			const msg =
 				await message.reply(
@@ -664,12 +663,14 @@ Lv.${realPokemon.level}
 ━━━━━━━━━━━━━━━
 
 🧬 ${myPokemon.name}
+
 ❤️ HP:
 ${myPokemon.currentHP}/${myPokemon.hp}
 
 ━━━━━━━━━━━━━━━
 
 🐉 ${boss.name}
+
 ❤️ HP:
 ${boss.currentHP}/${boss.hp}
 

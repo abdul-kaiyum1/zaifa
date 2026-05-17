@@ -1,6 +1,6 @@
 const {
 	getPokemonData
-} = require("./pokemonUtils");
+} = require("./pokemonMongo");
 
 const activeGyms =
 	global.activeGyms ||

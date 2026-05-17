@@ -1,41 +1,46 @@
 const {
-	getPokemonData
-} = require("./pokemonUtils");
+	getPokemonUser,
+	savePokemonUser
+} = require("./pokemonMongo");
 
-const evolutionMap = {
+const evolutions = {
 
-	bulbasaur: "ivysaur",
-	ivysaur: "venusaur",
+	bulbasaur:
+		"ivysaur",
 
-	charmander: "charmeleon",
-	charmeleon: "charizard",
+	ivysaur:
+		"venusaur",
 
-	squirtle: "wartortle",
-	wartortle: "blastoise",
+	charmander:
+		"charmeleon",
 
-	caterpie: "metapod",
-	metapod: "butterfree",
+	charmeleon:
+		"charizard",
 
-	pidgey: "pidgeotto",
-	pidgeotto: "pidgeot",
+	squirtle:
+		"wartortle",
 
-	rattata: "raticate",
+	wartortle:
+		"blastoise",
 
-	pikachu: "raichu",
+	pikachu:
+		"raichu",
 
-	eevee: "vaporeon"
+	eevee:
+		"vaporeon",
+
+	dratini:
+		"dragonair",
+
+	dragonair:
+		"dragonite"
 };
 
 module.exports = {
 	config: {
 		name: "evolve",
 
-		aliases: [
-			"evolution",
-			"pokeevolve"
-		],
-
-		version: "4.0",
+		version: "7.0",
 
 		author: "Abdul Kaiyum",
 
@@ -47,7 +52,7 @@ module.exports = {
 			"Evolve Pokémon",
 
 		longDescription:
-			"Level up and evolve your Pokémon",
+			"Evolve your Pokémon into stronger forms",
 
 		category: "pokemon",
 
@@ -55,103 +60,112 @@ module.exports = {
 			en: `
 ╭─ EVOLVE GUIDE ─╮
 
-✨ Commands:
-
-• evolve pokemonName
+🧬 Command:
+• evolve pokemonNumber
 
 ━━━━━━━━━━━━━━━
 
 📌 Example:
 
-evolve pikachu
+evolve 1
 
 ━━━━━━━━━━━━━━━
 
-⚡ Requirements:
+🎮 Requirements:
 
-• Pokémon Level 5+
-• Rare Candy OR Coins
-
-━━━━━━━━━━━━━━━
-
-🏆 Evolution Benefits:
-
-• More HP
-• More Attack
-• More Defense
-• Stronger Pokémon
+• Pokémon must be Level 5+
+• Pokémon must have evolution
 
 ━━━━━━━━━━━━━━━
 
 💡 Tips:
 
-• Battle kore level up koro
-• Rare candy use koro
-• Strong team build koro 😹
+• Higher evolution = stronger stats 😹
+• Level up Pokémon first
 
-╰────────────────╯`
+╰─────────────────╯`
 		}
 	},
 
 	onStart: async function ({
 		message,
 		event,
-		args,
-		usersData
+		args
 	}) {
 
 		try {
 
-			if (!args[0]) {
+			// NUMBER
+
+			const number =
+				parseInt(
+					args[0]
+				);
+
+			if (
+				isNaN(number)
+			) {
 
 				return message.reply(
-					"❌ | Enter Pokémon name."
+`❌ Enter Pokémon number.
+
+📌 Example:
+evolve 1`
 				);
 			}
 
-			const name =
-				args
-					.join(" ")
-					.toLowerCase();
+			// USER DATA
 
 			const userData =
-				await getPokemonData(
-					usersData,
+				await getPokemonUser(
 					event.senderID
 				);
 
-			const pokeData =
-				userData.pokemonData;
-
 			const pokemons =
-				pokeData.pokemons;
+				userData.pokemons || [];
+
+			// NO POKEMON
+
+			if (!pokemons.length) {
+
+				return message.reply(
+					"❌ You have no Pokémon."
+				);
+			}
+
+			// SORT
+
+			const sorted =
+				[...pokemons].sort(
+					(a, b) =>
+						b.level -
+						a.level
+				);
 
 			const pokemon =
-				pokemons.find(
-					p =>
-						p.name.toLowerCase() ===
-						name
-				);
+				sorted[number - 1];
+
+			// INVALID
 
 			if (!pokemon) {
 
 				return message.reply(
-					"❌ | Pokémon not found."
+					"❌ Invalid Pokémon number."
 				);
 			}
 
-			// EVOLUTION CHECK
+			// CHECK EVOLUTION
 
 			const evolution =
-				evolutionMap[
-					name
+				evolutions[
+					pokemon.name.toLowerCase()
 				];
 
 			if (!evolution) {
 
 				return message.reply(
 `❌ ${pokemon.name}
-cannot evolve anymore.`
+cannot evolve.`
 				);
 			}
 
@@ -163,133 +177,103 @@ cannot evolve anymore.`
 
 				return message.reply(
 `❌ ${pokemon.name}
-needs Level 5 to evolve.
-
-📈 Current Level:
-${pokemon.level}`
+needs Level 5+ to evolve.`
 				);
 			}
 
-			// REQUIREMENTS
+			// FIND REAL POKEMON
 
-			const items =
-				pokeData.items || {};
+			const realPokemon =
+				userData.pokemons.find(
+					p =>
+						p.name ===
+							pokemon.name &&
 
-			const hasRareCandy =
-				(items.rarecandy || 0) >
-				0;
+						p.level ===
+							pokemon.level &&
 
-			const coinCost =
-				2000;
+						p.shiny ===
+							pokemon.shiny
+				);
 
-			// NO REQUIREMENTS
-
-			if (
-				!hasRareCandy &&
-				pokeData.coins <
-					coinCost
-			) {
+			if (!realPokemon) {
 
 				return message.reply(
-`❌ Need one of these:
-
-🍬 Rare Candy
-OR
-💰 ${coinCost} Coins`
+					"❌ Pokémon not found."
 				);
-			}
-
-			// USE RARE CANDY
-
-			let usedItem =
-				"";
-
-			if (
-				hasRareCandy
-			) {
-
-				pokeData.items
-					.rarecandy--;
-
-				usedItem =
-					"🍬 Rare Candy";
-			}
-
-			// USE COINS
-
-			else {
-
-				pokeData.coins -=
-					coinCost;
-
-				usedItem =
-					`💰 ${coinCost} Coins`;
 			}
 
 			// EVOLVE
 
 			const oldName =
-				pokemon.name;
+				realPokemon.name;
 
-			pokemon.name =
+			realPokemon.name =
 				evolution;
 
-			pokemon.level += 1;
+			// STAT BOOST
 
-			pokemon.hp += 30;
+			realPokemon.hp += 30;
 
-			pokemon.attack += 15;
+			realPokemon.attack +=
+				15;
 
-			pokemon.defense += 10;
+			realPokemon.defense +=
+				15;
 
-			pokemon.speed += 5;
+			realPokemon.speed +=
+				10;
 
-			pokemon.xp = 0;
+			// SAVE DEX
+
+			if (
+				!userData.pokedex.includes(
+					evolution
+				)
+			) {
+
+				userData.pokedex.push(
+					evolution
+				);
+			}
 
 			// SAVE
 
-			await usersData.set(
+			await savePokemonUser(
 				event.senderID,
-				{
-					pokemonData:
-						pokeData
-				}
+				userData
 			);
 
+			// SUCCESS
+
 			message.reply(
-`✨ POKÉMON EVOLVED!
+`🧬 POKÉMON EVOLVED!
 
 ━━━━━━━━━━━━━━━
 
-🧬 Before:
+⬅️ Before:
 ${oldName}
 
-⬇️
-
-🧬 After:
-${pokemon.name}
+➡️ After:
+${evolution}
 
 ━━━━━━━━━━━━━━━
 
-📈 New Level:
-${pokemon.level}
+📈 New Stats Boosted!
 
 ❤️ HP:
-${pokemon.hp}
++30
 
 ⚔️ Attack:
-${pokemon.attack}
++15
 
 🛡️ Defense:
-${pokemon.defense}
++15
 
 🏃 Speed:
-${pokemon.speed}
++10
 
 ━━━━━━━━━━━━━━━
-
-🧾 Used:
-${usedItem}
 
 🔥 Your Pokémon became stronger!`
 			);
@@ -299,7 +283,7 @@ ${usedItem}
 			console.log(e);
 
 			message.reply(
-				"❌ Failed to evolve Pokémon."
+				"❌ Evolution failed."
 			);
 		}
 	}

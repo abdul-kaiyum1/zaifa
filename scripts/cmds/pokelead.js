@@ -1,19 +1,12 @@
 const {
-	getPokemonData
-} = require("./pokemonUtils");
+	getPokemonUser
+} = require("./pokemonMongo");
 
 module.exports = {
 	config: {
 		name: "pokeleaderboard",
 
-		aliases: [
-			"pokelead",
-			"plb",
-			"pokemonlb",
-			"pokeleader"
-		],
-
-		version: "4.0",
+		version: "7.0",
 
 		author: "Abdul Kaiyum",
 
@@ -25,7 +18,7 @@ module.exports = {
 			"Pokémon leaderboard",
 
 		longDescription:
-			"Top Pokémon trainers leaderboard",
+			"Top Pokémon trainers",
 
 		category: "pokemon",
 
@@ -33,36 +26,24 @@ module.exports = {
 			en: `
 ╭─ POKELEADERBOARD GUIDE ─╮
 
-🏆 Commands:
-
+🏆 Command:
 • pokeleaderboard
-• pokelead
-• plb
 
 ━━━━━━━━━━━━━━━
 
-📊 Shows:
-
-• Richest Trainers
-• Most Wins
-• Most Pokémon
-• Shiny Count
-• Total Levels
-
-━━━━━━━━━━━━━━━
-
-💡 Ranking Based On:
+📊 Ranking Based On:
 
 • Coins
 • Wins
-• Pokémon Levels
-• Collection Size
+• Pokémon Count
+• Levels
+• Shiny Pokémon
 
 ━━━━━━━━━━━━━━━
 
-🔥 Become strongest trainer! 😹
+🔥 Become strongest trainer 😹
 
-╰────────────────────────╯`
+╰─────────────────────────╯`
 		}
 	},
 
@@ -73,22 +54,32 @@ module.exports = {
 
 		try {
 
+			// GET COLLECTION
+
+			const {
+				connectPokemonDB
+			} = require("./pokemonMongo");
+
+			const collection =
+				await connectPokemonDB();
+
 			// GET USERS
 
-			const allUsers =
-				await usersData.getAll();
+			const users =
+				await collection
+					.find({})
+					.toArray();
 
-			// FILTER POKEMON USERS
+			// FILTER
 
 			const trainers =
-				allUsers.filter(
-					user =>
-						user.pokemonData &&
-						user.pokemonData
-							.pokemons &&
-						user.pokemonData
-							.pokemons.length
+				users.filter(
+					u =>
+						u.pokemons &&
+						u.pokemons.length
 				);
+
+			// NO USERS
 
 			if (!trainers.length) {
 
@@ -100,79 +91,101 @@ module.exports = {
 			// BUILD LEADERBOARD
 
 			const leaderboard =
-				trainers.map(
-					user => {
+				await Promise.all(
+					trainers.map(
+						async user => {
 
-						const pokeData =
-							user.pokemonData;
+							const pokemons =
+								user.pokemons || [];
 
-						const pokemons =
-							pokeData.pokemons || [];
+							const shinyCount =
+								pokemons.filter(
+									p =>
+										p.shiny
+								).length;
 
-						const shinyCount =
-							pokemons.filter(
-								p => p.shiny
-							).length;
+							const totalLevels =
+								pokemons.reduce(
+									(a, b) =>
+										a +
+										(b.level || 1),
+									0
+								);
 
-						const totalLevels =
-							pokemons.reduce(
-								(a, b) =>
-									a +
-									(b.level || 1),
-								0
-							);
+							// SCORE
 
-						const score =
+							const score =
 
-							(pokeData.coins || 0) +
+								(user.coins || 0) +
 
-							(pokeData.wins || 0) *
-								1000 +
+								(user.wins || 0) *
+									1000 +
 
-							totalLevels *
-								100 +
+								totalLevels *
+									100 +
 
-							pokemons.length *
-								250 +
+								pokemons.length *
+									250 +
 
-							shinyCount *
-								500;
+								shinyCount *
+									500;
 
-						return {
+							// NAME
 
-							name:
-								user.name ||
-								"Unknown Trainer",
+							let name =
+								"Unknown";
 
-							coins:
-								pokeData.coins || 0,
+							try {
 
-							wins:
-								pokeData.wins || 0,
+								name =
+									await usersData.getName(
+										user.userID
+									);
 
-							losses:
-								pokeData.losses || 0,
+							} catch (e) {}
 
-							pokemons:
-								pokemons.length,
+							return {
 
-							shiny:
-								shinyCount,
+								name,
 
-							totalLevels,
+								coins:
+									user.coins || 0,
 
-							score
-						};
-					}
-				)
+								wins:
+									user.wins || 0,
 
-				.sort(
-					(a, b) =>
-						b.score -
-						a.score
-				)
+								losses:
+									user.losses || 0,
 
-				.slice(0, 10);
+								pokemons:
+									pokemons.length,
+
+								shiny:
+									shinyCount,
+
+								totalLevels,
+
+								score
+							};
+						}
+					)
+				);
+
+			// SORT
+
+			leaderboard.sort(
+				(a, b) =>
+					b.score -
+					a.score
+			);
+
+			// TOP 10
+
+			const top =
+				leaderboard.slice(
+					0,
+					10
+				);
 
 			// MESSAGE
 
@@ -184,12 +197,12 @@ module.exports = {
 
 			for (
 				let i = 0;
-				i < leaderboard.length;
+				i < top.length;
 				i++
 			) {
 
 				const user =
-					leaderboard[i];
+					top[i];
 
 				const medal =
 
@@ -210,14 +223,14 @@ ${medal} Rank #${i + 1}
 
 👤 ${user.name}
 
+⭐ Score:
+${user.score}
+
 💰 Coins:
 ${user.coins}
 
 🏆 Wins:
 ${user.wins}
-
-💀 Losses:
-${user.losses}
 
 🧬 Pokémon:
 ${user.pokemons}
@@ -228,9 +241,6 @@ ${user.shiny}
 📈 Total Levels:
 ${user.totalLevels}
 
-⭐ Score:
-${user.score}
-
 ━━━━━━━━━━━━━━━`;
 			}
 
@@ -238,7 +248,7 @@ ${user.score}
 `
 
 🔥 Keep battling
-to climb leaderboard!`;
+to become #1 trainer!`;
 
 			message.reply(msg);
 

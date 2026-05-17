@@ -1,6 +1,6 @@
 const {
-	getPokemonData
-} = require("./pokemonUtils");
+	getPokemonUser
+} = require("./pokemonMongo");
 
 const {
 	getRarityEmoji
@@ -10,13 +10,7 @@ module.exports = {
 	config: {
 		name: "mypokemon",
 
-		aliases: [
-			"pokemon",
-			"mypoke",
-			"pokebag"
-		],
-
-		version: "5.0",
+		version: "7.0",
 
 		author: "Abdul Kaiyum",
 
@@ -28,7 +22,7 @@ module.exports = {
 			"View your Pokémon",
 
 		longDescription:
-			"See your Pokémon collection",
+			"Interactive Pokémon collection viewer",
 
 		category: "pokemon",
 
@@ -36,31 +30,33 @@ module.exports = {
 			en: `
 ╭─ MYPOKEMON GUIDE ─╮
 
-📘 Commands:
-
+📘 Command:
 • mypokemon
-• pokemon
-• pokebag
 
 ━━━━━━━━━━━━━━━
 
-📊 Shows:
+🎮 How It Works:
 
-• All Pokémon
-• Levels
-• XP
-• Rarity
-• Shiny Status
-• Stats
-• Types
+Bot tomr Pokémon list dibe.
+
+Tarpor:
+number reply korle
+oi Pokémon er full details dekhabe.
+
+━━━━━━━━━━━━━━━
+
+📌 Example:
+
+1
+2
+3
 
 ━━━━━━━━━━━━━━━
 
 💡 Tips:
 
-• Level up Pokémon
-• Catch shiny Pokémon
-• Build strong team 😹
+• Strong Pokémon dekho
+• Shiny Pokémon collect koro 😹
 
 ╰──────────────────╯`
 		}
@@ -74,19 +70,15 @@ module.exports = {
 
 		try {
 
-			// USER DATA
+			// GET USER
 
 			const userData =
-				await getPokemonData(
-					usersData,
+				await getPokemonUser(
 					event.senderID
 				);
 
-			const pokeData =
-				userData.pokemonData;
-
 			const pokemons =
-				pokeData.pokemons || [];
+				userData.pokemons || [];
 
 			// NO POKEMON
 
@@ -96,13 +88,11 @@ module.exports = {
 `❌ You don't have any Pokémon yet.
 
 🎯 Use:
-pokehunt
-
-to catch Pokémon!`
+pokehunt`
 				);
 			}
 
-			// SORT BY LEVEL
+			// SORT
 
 			const sorted =
 				[...pokemons].sort(
@@ -111,24 +101,10 @@ to catch Pokémon!`
 						a.level
 				);
 
-			// STATS
-
-			const shinyCount =
-				sorted.filter(
-					p => p.shiny
-				).length;
-
-			const legendaryCount =
-				sorted.filter(
-					p =>
-						p.rarity ===
-						"legendary"
-				).length;
-
 			// MESSAGE
 
 			let msg =
-`📘 YOUR POKÉMON COLLECTION
+`📘 YOUR POKÉMON
 
 ━━━━━━━━━━━━━━━
 
@@ -140,25 +116,8 @@ ${await usersData.getName(
 🧬 Total Pokémon:
 ${sorted.length}
 
-✨ Shiny Pokémon:
-${shinyCount}
-
-🟡 Legendary:
-${legendaryCount}
-
-💰 Coins:
-${pokeData.coins || 0}
-
-🏆 Wins:
-${pokeData.wins || 0}
-
-💀 Losses:
-${pokeData.losses || 0}
-
 ━━━━━━━━━━━━━━━
 `;
-
-			// POKEMON LIST
 
 			for (
 				let i = 0;
@@ -169,52 +128,43 @@ ${pokeData.losses || 0}
 				const p =
 					sorted[i];
 
-				const rarityEmoji =
-					getRarityEmoji(
-						p.rarity
-					);
-
 				msg +=
 `
-#${i + 1}
-
-${rarityEmoji}
-${p.shiny ? "✨" : ""}
-${p.name}
-
-⭐ ${p.rarity.toUpperCase()}
-
-📈 Level:
-${p.level}
-
-✨ XP:
-${p.xp || 0}/100
-
-❤️ HP:
-${p.hp}
-
-⚔️ Attack:
-${p.attack}
-
-🛡️ Defense:
-${p.defense}
-
-🏃 Speed:
-${p.speed}
-
-🌿 Type:
-${p.types.join(", ")}
-
-━━━━━━━━━━━━━━━`;
+${i + 1}. ${
+	getRarityEmoji(
+		p.rarity
+	)
+} ${p.shiny ? "✨" : ""}${p.name}
+`;
 			}
 
 			msg +=
 `
+━━━━━━━━━━━━━━━
 
-🔥 Keep training
-your Pokémon team!`;
+🎮 Reply with Pokémon number
+to see details.`;
 
-			message.reply(msg);
+			const sent =
+				await message.reply(
+					msg
+				);
+
+			// REPLY SYSTEM
+
+			global.GoatBot.onReply.set(
+				sent.messageID,
+				{
+					commandName:
+						this.config.name,
+
+					author:
+						event.senderID,
+
+					pokemons:
+						sorted
+				}
+			);
 
 		} catch (e) {
 
@@ -222,6 +172,119 @@ your Pokémon team!`;
 
 			message.reply(
 				"❌ Failed to load Pokémon."
+			);
+		}
+	},
+
+	onReply: async function ({
+		message,
+		event,
+		Reply
+	}) {
+
+		try {
+
+			// AUTHOR CHECK
+
+			if (
+				event.senderID !==
+				Reply.author
+			)
+				return;
+
+			const number =
+				parseInt(
+					event.body
+				);
+
+			// INVALID
+
+			if (
+				isNaN(number)
+			) {
+
+				return message.reply(
+					"❌ Reply with a Pokémon number."
+				);
+			}
+
+			const pokemons =
+				Reply.pokemons;
+
+			const pokemon =
+				pokemons[
+					number - 1
+				];
+
+			// NOT FOUND
+
+			if (!pokemon) {
+
+				return message.reply(
+					"❌ Invalid Pokémon number."
+				);
+			}
+
+			// SEND DETAILS
+
+			message.reply({
+				body:
+`🧬 POKÉMON DETAILS
+
+━━━━━━━━━━━━━━━
+
+${getRarityEmoji(
+	pokemon.rarity
+)} ${pokemon.shiny ? "✨" : ""}
+${pokemon.name}
+
+⭐ Rarity:
+${pokemon.rarity.toUpperCase()}
+
+📈 Level:
+${pokemon.level}
+
+✨ XP:
+${pokemon.xp || 0}/100
+
+━━━━━━━━━━━━━━━
+
+❤️ HP:
+${pokemon.hp}
+
+⚔️ Attack:
+${pokemon.attack}
+
+🛡️ Defense:
+${pokemon.defense}
+
+🏃 Speed:
+${pokemon.speed}
+
+━━━━━━━━━━━━━━━
+
+🌿 Types:
+${pokemon.types.join(", ")}
+
+✨ Shiny:
+${pokemon.shiny ? "YES" : "NO"}
+
+━━━━━━━━━━━━━━━
+
+🔥 Powerful Pokémon!`,
+
+				attachment:
+					await global.utils.getStreamFromURL(
+						pokemon.image
+					)
+			});
+
+		} catch (e) {
+
+			console.log(e);
+
+			message.reply(
+				"❌ Failed to show Pokémon details."
 			);
 		}
 	}

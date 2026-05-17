@@ -1,6 +1,7 @@
 const {
-	getPokemonData
-} = require("./pokemonUtils");
+	getPokemonUser,
+	savePokemonUser
+} = require("./pokemonMongo");
 
 function random(min, max) {
 
@@ -14,13 +15,7 @@ module.exports = {
 	config: {
 		name: "dailypoke",
 
-		aliases: [
-			"pdaily",
-			"dailypokemon",
-			"daily"
-		],
-
-		version: "4.0",
+		version: "7.0",
 
 		author: "Abdul Kaiyum",
 
@@ -40,11 +35,8 @@ module.exports = {
 			en: `
 ╭─ DAILYPOKE GUIDE ─╮
 
-🎁 Commands:
-
+🎁 Command:
 • dailypoke
-• pdaily
-• daily
 
 ━━━━━━━━━━━━━━━
 
@@ -53,8 +45,8 @@ module.exports = {
 • Coins
 • Pokéballs
 • Potions
-• Rare Items
 • Rare Candy Chance
+• Gems Chance
 
 ━━━━━━━━━━━━━━━
 
@@ -65,9 +57,8 @@ module.exports = {
 
 💡 Tips:
 
-• Daily claim miss koro na 😹
-• Rare rewards pawa jay
-• Coins collect koro
+• Daily claim miss koiro na 😹
+• Rare rewards paita paro
 
 ╰──────────────────╯`
 		}
@@ -75,40 +66,47 @@ module.exports = {
 
 	onStart: async function ({
 		message,
-		event,
-		usersData
+		event
 	}) {
 
 		try {
 
+			// USER DATA
+
 			const userData =
-				await getPokemonData(
-					usersData,
+				await getPokemonUser(
 					event.senderID
 				);
 
-			const pokeData =
-				userData.pokemonData;
+			// FIX ITEMS
+
+			if (!userData.items) {
+
+				userData.items = {};
+			}
+
+			// TIME
 
 			const now =
 				Date.now();
 
 			const cooldown =
-				86400000;
+				24 * 60 * 60 * 1000;
 
-			const lastDaily =
-				pokeData.lastDaily || 0;
+			const lastClaim =
+				userData.lastDaily || 0;
 
 			// COOLDOWN CHECK
 
 			if (
-				now - lastDaily <
+				now - lastClaim <
 				cooldown
 			) {
 
 				const remaining =
+
 					cooldown -
-					(now - lastDaily);
+					(now - lastClaim);
 
 				const hours =
 					Math.floor(
@@ -125,7 +123,7 @@ module.exports = {
 					);
 
 				return message.reply(
-`⏳ Daily reward already claimed.
+`⏰ You already claimed daily reward.
 
 🕒 Come back in:
 ${hours}h ${minutes}m`
@@ -135,143 +133,135 @@ ${hours}h ${minutes}m`
 			// REWARDS
 
 			const coins =
-				random(500, 2500);
+				random(
+					2000,
+					6000
+				);
 
-			const pokeball =
-				random(1, 5);
+			const pokeballs =
+				random(3, 10);
 
-			const potion =
-				random(1, 3);
-
-			const greatballChance =
-				Math.random() < 0.35;
-
-			const rareCandyChance =
-				Math.random() < 0.15;
+			const potions =
+				random(1, 4);
 
 			// ADD COINS
 
-			pokeData.coins +=
+			userData.coins +=
 				coins;
 
-			// ITEMS INIT
-
-			if (!pokeData.items)
-				pokeData.items = {};
-
-			// POKEBALL
+			// INIT ITEMS
 
 			if (
-				!pokeData.items
+				!userData.items
 					.pokeball
-			) {
-
-				pokeData.items
-					.pokeball = 0;
-			}
-
-			pokeData.items
-				.pokeball +=
-				pokeball;
-
-			// POTION
+			)
+				userData.items.pokeball =
+					0;
 
 			if (
-				!pokeData.items
+				!userData.items
 					.potion
-			) {
+			)
+				userData.items.potion =
+					0;
 
-				pokeData.items
-					.potion = 0;
-			}
+			if (
+				!userData.items
+					.rarecandy
+			)
+				userData.items.rarecandy =
+					0;
 
-			pokeData.items
-				.potion +=
-				potion;
+			// ADD ITEMS
 
-			// GREATBALL BONUS
+			userData.items.pokeball +=
+				pokeballs;
 
-			let bonusText =
+			userData.items.potion +=
+				potions;
+
+			// BONUS REWARDS
+
+			let bonus =
 				"";
 
-			if (
-				greatballChance
-			) {
-
-				if (
-					!pokeData.items
-						.greatball
-				) {
-
-					pokeData.items
-						.greatball = 0;
-				}
-
-				pokeData.items
-					.greatball += 1;
-
-				bonusText +=
-`
-🔵 Greatball:
-1`;
-			}
-
-			// RARE CANDY BONUS
+			// RARE CANDY
 
 			if (
-				rareCandyChance
+				Math.random() <
+				0.25
 			) {
 
-				if (
-					!pokeData.items
-						.rarecandy
-				) {
+				const rareCandy =
+					random(1, 2);
 
-					pokeData.items
-						.rarecandy = 0;
-				}
+				userData.items.rarecandy +=
+					rareCandy;
 
-				pokeData.items
-					.rarecandy += 1;
-
-				bonusText +=
+				bonus +=
 `
 🍬 Rare Candy:
-1`;
+${rareCandy}`;
+			}
+
+			// GEMS
+
+			if (
+				Math.random() <
+				0.15
+			) {
+
+				const gems =
+					random(5, 15);
+
+				if (
+					!userData.gems
+				)
+					userData.gems = 0;
+
+				userData.gems +=
+					gems;
+
+				bonus +=
+`
+💎 Gems:
+${gems}`;
 			}
 
 			// SAVE TIME
 
-			pokeData.lastDaily =
+			userData.lastDaily =
 				now;
 
-			// SAVE MONGO
+			// SAVE
 
-			await usersData.set(
+			await savePokemonUser(
 				event.senderID,
-				{
-					pokemonData:
-						pokeData
-				}
+				userData
 			);
 
+			// SUCCESS
+
 			message.reply(
-`🎁 DAILY POKÉMON REWARD
+`🎁 DAILY REWARD CLAIMED!
 
 ━━━━━━━━━━━━━━━
 
 💰 Coins:
 ${coins}
 
-🔴 Pokéball:
-${pokeball}
+🔴 Pokéballs:
+${pokeballs}
 
-💊 Potion:
-${potion}
+🧪 Potions:
+${potions}
 
-${bonusText}
+${bonus}
 
 ━━━━━━━━━━━━━━━
+
+⏰ Next claim:
+24 hours
 
 🔥 Come back tomorrow
 for more rewards!`

@@ -1,6 +1,7 @@
 const {
-	getPokemonData
-} = require("./pokemonUtils");
+	getPokemonUser,
+	savePokemonUser
+} = require("./pokemonMongo");
 
 const shopItems = {
 
@@ -36,7 +37,7 @@ const shopItems = {
 		name: "Potion",
 		price: 250,
 		description:
-			"Heal your Pokémon"
+			"Heal Pokémon HP"
 	},
 
 	superpotion: {
@@ -58,12 +59,7 @@ module.exports = {
 	config: {
 		name: "shop",
 
-		aliases: [
-			"pokeshop",
-			"pshop"
-		],
-
-		version: "5.0",
+		version: "7.0",
 
 		author: "Abdul Kaiyum",
 
@@ -81,22 +77,22 @@ module.exports = {
 
 		guide: {
 			en: `
-╭─ POKÉSHOP GUIDE ─╮
+╭─ SHOP GUIDE ─╮
 
-🛒 View Shop:
+🛒 Commands:
+
 • shop
+• shop buy item amount
 
 ━━━━━━━━━━━━━━━
 
-🛍️ Buy Item:
-• shop buy item amount
-
 📌 Example:
+
 shop buy pokeball 5
 
 ━━━━━━━━━━━━━━━
 
-🎮 Items:
+🎮 Available Items:
 
 • pokeball
 • greatball
@@ -111,18 +107,17 @@ shop buy pokeball 5
 💡 Tips:
 
 • Better balls = better catch
-• Potion HP heal kore
-• Rare candy level up dey 😹
+• Potion heal dey 😹
+• Rare candy level up kore
 
-╰──────────────────╯`
+╰────────────────╯`
 		}
 	},
 
 	onStart: async function ({
 		message,
 		event,
-		args,
-		usersData
+		args
 	}) {
 
 		try {
@@ -130,18 +125,16 @@ shop buy pokeball 5
 			// USER DATA
 
 			const userData =
-				await getPokemonData(
-					usersData,
+				await getPokemonUser(
 					event.senderID
 				);
 
-			const pokeData =
-				userData.pokemonData;
+			// FIX ITEMS
 
-			// SAFETY ITEMS
+			if (!userData.items) {
 
-			if (!pokeData.items)
-				pokeData.items = {};
+				userData.items = {};
+			}
 
 			// SHOW SHOP
 
@@ -153,7 +146,7 @@ shop buy pokeball 5
 ━━━━━━━━━━━━━━━
 
 💰 Your Coins:
-${pokeData.coins}
+${userData.coins || 0}
 
 ━━━━━━━━━━━━━━━
 `;
@@ -164,7 +157,7 @@ ${pokeData.coins}
 						shopItems[key];
 
 					const owned =
-						pokeData.items[
+						userData.items[
 							key
 						] || 0;
 
@@ -186,7 +179,7 @@ ${owned}
 				msg +=
 `
 
-🛍️ Buy Example:
+🛍️ Example:
 shop buy pokeball 5`;
 
 				return message.reply(
@@ -218,7 +211,7 @@ shop buy pokeball 5`;
 				) {
 
 					return message.reply(
-						"❌ | Enter item name."
+						"❌ Enter item name."
 					);
 				}
 
@@ -229,7 +222,7 @@ shop buy pokeball 5`;
 				) {
 
 					return message.reply(
-						"❌ | Invalid item."
+						"❌ Invalid item."
 					);
 				}
 
@@ -241,7 +234,7 @@ shop buy pokeball 5`;
 				) {
 
 					return message.reply(
-						"❌ | Invalid amount."
+						"❌ Invalid amount."
 					);
 				}
 
@@ -257,7 +250,7 @@ shop buy pokeball 5`;
 				// NOT ENOUGH COINS
 
 				if (
-					pokeData.coins <
+					userData.coins <
 					totalPrice
 				) {
 
@@ -268,42 +261,39 @@ shop buy pokeball 5`;
 ${totalPrice}
 
 💵 You Have:
-${pokeData.coins}`
+${userData.coins}`
 					);
 				}
 
 				// REMOVE COINS
 
-				pokeData.coins -=
+				userData.coins -=
 					totalPrice;
 
 				// INIT ITEM
 
 				if (
-					!pokeData.items[
+					!userData.items[
 						itemName
 					]
 				) {
 
-					pokeData.items[
+					userData.items[
 						itemName
 					] = 0;
 				}
 
 				// ADD ITEM
 
-				pokeData.items[
+				userData.items[
 					itemName
 				] += amount;
 
-				// SAVE MONGO
+				// SAVE
 
-				await usersData.set(
+				await savePokemonUser(
 					event.senderID,
-					{
-						pokemonData:
-							pokeData
-					}
+					userData
 				);
 
 				// SUCCESS
@@ -323,7 +313,7 @@ ${amount}
 ${totalPrice}
 
 💰 Remaining Coins:
-${pokeData.coins}
+${userData.coins}
 
 ━━━━━━━━━━━━━━━
 
@@ -331,7 +321,7 @@ ${pokeData.coins}
 				);
 			}
 
-			// INVALID USAGE
+			// INVALID
 
 			message.reply(
 				"❌ Invalid usage."

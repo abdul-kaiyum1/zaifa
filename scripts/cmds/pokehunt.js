@@ -1,11 +1,13 @@
 const axios = require("axios");
 
 const {
-	getPokemonData
-} = require("./pokemonUtils");
+	getPokemonUser,
+	savePokemonUser
+} = require("./pokemonMongo");
 
 const {
-	getRarity
+	getRarity,
+	getRarityReward
 } = require("./rarity");
 
 const activeHunts =
@@ -27,12 +29,7 @@ module.exports = {
 	config: {
 		name: "pokehunt",
 
-		aliases: [
-			"huntpokemon",
-			"phunt"
-		],
-
-		version: "5.0",
+		version: "7.0",
 
 		author: "Abdul Kaiyum",
 
@@ -52,7 +49,7 @@ module.exports = {
 			en: `
 ╭─ POKEHUNT GUIDE ─╮
 
-🎯 Start Hunt:
+🎯 Command:
 • pokehunt
 
 ━━━━━━━━━━━━━━━
@@ -60,7 +57,16 @@ module.exports = {
 🎮 How To Play:
 
 Bot Pokémon image dibe.
+60 second er moddhe
 Pokemon er naam reply dite hobe.
+
+━━━━━━━━━━━━━━━
+
+⚠️ Rules:
+
+• Wrong answer auto unsend
+• 60 sec time limit
+• First correct answer wins
 
 ━━━━━━━━━━━━━━━
 
@@ -68,25 +74,16 @@ Pokemon er naam reply dite hobe.
 
 • Pokémon Catch
 • Coins
-• XP
 • Rare Pokémon
-
-━━━━━━━━━━━━━━━
-
-✨ Features:
-
 • Shiny Pokémon
-• Rarity System
-• MongoDB Save
-• Pokédex Save
 
 ━━━━━━━━━━━━━━━
 
 💡 Tips:
 
 • Fast answer dao 😹
+• Legendary Pokémon rare
 • Shiny Pokémon ultra rare
-• Legendary Pokémon collect koro
 
 ╰──────────────────╯`
 		}
@@ -94,12 +91,13 @@ Pokemon er naam reply dite hobe.
 
 	onStart: async function ({
 		message,
-		event
+		event,
+		api
 	}) {
 
 		try {
 
-			// CHECK ACTIVE HUNT
+			// ACTIVE CHECK
 
 			if (
 				activeHunts.has(
@@ -128,13 +126,13 @@ Pokemon er naam reply dite hobe.
 			const pokemonName =
 				data.name.toLowerCase();
 
-			// SHINY SYSTEM
+			// SHINY
 
 			const shiny =
 				Math.random() <
 				0.02;
 
-			// RARITY SYSTEM
+			// RARITY
 
 			const rarity =
 				getRarity();
@@ -153,38 +151,15 @@ Pokemon er naam reply dite hobe.
 			let reward =
 				random(300, 900);
 
-			// RARITY BONUS
-
-			if (
-				rarity ===
-				"rare"
-			)
-				reward += 300;
-
-			else if (
-				rarity ===
-				"epic"
-			)
-				reward += 700;
-
-			else if (
-				rarity ===
-				"legendary"
-			)
-				reward += 1500;
-
-			else if (
-				rarity ===
-				"mythical"
-			)
-				reward += 3000;
-
-			// SHINY BONUS
+			reward +=
+				getRarityReward(
+					rarity
+				);
 
 			if (shiny)
 				reward += 2000;
 
-			// STORE HUNT
+			// SAVE HUNT
 
 			activeHunts.set(
 				event.threadID,
@@ -192,6 +167,11 @@ Pokemon er naam reply dite hobe.
 					pokemonName,
 
 					reward,
+
+					startedBy:
+						event.senderID,
+
+					timeout: null,
 
 					pokemonData: {
 
@@ -233,7 +213,7 @@ Pokemon er naam reply dite hobe.
 				}
 			);
 
-			// SEND HUNT
+			// SEND MESSAGE
 
 			const msg =
 				await message.reply({
@@ -241,8 +221,6 @@ Pokemon er naam reply dite hobe.
 `🎯 POKÉMON HUNT STARTED!
 
 ━━━━━━━━━━━━━━━
-
-🧩 Guess Pokémon name!
 
 ⭐ Rarity:
 ${rarity.toUpperCase()}
@@ -252,15 +230,57 @@ ${reward} coins
 
 ${shiny ? "✨ SHINY POKÉMON!" : ""}
 
+⏰ Time Limit:
+60 seconds
+
 ━━━━━━━━━━━━━━━
 
-Reply with Pokémon name!`,
+🎮 Reply with Pokémon name!`,
 
 					attachment:
 						await global.utils.getStreamFromURL(
 							image
 						)
 				});
+
+			// AUTO END AFTER 60 SEC
+
+			const timeout =
+				setTimeout(
+					async () => {
+
+						const stillActive =
+							activeHunts.get(
+								event.threadID
+							);
+
+						if (
+							!stillActive
+						)
+							return;
+
+						activeHunts.delete(
+							event.threadID
+						);
+
+						message.reply(
+`⏰ TIME OVER!
+
+❌ Nobody guessed the Pokémon.
+
+🧬 Pokémon was:
+${pokemonName}`
+						);
+
+					},
+					60000
+				);
+
+			activeHunts.get(
+				event.threadID
+			).timeout = timeout;
+
+			// REPLY SYSTEM
 
 			global.GoatBot.onReply.set(
 				msg.messageID,
@@ -287,6 +307,7 @@ Reply with Pokémon name!`,
 		message,
 		event,
 		Reply,
+		api,
 		usersData
 	}) {
 
@@ -310,8 +331,22 @@ Reply with Pokémon name!`,
 			if (
 				answer !==
 				hunt.pokemonName
-			)
+			) {
+
+				// UNSEND WRONG MESSAGE
+
+				api.unsendMessage(
+					event.messageID
+				);
+
 				return;
+			}
+
+			// STOP TIMEOUT
+
+			clearTimeout(
+				hunt.timeout
+			);
 
 			// REMOVE ACTIVE HUNT
 
@@ -319,51 +354,67 @@ Reply with Pokémon name!`,
 				Reply.threadID
 			);
 
-			// GET USER DATA
+			// GET USER
 
 			const userData =
-				await getPokemonData(
-					usersData,
+				await getPokemonUser(
 					event.senderID
 				);
 
+			// FIX ARRAYS
+
+			if (
+				!Array.isArray(
+					userData.pokemons
+				)
+			) {
+
+				userData.pokemons =
+					[];
+			}
+
+			if (
+				!Array.isArray(
+					userData.pokedex
+				)
+			) {
+
+				userData.pokedex =
+					[];
+			}
+
 			// ADD COINS
 
-			userData.pokemonData.coins +=
+			userData.coins +=
 				hunt.reward;
 
 			// ADD POKEMON
 
-			userData.pokemonData.pokemons.push(
+			userData.pokemons.push(
 				hunt.pokemonData
 			);
 
-			// ADD POKEDEX
+			// ADD DEX
 
 			if (
-				!userData
-					.pokemonData
-					.pokedex.includes(
-						hunt.pokemonName
-					)
+				!userData.pokedex.includes(
+					hunt.pokemonName
+				)
 			) {
 
-				userData.pokemonData.pokedex.push(
+				userData.pokedex.push(
 					hunt.pokemonName
 				);
 			}
 
-			// SAVE TO MONGO
+			// SAVE
 
-			await usersData.set(
+			await savePokemonUser(
 				event.senderID,
-				{
-					pokemonData:
-						userData.pokemonData
-				}
+				userData
 			);
 
-			// SUCCESS MESSAGE
+			// SUCCESS
 
 			message.reply(
 `🎉 POKÉMON CAUGHT!

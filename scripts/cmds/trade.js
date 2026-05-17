@@ -1,6 +1,7 @@
 const {
-	getPokemonData
-} = require("./pokemonUtils");
+	getPokemonUser,
+	savePokemonUser
+} = require("./pokemonMongo");
 
 const activeTrades =
 	global.activeTrades ||
@@ -13,12 +14,7 @@ module.exports = {
 	config: {
 		name: "trade",
 
-		aliases: [
-			"poketrade",
-			"ptrade"
-		],
-
-		version: "5.0",
+		version: "7.0",
 
 		author: "Abdul Kaiyum",
 
@@ -38,19 +34,22 @@ module.exports = {
 			en: `
 ╭─ TRADE GUIDE ─╮
 
-🤝 Start Trade:
-• trade @user pokemonName
-
-📌 Example:
-trade @kaiyum pikachu
+🤝 Command:
+• trade @user pokemonNumber
 
 ━━━━━━━━━━━━━━━
 
-🎮 Trade System:
+📌 Example:
 
-• User must accept
-• Pokémon transfers safely
-• MongoDB auto saves
+trade @kaiyum 1
+
+━━━━━━━━━━━━━━━
+
+🎮 How It Works:
+
+• Mention user
+• Give Pokémon number
+• User accepts or declines
 
 ━━━━━━━━━━━━━━━
 
@@ -64,7 +63,6 @@ trade @kaiyum pikachu
 💡 Tips:
 
 • Rare Pokémon trade koro 😹
-• Scammer nai ekhane
 • Safe trade system
 
 ╰────────────────╯`
@@ -80,7 +78,7 @@ trade @kaiyum pikachu
 
 		try {
 
-			// MENTION
+			// TARGET
 
 			const target =
 				Object.keys(
@@ -90,7 +88,7 @@ trade @kaiyum pikachu
 			if (!target) {
 
 				return message.reply(
-					"❌ | Mention a user."
+					"❌ Mention a user."
 				);
 			}
 
@@ -100,53 +98,67 @@ trade @kaiyum pikachu
 			) {
 
 				return message.reply(
-					"❌ | You can't trade with yourself."
+					"❌ You can't trade with yourself."
 				);
 			}
 
-			// POKEMON NAME
+			// NUMBER
 
-			const pokemonName =
-				args
-					.slice(1)
-					.join(" ")
-					.toLowerCase();
+			const number =
+				parseInt(
+					args[1]
+				);
 
-			if (!pokemonName) {
+			if (
+				isNaN(number)
+			) {
 
 				return message.reply(
-					"❌ | Enter Pokémon name."
+					"❌ Enter Pokémon number."
 				);
 			}
 
 			// USER DATA
 
 			const senderData =
-				await getPokemonData(
-					usersData,
+				await getPokemonUser(
 					event.senderID
 				);
 
-			const senderPoke =
-				senderData
-					.pokemonData
-					.pokemons
-					.find(
-						p =>
-							p.name.toLowerCase() ===
-							pokemonName
-					);
+			const pokemons =
+				senderData.pokemons || [];
 
-			// NOT FOUND
+			// NO POKEMON
 
-			if (!senderPoke) {
+			if (!pokemons.length) {
 
 				return message.reply(
-					"❌ | Pokémon not found."
+					"❌ You have no Pokémon."
 				);
 			}
 
-			// ACTIVE TRADE CHECK
+			// SORT
+
+			const sorted =
+				[...pokemons].sort(
+					(a, b) =>
+						b.level -
+						a.level
+				);
+
+			const selected =
+				sorted[number - 1];
+
+			// INVALID NUMBER
+
+			if (!selected) {
+
+				return message.reply(
+					"❌ Invalid Pokémon number."
+				);
+			}
+
+			// ACTIVE TRADE
 
 			if (
 				activeTrades.has(
@@ -155,11 +167,11 @@ trade @kaiyum pikachu
 			) {
 
 				return message.reply(
-					"❌ | User already has active trade."
+					"❌ User already has active trade."
 				);
 			}
 
-			// CREATE TRADE
+			// SAVE TRADE
 
 			activeTrades.set(
 				target,
@@ -171,7 +183,7 @@ trade @kaiyum pikachu
 						target,
 
 					pokemon:
-						senderPoke
+						selected
 				}
 			);
 
@@ -189,13 +201,16 @@ ${await usersData.getName(
 )}
 
 🧬 Pokémon:
-${senderPoke.name}
+${selected.name}
 
 ⭐ Rarity:
-${senderPoke.rarity.toUpperCase()}
+${selected.rarity.toUpperCase()}
 
 ✨ Shiny:
-${senderPoke.shiny ? "YES" : "NO"}
+${selected.shiny ? "YES" : "NO"}
+
+📈 Level:
+${selected.level}
 
 ━━━━━━━━━━━━━━━
 
@@ -234,7 +249,7 @@ decline`
 
 		try {
 
-			// ONLY TARGET CAN REPLY
+			// TARGET CHECK
 
 			if (
 				event.senderID !==
@@ -283,33 +298,34 @@ decline`
 				);
 			}
 
-			// USER DATA
+			// GET USERS
 
 			const senderData =
-				await getPokemonData(
-					usersData,
+				await getPokemonUser(
 					trade.from
 				);
 
 			const receiverData =
-				await getPokemonData(
-					usersData,
+				await getPokemonUser(
 					trade.to
 				);
 
 			// FIND POKEMON
 
 			const pokeIndex =
-				senderData
-					.pokemonData
-					.pokemons
-					.findIndex(
-						p =>
-							p.name ===
-							trade.pokemon.name
-					);
+				senderData.pokemons.findIndex(
+					p =>
+						p.name ===
+							trade.pokemon.name &&
 
-			// MISSING
+						p.level ===
+							trade.pokemon.level &&
+
+						p.shiny ===
+							trade.pokemon.shiny
+				);
+
+			// NOT FOUND
 
 			if (
 				pokeIndex === -1
@@ -324,60 +340,66 @@ decline`
 				);
 			}
 
-			// REMOVE FROM SENDER
+			// REMOVE
 
 			const tradedPokemon =
 
-				senderData
-					.pokemonData
-					.pokemons.splice(
-						pokeIndex,
-						1
-					)[0];
+				senderData.pokemons.splice(
+					pokeIndex,
+					1
+				)[0];
 
-			// ADD TO RECEIVER
-
-			receiverData
-				.pokemonData
-				.pokemons.push(
-					tradedPokemon
-				);
-
-			// POKEDEX UPDATE
+			// INIT RECEIVER
 
 			if (
-				!receiverData
-					.pokemonData
-					.pokedex.includes(
-						tradedPokemon.name.toLowerCase()
-					)
+				!Array.isArray(
+					receiverData.pokemons
+				)
 			) {
 
-				receiverData
-					.pokemonData
-					.pokedex.push(
-						tradedPokemon.name.toLowerCase()
-					);
+				receiverData.pokemons =
+					[];
 			}
 
-			// SAVE SENDER
+			if (
+				!Array.isArray(
+					receiverData.pokedex
+				)
+			) {
 
-			await usersData.set(
-				trade.from,
-				{
-					pokemonData:
-						senderData.pokemonData
-				}
+				receiverData.pokedex =
+					[];
+			}
+
+			// ADD
+
+			receiverData.pokemons.push(
+				tradedPokemon
 			);
 
-			// SAVE RECEIVER
+			// DEX
 
-			await usersData.set(
+			if (
+				!receiverData.pokedex.includes(
+					tradedPokemon.name.toLowerCase()
+				)
+			) {
+
+				receiverData.pokedex.push(
+					tradedPokemon.name.toLowerCase()
+				);
+			}
+
+			// SAVE BOTH
+
+			await savePokemonUser(
+				trade.from,
+				senderData
+			);
+
+			await savePokemonUser(
 				trade.to,
-				{
-					pokemonData:
-						receiverData.pokemonData
-				}
+				receiverData
 			);
 
 			// REMOVE TRADE
@@ -413,6 +435,9 @@ ${tradedPokemon.rarity.toUpperCase()}
 
 ✨ Shiny:
 ${tradedPokemon.shiny ? "YES" : "NO"}
+
+📈 Level:
+${tradedPokemon.level}
 
 ━━━━━━━━━━━━━━━
 
