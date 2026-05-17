@@ -4,7 +4,7 @@ module.exports = {
     "version": "1.2",
     "author": "Abdul Kaiyum",
     "role": 0,
-    "countDown": 80,
+    "countDown": 50,
     "shortDescription": {
       "en": "Guess the country from the flag"
     },
@@ -16,5 +16,5 @@ module.exports = {
       "en": "{pn}"
     }
   },
-  "location": "/home/container/process/octa/scripts/cmds/flag.js"
+  "location": "/workspaces/zaifa/scripts/cmds/flag.js"
 };
